@@ -136,7 +136,7 @@ cat > docs/reports/last.html <<EoF
 EoF
 
 remote="$(git remote | grep upstream || echo "origin")"
-branch="master"
+branch="main"
 echo "Push to ${remote}/${branch}? (Ctrl+C to abort)"
 read
 
