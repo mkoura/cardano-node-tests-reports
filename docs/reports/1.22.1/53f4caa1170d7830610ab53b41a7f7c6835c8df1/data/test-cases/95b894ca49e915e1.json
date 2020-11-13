@@ -1,0 +1,274 @@
+{
+  "uid" : "95b894ca49e915e1",
+  "name" : "test_reward_amount",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_reward_amount",
+  "historyId" : "4d70b99d6f55a37d1c661b1bebebbd97",
+  "time" : {
+    "start" : 1605260249295,
+    "stop" : 1605262245065,
+    "duration" : 1995770
+  },
+  "description" : "Check that the stake address and pool owner are receiving rewards.\n\n        * delegate to pool\n        * collect data for pool owner and pool users for 10 epochs\n\n           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n\n        * withdraw rewards to payment address\n        ",
+  "descriptionHtml" : "<p>Check that the stake address and pool owner are receiving rewards.</p>\n<pre><code>    * delegate to pool\n    * collect data for pool owner and pool users for 10 epochs\n\n       - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n       - each epoch check received reward with reward in ledger state\n\n    * withdraw rewards to payment address\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1605260233990,
+      "stop" : 1605260233990,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1605260233990,
+      "stop" : 1605260233990,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1605260233990,
+      "stop" : 1605260233990,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1605260233990,
+      "stop" : 1605260233990,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1605260233988,
+      "stop" : 1605260233989,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1605260233990,
+      "stop" : 1605260233990,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_use_pool1",
+    "time" : {
+      "start" : 1605260233991,
+      "stop" : 1605260249290,
+      "duration" : 15299
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1605260233987,
+      "stop" : 1605260233988,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the stake address and pool owner are receiving rewards.\n\n        * delegate to pool\n        * collect data for pool owner and pool users for 10 epochs\n\n           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n\n        * withdraw rewards to payment address\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "a051a943a7702439",
+      "name" : "log",
+      "source" : "a051a943a7702439.txt",
+      "type" : "text/plain",
+      "size" : 1142
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1605262245066,
+      "stop" : 1605262245067,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1605262245068,
+      "stop" : 1605262247169,
+      "duration" : 2101
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1605262245068,
+      "stop" : 1605262245068,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-e7470"
+  }, {
+    "name" : "thread",
+    "value" : "185122-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/7e000d3f17543ba1a9138dd5c6db80507025810f/cardano_node_tests/tests/test_staking.py#L671",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/7e000d3f17543ba1a9138dd5c6db80507025810f/cardano_node_tests/tests/test_staking.py#L671",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "1ea15f10d0451380",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: Not all rewards were transfered",
+      "time" : {
+        "start" : 1605224005145,
+        "stop" : 1605225995138,
+        "duration" : 1989993
+      }
+    }, {
+      "uid" : "4d57d9499dbf565b",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: New reward was not received by stake address\nassert 0 > 0",
+      "time" : {
+        "start" : 1605201442959,
+        "stop" : 1605202607996,
+        "duration" : 1165037
+      }
+    }, {
+      "uid" : "291e274dc316008b",
+      "status" : "broken",
+      "statusDetails" : "PermissionError: [Errno 13] Permission denied: '/nonexistent'",
+      "time" : {
+        "start" : 1605201121343,
+        "stop" : 1605201121343,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "95b894ca49e915e1.json",
+  "parameterValues" : [ ]
+}
