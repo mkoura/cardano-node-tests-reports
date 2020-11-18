@@ -1,0 +1,264 @@
+{
+  "uid" : "69b6dea157f52773",
+  "name" : "test_decreasing_reward_transfered_funds",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_decreasing_reward_transfered_funds",
+  "historyId" : "8d6011c4449f0947ace821e3bf972c45",
+  "time" : {
+    "start" : 1605727894243,
+    "stop" : 1605729593148,
+    "duration" : 1698905
+  },
+  "description" : "Check that rewards are gradually decreasing when funds are being transfered.\n\n        Even though nothing is staked and rewards are being transfered from reward address, there\n        are still some funds staked on the reward address at the time ledger snapshot is taken. For\n        that reason the reward amount received every epoch is gradually decreasing over the period\n        of several epochs until it is finally 0.\n\n        * delegate stake address\n        * wait for first reward\n        * transfer all funds from payment address back to faucet, so no funds are staked\n        * keep withdrawing new rewards so reward ballance is 0\n        * check that reward amount is decreasing epoch after epoch\n        ",
+  "descriptionHtml" : "<p>Check that rewards are gradually decreasing when funds are being transfered.</p>\n<pre><code>    Even though nothing is staked and rewards are being transfered from reward address, there\n    are still some funds staked on the reward address at the time ledger snapshot is taken. For\n    that reason the reward amount received every epoch is gradually decreasing over the period\n    of several epochs until it is finally 0.\n\n    * delegate stake address\n    * wait for first reward\n    * transfer all funds from payment address back to faucet, so no funds are staked\n    * keep withdrawing new rewards so reward ballance is 0\n    * check that reward amount is decreasing epoch after epoch\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1605713606454,
+      "stop" : 1605713606454,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1605713606504,
+      "stop" : 1605713606504,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1605714496233,
+      "stop" : 1605714496233,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_use_pool1",
+    "time" : {
+      "start" : 1605727877646,
+      "stop" : 1605727894241,
+      "duration" : 16595
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1605713606453,
+      "stop" : 1605713606453,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1605713606453,
+      "stop" : 1605713606453,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1605727877646,
+      "stop" : 1605727877646,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1605713606454,
+      "stop" : 1605713606504,
+      "duration" : 50
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that rewards are gradually decreasing when funds are being transfered.\n\n        Even though nothing is staked and rewards are being transfered from reward address, there\n        are still some funds staked on the reward address at the time ledger snapshot is taken. For\n        that reason the reward amount received every epoch is gradually decreasing over the period\n        of several epochs until it is finally 0.\n\n        * delegate stake address\n        * wait for first reward\n        * transfer all funds from payment address back to faucet, so no funds are staked\n        * keep withdrawing new rewards so reward ballance is 0\n        * check that reward amount is decreasing epoch after epoch\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "f38dd243d96c47e5",
+      "name" : "log",
+      "source" : "f38dd243d96c47e5.txt",
+      "type" : "text/plain",
+      "size" : 1593
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1605732714581,
+      "stop" : 1605732714581,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1605729593150,
+      "stop" : 1605729593592,
+      "duration" : 442
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1605732714582,
+      "stop" : 1605732714582,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "307833-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/3442d1cb0c64f8f506e7e55ef55522e93ac55b24/cardano_node_tests/tests/test_staking.py#L1100",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/3442d1cb0c64f8f506e7e55ef55522e93ac55b24/cardano_node_tests/tests/test_staking.py#L1100",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "8b52410339f02e9d",
+      "status" : "broken",
+      "statusDetails" : "FileNotFoundError: [Errno 2] No such file or directory: '/home/martink/Source/repos/cardano-node-tests2/tmp2/skipall'",
+      "time" : {
+        "start" : 1605713507355,
+        "stop" : 1605713507355,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "48965c0d4acbd79e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1605584620221,
+        "stop" : 1605586319248,
+        "duration" : 1699027
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "69b6dea157f52773.json",
+  "parameterValues" : [ ]
+}

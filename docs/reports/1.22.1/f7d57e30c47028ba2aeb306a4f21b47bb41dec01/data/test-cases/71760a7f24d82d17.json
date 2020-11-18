@@ -1,0 +1,221 @@
+{
+  "uid" : "71760a7f24d82d17",
+  "name" : "test_opcert_past_kes_period",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_opcert_past_kes_period",
+  "historyId" : "d90e8f131de3845addb36d0b247e876a",
+  "time" : {
+    "start" : 1605713507247,
+    "stop" : 1605713507247,
+    "duration" : 0
+  },
+  "description" : "Start a stake pool with an operational certificate created with expired `--kes-period`.\n\n        * backup the original operational certificate\n        * generate new operational certificate with `--kes-period` in the past\n        * restart the node with the new operational certificate\n        * check that the pool is not producing any blocks\n        * restore the original operational certificate and restart the node\n        ",
+  "descriptionHtml" : "<p>Start a stake pool with an operational certificate created with expired <code>--kes-period</code>.</p>\n<pre><code>    * backup the original operational certificate\n    * generate new operational certificate with `--kes-period` in the past\n    * restart the node with the new operational certificate\n    * check that the pool is not producing any blocks\n    * restore the original operational certificate and restart the node\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "FileNotFoundError: [Errno 2] No such file or directory: '/home/martink/Source/repos/cardano-node-tests2/tmp2/skipall'",
+  "statusTrace" : "tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/tmp/pytest-of-martink/pytest-1/popen-gw6'), _trace=<pluggy._tracing.TagTracerSub object at 0x7f3cc2d533a0>, _basetemp=PosixPath('/tmp/pytest-of-martink/pytest-1/popen-gw6')), worker_id = 'gw6'\nrequest = <SubRequest 'cluster_manager' for <Function test_opcert_past_kes_period>>\n\n    @pytest.yield_fixture\n    def cluster_manager(\n        tmp_path_factory: TempdirFactory,\n        worker_id: str,\n        request: FixtureRequest,\n    ) -> Generator[parallel_run.ClusterManager, None, None]:\n>       cluster_manager_obj = parallel_run.ClusterManager(\n            tmp_path_factory=tmp_path_factory, worker_id=worker_id, request=request\n        )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/conftest.py:121: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/parallel_run.py:68: in __init__\n    self.lock_log = self._init_log()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7f3cc2b61a60>\n\n    def _init_log(self) -> Path:\n        \"\"\"Return path to run log file.\"\"\"\n        env_log = os.environ.get(\"SCHEDULING_LOG\")\n        if env_log:\n            run_log = Path(env_log).expanduser()\n            if not run_log.is_absolute():\n                # the path is relative to LAUNCH_PATH (current path can differ)\n                run_log = helpers.LAUNCH_PATH / run_log\n            # create the log file if it doesn't exist\n>           open(run_log, \"a\").close()\nE           FileNotFoundError: [Errno 2] No such file or directory: '/home/martink/Source/repos/cardano-node-tests2/tmp2/skipall'\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/parallel_run.py:83: FileNotFoundError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1605713507250,
+      "stop" : 1605713507251,
+      "duration" : 1
+    },
+    "status" : "broken",
+    "statusMessage" : "FileNotFoundError: [Errno 2] No such file or directory: '/home/martink/Source/repos/cardano-node-tests2/tmp2/skipall'\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/pluggy/callers.py\", line 187, in _multicall\n    res = hook_impl.function(*args)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/_pytest/fixtures.py\", line 1111, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/_pytest/fixtures.py\", line 908, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/conftest.py\", line 121, in cluster_manager\n    cluster_manager_obj = parallel_run.ClusterManager(\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/parallel_run.py\", line 68, in __init__\n    self.lock_log = self._init_log()\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/parallel_run.py\", line 83, in _init_log\n    open(run_log, \"a\").close()\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1605713507249,
+      "stop" : 1605713507250,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1605713507248,
+      "stop" : 1605713507248,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1605713507250,
+      "stop" : 1605713507250,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1605713507249,
+      "stop" : 1605713507249,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1605713507248,
+      "stop" : 1605713507249,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1605713507250,
+      "stop" : 1605713507250,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Start a stake pool with an operational certificate created with expired `--kes-period`.\n\n        * backup the original operational certificate\n        * generate new operational certificate with `--kes-period` in the past\n        * restart the node with the new operational certificate\n        * check that the pool is not producing any blocks\n        * restore the original operational certificate and restart the node\n        ",
+    "status" : "broken",
+    "statusMessage" : "FileNotFoundError: [Errno 2] No such file or directory: '/home/martink/Source/repos/cardano-node-tests2/tmp2/skipall'",
+    "statusTrace" : "tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/tmp/pytest-of-martink/pytest-1/popen-gw6'), _trace=<pluggy._tracing.TagTracerSub object at 0x7f3cc2d533a0>, _basetemp=PosixPath('/tmp/pytest-of-martink/pytest-1/popen-gw6')), worker_id = 'gw6'\nrequest = <SubRequest 'cluster_manager' for <Function test_opcert_past_kes_period>>\n\n    @pytest.yield_fixture\n    def cluster_manager(\n        tmp_path_factory: TempdirFactory,\n        worker_id: str,\n        request: FixtureRequest,\n    ) -> Generator[parallel_run.ClusterManager, None, None]:\n>       cluster_manager_obj = parallel_run.ClusterManager(\n            tmp_path_factory=tmp_path_factory, worker_id=worker_id, request=request\n        )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/conftest.py:121: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/parallel_run.py:68: in __init__\n    self.lock_log = self._init_log()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7f3cc2b61a60>\n\n    def _init_log(self) -> Path:\n        \"\"\"Return path to run log file.\"\"\"\n        env_log = os.environ.get(\"SCHEDULING_LOG\")\n        if env_log:\n            run_log = Path(env_log).expanduser()\n            if not run_log.is_absolute():\n                # the path is relative to LAUNCH_PATH (current path can differ)\n                run_log = helpers.LAUNCH_PATH / run_log\n            # create the log file if it doesn't exist\n>           open(run_log, \"a\").close()\nE           FileNotFoundError: [Errno 2] No such file or directory: '/home/martink/Source/repos/cardano-node-tests2/tmp2/skipall'\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/parallel_run.py:83: FileNotFoundError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "f77adeeddc374c85",
+      "name" : "log",
+      "source" : "f77adeeddc374c85.txt",
+      "type" : "text/plain",
+      "size" : 117
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1605713507571,
+      "stop" : 1605713507571,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1605713507279,
+      "stop" : 1605713507279,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "306620-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/3442d1cb0c64f8f506e7e55ef55522e93ac55b24/cardano_node_tests/tests/test_kes.py#L106",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/3442d1cb0c64f8f506e7e55ef55522e93ac55b24/cardano_node_tests/tests/test_kes.py#L106",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "71760a7f24d82d17.json",
+  "parameterValues" : [ ]
+}
