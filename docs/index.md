@@ -1,9 +1,9 @@
 <a href="cli_coverage.json"><img src="cli_coverage_badge.svg"></a><br/>
 <h2>Test reports:</h2><p>
+<a href="reports/1.23.0">1.23.0</a><br/>
 <a href="reports/1.22.1">1.22.1</a><br/>
 <a href="reports/1.22.0">1.22.0</a><br/>
 <a href="reports/1.21.2">1.21.2</a><br/>
-<a href="reports/1.21.1">1.21.1</a><br/>
 <br />
 <h2>Old test reports:</h2>
 <p>
