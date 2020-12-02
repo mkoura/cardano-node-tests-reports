@@ -1,0 +1,266 @@
+{
+  "uid" : "5ba32e64ff260730",
+  "name" : "test_negative_change",
+  "fullName" : "cardano_node_tests.tests.test_transactions.TestNotBalanced#test_negative_change",
+  "historyId" : "7eafe1396db24921f00357483b23cf73",
+  "time" : {
+    "start" : 1606901889897,
+    "stop" : 1606901890003,
+    "duration" : 106
+  },
+  "description" : "Try to build a transaction with a negative change.\n\n        Check that it is not possible to built such transaction.\n        ",
+  "descriptionHtml" : "<p>Try to build a transaction with a negative change.</p>\n<pre><code>    Check that it is not possible to built such transaction.\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 'option --tx-out: Failed reading' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-file /tmp/py...e296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-file /tmp/py...e296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-fil...296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-fil...296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 1...df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n') tblen=4>.value",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_transactions.TestNotBalanced object at 0x7ff37f5a2700>, cluster = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7ff37f5a21f0>\npayment_addrs = [AddressRecord(address='addr_test1vp2yh6u79c5kmh229hm0gf6lf04dx3py07mufza6chetx3szqft6n', vkey_file=PosixPath('addr_no...wams9nky78', vkey_file=PosixPath('addr_not_balanced_ci1_1.vkey'), skey_file=PosixPath('addr_not_balanced_ci1_1.skey'))]\ntemp_dir = PosixPath('/tmp/pytest-of-martink/pytest-0/popen-gw5/test_transactions_py0')\n\n    @allure.link(helpers.get_vcs_link())\n    def test_negative_change(\n        self,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n        temp_dir: Path,\n    ):\n        \"\"\"Try to build a transaction with a negative change.\n    \n        Check that it is not possible to built such transaction.\n        \"\"\"\n        temp_template = helpers.get_func_name()\n    \n        src_address = payment_addrs[0].address\n        dst_address = payment_addrs[1].address\n    \n        tx_files = clusterlib.TxFiles(signing_key_files=[payment_addrs[0].skey_file])\n        ttl = cluster.calculate_tx_ttl()\n    \n        fee = cluster.calculate_tx_fee(\n            src_address=src_address,\n            tx_name=temp_template,\n            dst_addresses=[dst_address],\n            tx_files=tx_files,\n            ttl=ttl,\n        )\n    \n        src_addr_highest_utxo = cluster.get_utxo_with_highest_amount(src_address)\n    \n        # use only the UTXO with highest amount\n        txins = [src_addr_highest_utxo]\n        # try to transfer +1 Lovelace more than available and use a negative change (-1)\n        txouts = [\n            clusterlib.TxOut(address=dst_address, amount=src_addr_highest_utxo.amount - fee + 1),\n            clusterlib.TxOut(address=src_address, amount=-1),\n        ]\n        assert txins[0].amount - txouts[0].amount - fee == txouts[-1].amount\n    \n        with pytest.raises(clusterlib.CLIError) as excinfo:\n            cluster.build_raw_tx_bare(\n                out_file=temp_dir / f\"{clusterlib_utils.get_timestamped_rand_str()}_tx.body\",\n                txins=txins,\n                txouts=txouts,\n                tx_files=tx_files,\n                fee=fee,\n                ttl=ttl,\n            )\n>       assert \"option --tx-out: Failed reading\" in str(excinfo.value)\nE       assert 'option --tx-out: Failed reading' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-file /tmp/py...e296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n'\nE        +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-file /tmp/py...e296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-fil...296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n'))\nE        +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 174389 --out-fil...296ddd4a2df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9089 --fee 1...df6f4275f4bead344247fb7c48bbac5f2b346\")) StakeRefNull)) (TxOutAdaOnly AdaOnlyInShelleyEra (Lovelace (-1)))\\n') tblen=4>.value\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:621: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1606900252080,
+      "stop" : 1606900252080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1606900252079,
+      "stop" : 1606900252079,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1606900252080,
+      "stop" : 1606900252080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1606900252080,
+      "stop" : 1606900252080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1606901882226,
+      "stop" : 1606901882227,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1606900252080,
+      "stop" : 1606900252080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1606901882225,
+      "stop" : 1606901882226,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1606901814085,
+      "stop" : 1606901814085,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1606901882226,
+      "stop" : 1606901882226,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1606901882227,
+      "stop" : 1606901889896,
+      "duration" : 7669
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1606901913027,
+      "stop" : 1606901913028,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1606901890077,
+      "stop" : 1606901890077,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1606901890069,
+      "stop" : 1606901890077,
+      "duration" : 8
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestNotBalanced"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "112116-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d227d42403f52bbf2325b66cda1a1ed683edddf3/cardano_node_tests/tests/test_transactions.py#L575",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d227d42403f52bbf2325b66cda1a1ed683edddf3/cardano_node_tests/tests/test_transactions.py#L575",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "5ba32e64ff260730.json",
+  "parameterValues" : [ ]
+}

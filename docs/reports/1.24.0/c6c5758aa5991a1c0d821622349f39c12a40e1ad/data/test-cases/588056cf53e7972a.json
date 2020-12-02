@@ -1,0 +1,288 @@
+{
+  "uid" : "588056cf53e7972a",
+  "name" : "test_send_funds_to_invalid_length_address",
+  "fullName" : "cardano_node_tests.tests.test_transactions.TestNegative#test_send_funds_to_invalid_length_address",
+  "historyId" : "16dd3bfba3404dcaee3760c7b8e927a2",
+  "time" : {
+    "start" : 1606901913077,
+    "stop" : 1606901915756,
+    "duration" : 2679
+  },
+  "description" : "Try to send funds from payment address to address with invalid length.\n\n        Expect failure. Property-based test.\n        ",
+  "descriptionHtml" : "<p>Try to send funds from payment address to address with invalid length.</p>\n<pre><code>    Expect failure. Property-based test.\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 'invalid address' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0...n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=5>.value",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_transactions.TestNegative object at 0x7f67e2df6100>, cluster = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f67e311a6d0>\npool_users = [PoolUser(payment=AddressRecord(address='addr_test1qpn6cf4sfs2ujcthgj4nefcfxt9saphy9e05ql9fsj0wrhsee0v247m6584u9zkhjm9...vkey_file=PosixPath('test_negative_ci1_addr1_stake.vkey'), skey_file=PosixPath('test_negative_ci1_addr1_stake.skey')))]\n\n>   ???\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:989: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:1002: in test_send_funds_to_invalid_length_address\n    self._send_funds_to_invalid_address(cluster_obj=cluster, pool_users=pool_users, addr=addr)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.tests.test_transactions.TestNegative object at 0x7f67e2df6100>, cluster_obj = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f67e311a6d0>\npool_users = [PoolUser(payment=AddressRecord(address='addr_test1qpn6cf4sfs2ujcthgj4nefcfxt9saphy9e05ql9fsj0wrhsee0v247m6584u9zkhjm9...vkey_file=PosixPath('test_negative_ci1_addr1_stake.vkey'), skey_file=PosixPath('test_negative_ci1_addr1_stake.skey')))]\naddr = 'addr_test100000000000000000000000000000000000000000000000000'\n\n    def _send_funds_to_invalid_address(\n        self, cluster_obj: clusterlib.ClusterLib, pool_users: List[clusterlib.PoolUser], addr: str\n    ):\n        \"\"\"Send funds from payment address to invalid address.\"\"\"\n        tx_files = clusterlib.TxFiles(signing_key_files=[pool_users[0].payment.skey_file])\n        destinations = [clusterlib.TxOut(address=addr, amount=1000)]\n    \n        # it should NOT be possible to build a transaction using an invalid address\n        with pytest.raises(clusterlib.CLIError) as excinfo:\n            cluster_obj.build_raw_tx(\n                src_address=pool_users[0].payment.address,\n                tx_name=\"to_invalid\",\n                txouts=destinations,\n                tx_files=tx_files,\n                fee=0,\n            )\n>       assert \"invalid address\" in str(excinfo.value)\nE       AssertionError: assert 'invalid address' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\nE        +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\nE        +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0...n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=5>.value\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:743: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1606901803061,
+      "stop" : 1606901803061,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1606900252079,
+      "stop" : 1606900252079,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1606901913075,
+      "stop" : 1606901913075,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1606901913075,
+      "stop" : 1606901913075,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1606900252080,
+      "stop" : 1606900252080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1606901913075,
+      "stop" : 1606901913076,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1606900252079,
+      "stop" : 1606900252079,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1606900252079,
+      "stop" : 1606900252079,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users",
+    "time" : {
+      "start" : 1606901913076,
+      "stop" : 1606901913077,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1606900252079,
+      "stop" : 1606900252079,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Try to send funds from payment address to address with invalid length.\n\n        Expect failure. Property-based test.\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 'invalid address' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0...n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=5>.value",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_transactions.TestNegative object at 0x7f67e2df6100>, cluster = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f67e311a6d0>\npool_users = [PoolUser(payment=AddressRecord(address='addr_test1qpn6cf4sfs2ujcthgj4nefcfxt9saphy9e05ql9fsj0wrhsee0v247m6584u9zkhjm9...vkey_file=PosixPath('test_negative_ci1_addr1_stake.vkey'), skey_file=PosixPath('test_negative_ci1_addr1_stake.skey')))]\n\n>   ???\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:989: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:1002: in test_send_funds_to_invalid_length_address\n    self._send_funds_to_invalid_address(cluster_obj=cluster, pool_users=pool_users, addr=addr)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.tests.test_transactions.TestNegative object at 0x7f67e2df6100>, cluster_obj = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f67e311a6d0>\npool_users = [PoolUser(payment=AddressRecord(address='addr_test1qpn6cf4sfs2ujcthgj4nefcfxt9saphy9e05ql9fsj0wrhsee0v247m6584u9zkhjm9...vkey_file=PosixPath('test_negative_ci1_addr1_stake.vkey'), skey_file=PosixPath('test_negative_ci1_addr1_stake.skey')))]\naddr = 'addr_test100000000000000000000000000000000000000000000000000'\n\n    def _send_funds_to_invalid_address(\n        self, cluster_obj: clusterlib.ClusterLib, pool_users: List[clusterlib.PoolUser], addr: str\n    ):\n        \"\"\"Send funds from payment address to invalid address.\"\"\"\n        tx_files = clusterlib.TxFiles(signing_key_files=[pool_users[0].payment.skey_file])\n        destinations = [clusterlib.TxOut(address=addr, amount=1000)]\n    \n        # it should NOT be possible to build a transaction using an invalid address\n        with pytest.raises(clusterlib.CLIError) as excinfo:\n            cluster_obj.build_raw_tx(\n                src_address=pool_users[0].payment.address,\n                tx_name=\"to_invalid\",\n                txouts=destinations,\n                tx_files=tx_files,\n                fee=0,\n            )\n>       assert \"invalid address\" in str(excinfo.value)\nE       AssertionError: assert 'invalid address' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\nE        +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_invalid_t...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\nE        +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0 --out-file to_...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 9212 --fee 0...n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=5>.value\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:743: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "73bc90474171ddaa",
+      "name" : "log",
+      "source" : "73bc90474171ddaa.txt",
+      "type" : "text/plain",
+      "size" : 325
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1606901915805,
+      "stop" : 1606901915809,
+      "duration" : 4
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1606901915810,
+      "stop" : 1606901915810,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1606901915812,
+      "stop" : 1606901915815,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "hypothesis"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestNegative"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "112208-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d227d42403f52bbf2325b66cda1a1ed683edddf3/cardano_node_tests/tests/test_transactions.py#L991",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d227d42403f52bbf2325b66cda1a1ed683edddf3/cardano_node_tests/tests/test_transactions.py#L991",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "hypothesis" ]
+  },
+  "source" : "588056cf53e7972a.json",
+  "parameterValues" : [ ]
+}
