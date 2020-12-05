@@ -1,0 +1,269 @@
+{
+  "uid" : "da6dc24d9998baab",
+  "name" : "test_reward_amount",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_reward_amount",
+  "historyId" : "4d70b99d6f55a37d1c661b1bebebbd97",
+  "time" : {
+    "start" : 1607095067048,
+    "stop" : 1607095645612,
+    "duration" : 578564
+  },
+  "description" : "Check that the stake address and pool owner are receiving rewards.\n\n        * delegate to pool\n        * collect data for pool owner and pool users for 10 epochs\n\n           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n\n        * withdraw rewards to payment address\n        ",
+  "descriptionHtml" : "<p>Check that the stake address and pool owner are receiving rewards.</p>\n<pre><code>    * delegate to pool\n    * collect data for pool owner and pool users for 10 epochs\n\n       - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n       - each epoch check received reward with reward in ledger state\n\n    * withdraw rewards to payment address\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: New reward was not received by pool owner\nassert 0 > 0",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_staking.TestRewards object at 0x7f4f605a4eb0>, cluster_manager = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7f4f605ad7c0>, cluster_use_pool1 = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f4f605c4d90>\n\n    @allure.link(helpers.get_vcs_link())\n    def test_reward_amount(  # noqa: C901\n        self,\n        cluster_manager: parallel_run.ClusterManager,\n        cluster_use_pool1: clusterlib.ClusterLib,\n    ):\n        \"\"\"Check that the stake address and pool owner are receiving rewards.\n    \n        * delegate to pool\n        * collect data for pool owner and pool users for 10 epochs\n    \n           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n    \n        * withdraw rewards to payment address\n        \"\"\"\n        # pylint: disable=too-many-statements,too-many-locals,too-many-branches\n        pool_name = \"node-pool1\"\n        cluster = cluster_use_pool1\n    \n        temp_template = helpers.get_func_name()\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n        pool_owner = clusterlib.PoolUser(payment=pool_rec[\"payment\"], stake=pool_rec[\"stake\"])\n        pool_reward = clusterlib.PoolUser(payment=pool_rec[\"payment\"], stake=pool_rec[\"reward\"])\n        pool_reward_addr_dec = helpers.decode_bech32(pool_reward.stake.address)[2:]\n        pool_stake_addr_dec = helpers.decode_bech32(pool_owner.stake.address)[2:]\n    \n        sleep_time = clusterlib_utils.time_to_next_epoch_start(cluster) - 8\n        if sleep_time > 0:\n            time.sleep(sleep_time)\n    \n        init_epoch = cluster.get_last_block_epoch()\n        user_rewards = [(init_epoch, 0, 0)]\n        owner_rewards = [\n            (\n                init_epoch,\n                cluster.get_stake_addr_info(pool_reward.stake.address).reward_account_balance,\n                0,\n            )\n        ]\n    \n        # save ledger state\n        clusterlib_utils.save_ledger_state(\n            cluster_obj=cluster, name_template=f\"{temp_template}_{init_epoch}\"\n        )\n        ledger_state: dict = cluster.get_ledger_state()\n        es_snapshots = {init_epoch: ledger_state[\"nesEs\"][\"esSnapshots\"]}\n        rs_records = {init_epoch: ledger_state[\"nesRu\"][\"rs\"]}\n    \n        # submit registration certificate and delegate to pool\n        pool_user = _delegate_stake_addr(\n            cluster_obj=cluster,\n            addrs_data=cluster_manager.cache.addrs_data,\n            temp_template=temp_template,\n            pool_name=pool_name,\n            check_delegation=False,\n        )\n    \n        user_stake_addr_dec = helpers.decode_bech32(pool_user.stake.address)[2:]\n        user_payment_balance = cluster.get_address_balance(pool_user.payment.address)\n    \n        LOGGER.info(\"Checking rewards for 9 epochs.\")\n        for __ in range(9):\n            # reward balances in previous epoch\n            prev_user_epoch, prev_user_reward, __ = user_rewards[-1]\n            (\n                prev_owner_epoch,\n                prev_owner_reward,\n                __,  # prev_abs_owner_reward\n            ) = owner_rewards[-1]\n    \n            # wait for new epoch\n            if cluster.get_last_block_epoch() == prev_owner_epoch:\n                cluster.wait_for_new_epoch()\n    \n            # sleep till the end of epoch\n            sleep_time = clusterlib_utils.time_to_next_epoch_start(cluster) - 5\n            if sleep_time > 0:\n                time.sleep(sleep_time)\n    \n            this_epoch = cluster.get_last_block_epoch()\n    \n            # current reward balances\n            user_reward = cluster.get_stake_addr_info(\n                pool_user.stake.address\n            ).reward_account_balance\n            owner_reward = cluster.get_stake_addr_info(\n                pool_reward.stake.address\n            ).reward_account_balance\n    \n            # absolute reward amounts received this epoch\n            abs_user_reward = (\n                user_reward - prev_user_reward if this_epoch == prev_user_epoch + 1 else 0\n            )\n            abs_owner_reward = (\n                owner_reward - prev_owner_reward if this_epoch == prev_owner_epoch + 1 else 0\n            )\n    \n            # store collected rewards info\n            user_rewards.append(\n                (\n                    this_epoch,\n                    user_reward,\n                    abs_user_reward,\n                )\n            )\n            owner_rewards.append(\n                (\n                    this_epoch,\n                    owner_reward,\n                    abs_owner_reward,\n                )\n            )\n    \n            # save ledger state\n            clusterlib_utils.save_ledger_state(\n                cluster_obj=cluster, name_template=f\"{temp_template}_{this_epoch}\"\n            )\n            ledger_state = cluster.get_ledger_state()\n            es_snapshot: dict = ledger_state[\"nesEs\"][\"esSnapshots\"]\n            es_snapshots[this_epoch] = es_snapshot\n            rs_record: list = ledger_state[\"nesRu\"][\"rs\"]\n            rs_records[this_epoch] = rs_record\n    \n            # Make sure reward amount corresponds with ledger state.\n            # Reward is received on epoch boundary, so check reward with record for previous epoch.\n            if abs_user_reward:\n                assert abs_user_reward == _get_val_for_key_hash(\n                    user_stake_addr_dec, rs_records[this_epoch - 1]\n                )\n            if abs_owner_reward:\n                assert abs_owner_reward == _get_val_for_key_hash(\n                    pool_reward_addr_dec, rs_records[this_epoch - 1]\n                )\n    \n            _pstake_mark = _get_key_hashes(es_snapshot[\"_pstakeMark\"][\"_stake\"])\n            _pstake_set = _get_key_hashes(es_snapshot[\"_pstakeSet\"][\"_stake\"])\n            _pstake_go = _get_key_hashes(es_snapshot[\"_pstakeGo\"][\"_stake\"])\n    \n            if this_epoch == init_epoch + 2:\n                assert pool_stake_addr_dec in _pstake_mark\n                assert pool_stake_addr_dec in _pstake_set\n    \n                assert user_stake_addr_dec in _pstake_mark\n                assert user_stake_addr_dec not in _pstake_set\n                assert user_stake_addr_dec not in _pstake_go\n    \n            if this_epoch == init_epoch + 3:\n                assert user_stake_addr_dec in _pstake_mark\n                assert user_stake_addr_dec in _pstake_set\n                assert user_stake_addr_dec not in _pstake_go\n    \n            if this_epoch >= init_epoch + 3:\n                assert pool_stake_addr_dec in _pstake_mark\n                assert pool_stake_addr_dec in _pstake_set\n                assert pool_stake_addr_dec in _pstake_go\n    \n            if this_epoch >= init_epoch + 4:\n                assert user_stake_addr_dec in _pstake_mark\n                assert user_stake_addr_dec in _pstake_set\n                assert user_stake_addr_dec in _pstake_go\n    \n            if this_epoch >= init_epoch + 5:\n                # wait 5 epochs for the first reward for user stake address\n                assert (\n                    user_reward > prev_user_reward\n                ), \"New reward was not received by stake address\"\n    \n                # make sure ledger state and actual stake correspond\n                assert (\n                    _get_val_for_key_hash(user_stake_addr_dec, es_snapshot[\"_pstakeMark\"][\"_stake\"])\n                    == user_reward + user_payment_balance\n                )\n                assert (\n                    _get_val_for_key_hash(user_stake_addr_dec, es_snapshot[\"_pstakeSet\"][\"_stake\"])\n                    == prev_user_reward + user_payment_balance\n                )\n                assert (\n                    _get_val_for_key_hash(user_stake_addr_dec, es_snapshot[\"_pstakeGo\"][\"_stake\"])\n                    == user_rewards[-3][1] + user_payment_balance\n                )\n    \n            # check that new reward was received by the pool owner\n            if this_epoch >= 4:\n>               assert owner_reward > prev_owner_reward, \"New reward was not received by pool owner\"\nE               AssertionError: New reward was not received by pool owner\nE               assert 0 > 0\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_staking.py:862: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_use_pool1",
+    "time" : {
+      "start" : 1607094643733,
+      "stop" : 1607095067046,
+      "duration" : 423313
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1607094643733,
+      "stop" : 1607094643733,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1607094643731,
+      "stop" : 1607094643732,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1607094643732,
+      "stop" : 1607094643732,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1607094643733,
+      "stop" : 1607094643733,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1607094643732,
+      "stop" : 1607094643732,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1607094643732,
+      "stop" : 1607094643733,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1607094643732,
+      "stop" : 1607094643732,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1607094643731,
+      "stop" : 1607094643731,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the stake address and pool owner are receiving rewards.\n\n        * delegate to pool\n        * collect data for pool owner and pool users for 10 epochs\n\n           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n\n        * withdraw rewards to payment address\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: New reward was not received by pool owner\nassert 0 > 0",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_staking.TestRewards object at 0x7f4f605a4eb0>, cluster_manager = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7f4f605ad7c0>, cluster_use_pool1 = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f4f605c4d90>\n\n    @allure.link(helpers.get_vcs_link())\n    def test_reward_amount(  # noqa: C901\n        self,\n        cluster_manager: parallel_run.ClusterManager,\n        cluster_use_pool1: clusterlib.ClusterLib,\n    ):\n        \"\"\"Check that the stake address and pool owner are receiving rewards.\n    \n        * delegate to pool\n        * collect data for pool owner and pool users for 10 epochs\n    \n           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n    \n        * withdraw rewards to payment address\n        \"\"\"\n        # pylint: disable=too-many-statements,too-many-locals,too-many-branches\n        pool_name = \"node-pool1\"\n        cluster = cluster_use_pool1\n    \n        temp_template = helpers.get_func_name()\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n        pool_owner = clusterlib.PoolUser(payment=pool_rec[\"payment\"], stake=pool_rec[\"stake\"])\n        pool_reward = clusterlib.PoolUser(payment=pool_rec[\"payment\"], stake=pool_rec[\"reward\"])\n        pool_reward_addr_dec = helpers.decode_bech32(pool_reward.stake.address)[2:]\n        pool_stake_addr_dec = helpers.decode_bech32(pool_owner.stake.address)[2:]\n    \n        sleep_time = clusterlib_utils.time_to_next_epoch_start(cluster) - 8\n        if sleep_time > 0:\n            time.sleep(sleep_time)\n    \n        init_epoch = cluster.get_last_block_epoch()\n        user_rewards = [(init_epoch, 0, 0)]\n        owner_rewards = [\n            (\n                init_epoch,\n                cluster.get_stake_addr_info(pool_reward.stake.address).reward_account_balance,\n                0,\n            )\n        ]\n    \n        # save ledger state\n        clusterlib_utils.save_ledger_state(\n            cluster_obj=cluster, name_template=f\"{temp_template}_{init_epoch}\"\n        )\n        ledger_state: dict = cluster.get_ledger_state()\n        es_snapshots = {init_epoch: ledger_state[\"nesEs\"][\"esSnapshots\"]}\n        rs_records = {init_epoch: ledger_state[\"nesRu\"][\"rs\"]}\n    \n        # submit registration certificate and delegate to pool\n        pool_user = _delegate_stake_addr(\n            cluster_obj=cluster,\n            addrs_data=cluster_manager.cache.addrs_data,\n            temp_template=temp_template,\n            pool_name=pool_name,\n            check_delegation=False,\n        )\n    \n        user_stake_addr_dec = helpers.decode_bech32(pool_user.stake.address)[2:]\n        user_payment_balance = cluster.get_address_balance(pool_user.payment.address)\n    \n        LOGGER.info(\"Checking rewards for 9 epochs.\")\n        for __ in range(9):\n            # reward balances in previous epoch\n            prev_user_epoch, prev_user_reward, __ = user_rewards[-1]\n            (\n                prev_owner_epoch,\n                prev_owner_reward,\n                __,  # prev_abs_owner_reward\n            ) = owner_rewards[-1]\n    \n            # wait for new epoch\n            if cluster.get_last_block_epoch() == prev_owner_epoch:\n                cluster.wait_for_new_epoch()\n    \n            # sleep till the end of epoch\n            sleep_time = clusterlib_utils.time_to_next_epoch_start(cluster) - 5\n            if sleep_time > 0:\n                time.sleep(sleep_time)\n    \n            this_epoch = cluster.get_last_block_epoch()\n    \n            # current reward balances\n            user_reward = cluster.get_stake_addr_info(\n                pool_user.stake.address\n            ).reward_account_balance\n            owner_reward = cluster.get_stake_addr_info(\n                pool_reward.stake.address\n            ).reward_account_balance\n    \n            # absolute reward amounts received this epoch\n            abs_user_reward = (\n                user_reward - prev_user_reward if this_epoch == prev_user_epoch + 1 else 0\n            )\n            abs_owner_reward = (\n                owner_reward - prev_owner_reward if this_epoch == prev_owner_epoch + 1 else 0\n            )\n    \n            # store collected rewards info\n            user_rewards.append(\n                (\n                    this_epoch,\n                    user_reward,\n                    abs_user_reward,\n                )\n            )\n            owner_rewards.append(\n                (\n                    this_epoch,\n                    owner_reward,\n                    abs_owner_reward,\n                )\n            )\n    \n            # save ledger state\n            clusterlib_utils.save_ledger_state(\n                cluster_obj=cluster, name_template=f\"{temp_template}_{this_epoch}\"\n            )\n            ledger_state = cluster.get_ledger_state()\n            es_snapshot: dict = ledger_state[\"nesEs\"][\"esSnapshots\"]\n            es_snapshots[this_epoch] = es_snapshot\n            rs_record: list = ledger_state[\"nesRu\"][\"rs\"]\n            rs_records[this_epoch] = rs_record\n    \n            # Make sure reward amount corresponds with ledger state.\n            # Reward is received on epoch boundary, so check reward with record for previous epoch.\n            if abs_user_reward:\n                assert abs_user_reward == _get_val_for_key_hash(\n                    user_stake_addr_dec, rs_records[this_epoch - 1]\n                )\n            if abs_owner_reward:\n                assert abs_owner_reward == _get_val_for_key_hash(\n                    pool_reward_addr_dec, rs_records[this_epoch - 1]\n                )\n    \n            _pstake_mark = _get_key_hashes(es_snapshot[\"_pstakeMark\"][\"_stake\"])\n            _pstake_set = _get_key_hashes(es_snapshot[\"_pstakeSet\"][\"_stake\"])\n            _pstake_go = _get_key_hashes(es_snapshot[\"_pstakeGo\"][\"_stake\"])\n    \n            if this_epoch == init_epoch + 2:\n                assert pool_stake_addr_dec in _pstake_mark\n                assert pool_stake_addr_dec in _pstake_set\n    \n                assert user_stake_addr_dec in _pstake_mark\n                assert user_stake_addr_dec not in _pstake_set\n                assert user_stake_addr_dec not in _pstake_go\n    \n            if this_epoch == init_epoch + 3:\n                assert user_stake_addr_dec in _pstake_mark\n                assert user_stake_addr_dec in _pstake_set\n                assert user_stake_addr_dec not in _pstake_go\n    \n            if this_epoch >= init_epoch + 3:\n                assert pool_stake_addr_dec in _pstake_mark\n                assert pool_stake_addr_dec in _pstake_set\n                assert pool_stake_addr_dec in _pstake_go\n    \n            if this_epoch >= init_epoch + 4:\n                assert user_stake_addr_dec in _pstake_mark\n                assert user_stake_addr_dec in _pstake_set\n                assert user_stake_addr_dec in _pstake_go\n    \n            if this_epoch >= init_epoch + 5:\n                # wait 5 epochs for the first reward for user stake address\n                assert (\n                    user_reward > prev_user_reward\n                ), \"New reward was not received by stake address\"\n    \n                # make sure ledger state and actual stake correspond\n                assert (\n                    _get_val_for_key_hash(user_stake_addr_dec, es_snapshot[\"_pstakeMark\"][\"_stake\"])\n                    == user_reward + user_payment_balance\n                )\n                assert (\n                    _get_val_for_key_hash(user_stake_addr_dec, es_snapshot[\"_pstakeSet\"][\"_stake\"])\n                    == prev_user_reward + user_payment_balance\n                )\n                assert (\n                    _get_val_for_key_hash(user_stake_addr_dec, es_snapshot[\"_pstakeGo\"][\"_stake\"])\n                    == user_rewards[-3][1] + user_payment_balance\n                )\n    \n            # check that new reward was received by the pool owner\n            if this_epoch >= 4:\n>               assert owner_reward > prev_owner_reward, \"New reward was not received by pool owner\"\nE               AssertionError: New reward was not received by pool owner\nE               assert 0 > 0\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_staking.py:862: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "709170125a0f5d15",
+      "name" : "log",
+      "source" : "709170125a0f5d15.txt",
+      "type" : "text/plain",
+      "size" : 655
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1607095646244,
+      "stop" : 1607095646244,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1607095645686,
+      "stop" : 1607095646244,
+      "duration" : 558
+    },
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node3/state-cluster8/bft2.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:14:09.00 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1000.0)]))]\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/bft3.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:14:11.40 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/allure_commons/_allure.py\", line 185, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/_pytest/fixtures.py\", line 926, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/conftest.py\", line 135, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/parallel_run.py\", line 329, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/logfiles.py\", line 211, in report_artifacts_errors\n    pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\n  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/_pytest/outcomes.py\", line 153, in fail\n    raise Failed(msg=msg, pytrace=pytrace)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1607096593489,
+      "stop" : 1607096593491,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "889119-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/484e0d906c037031a76a2bc5544a37c6b6d88704/cardano_node_tests/tests/test_staking.py#L679",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/484e0d906c037031a76a2bc5544a37c6b6d88704/cardano_node_tests/tests/test_staking.py#L679",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)" ]
+  },
+  "source" : "da6dc24d9998baab.json",
+  "parameterValues" : [ ]
+}

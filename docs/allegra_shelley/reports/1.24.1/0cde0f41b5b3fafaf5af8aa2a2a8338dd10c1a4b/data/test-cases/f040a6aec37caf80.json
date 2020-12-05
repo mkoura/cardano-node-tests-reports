@@ -1,0 +1,300 @@
+{
+  "uid" : "f040a6aec37caf80",
+  "name" : "test_stake_pool_low_cost",
+  "fullName" : "cardano_node_tests.tests.test_pools.TestPoolCost#test_stake_pool_low_cost",
+  "historyId" : "50194a504959c581cd139f57b63389ae",
+  "time" : {
+    "start" : 1607199564024,
+    "stop" : 1607199564434,
+    "duration" : 410
+  },
+  "description" : "Try to create and register a stake pool with pool cost lower than *minPoolCost*.\n\n        Expect failure. Property-based test.\n        ",
+  "descriptionHtml" : "<p>Try to create and register a stake pool with pool cost lower than <em>minPoolCost</em>.</p>\n<pre><code>    Expect failure. Property-based test.\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 'StakePoolCostTooLowPOOL' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0...                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=10>.value",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_pools.TestPoolCost object at 0x7f9844c0ee50>, cluster_mincost = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f9844b79df0>\npool_owners = [PoolUser(payment=AddressRecord(address='addr_test1qz5x5unrm5uvw7gze8j0ansteqqxgv9yxltwnxrpwglj5smmgjp7z0ggrc89rdg6smx...xPath('pool_owners_wgeswjas_ci5_addr0_stake.vkey'), skey_file=PosixPath('pool_owners_wgeswjas_ci5_addr0_stake.skey')))]\n\n>   ???\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py:1278: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <cardano_node_tests.tests.test_pools.TestPoolCost object at 0x7f9844c0ee50>, cluster_mincost = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f9844b79df0>\npool_owners = [PoolUser(payment=AddressRecord(address='addr_test1qz5x5unrm5uvw7gze8j0ansteqqxgv9yxltwnxrpwglj5smmgjp7z0ggrc89rdg6smx...xPath('pool_owners_wgeswjas_ci5_addr0_stake.vkey'), skey_file=PosixPath('pool_owners_wgeswjas_ci5_addr0_stake.skey')))]\npool_cost = 0\n\n    @hypothesis.given(pool_cost=st.integers(max_value=499))  # minPoolCost is now 500\n    @helpers.HYPOTHESIS_SETTINGS\n    @allure.link(helpers.get_vcs_link())\n    def test_stake_pool_low_cost(\n        self,\n        cluster_mincost: clusterlib.ClusterLib,\n        pool_owners: List[clusterlib.PoolUser],\n        pool_cost: int,\n    ):\n        \"\"\"Try to create and register a stake pool with pool cost lower than *minPoolCost*.\n    \n        Expect failure. Property-based test.\n        \"\"\"\n        cluster = cluster_mincost\n        rand_str = clusterlib.get_rand_str(4)\n        temp_template = f\"test_stake_pool_low_cost_{rand_str}\"\n    \n        pool_data = clusterlib.PoolData(\n            pool_name=f\"pool_{rand_str}\",\n            pool_pledge=12345,\n            pool_cost=pool_cost,\n            pool_margin=0.123,\n        )\n    \n        # register pool, expect failure\n        with pytest.raises(clusterlib.CLIError) as excinfo:\n            _create_register_pool(\n                cluster_obj=cluster,\n                temp_template=temp_template,\n                pool_owners=pool_owners,\n                pool_data=pool_data,\n            )\n    \n        # check that it failed in an expected way\n        expected_msg = \"--pool-cost: Failed reading\" if pool_cost < 0 else \"StakePoolCostTooLowPOOL\"\n>       assert expected_msg in str(excinfo.value)\nE       AssertionError: assert 'StakePoolCostTooLowPOOL' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\nE        +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\nE        +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0...                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=10>.value\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py:1312: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1607199120047,
+      "stop" : 1607199120047,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1607199120044,
+      "stop" : 1607199120045,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1607199120045,
+      "stop" : 1607199120046,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1607199120047,
+      "stop" : 1607199120047,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_mincost",
+    "time" : {
+      "start" : 1607199120047,
+      "stop" : 1607199560338,
+      "duration" : 440291
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1607199120045,
+      "stop" : 1607199120045,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1607199120044,
+      "stop" : 1607199120044,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1607199120045,
+      "stop" : 1607199120045,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1607199120045,
+      "stop" : 1607199120045,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_cost_start_cluster",
+    "time" : {
+      "start" : 1607199120046,
+      "stop" : 1607199120047,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_owners",
+    "time" : {
+      "start" : 1607199560338,
+      "stop" : 1607199564022,
+      "duration" : 3684
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Try to create and register a stake pool with pool cost lower than *minPoolCost*.\n\n        Expect failure. Property-based test.\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 'StakePoolCostTooLowPOOL' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0...                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=10>.value",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_pools.TestPoolCost object at 0x7f9844c0ee50>, cluster_mincost = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f9844b79df0>\npool_owners = [PoolUser(payment=AddressRecord(address='addr_test1qz5x5unrm5uvw7gze8j0ansteqqxgv9yxltwnxrpwglj5smmgjp7z0ggrc89rdg6smx...xPath('pool_owners_wgeswjas_ci5_addr0_stake.vkey'), skey_file=PosixPath('pool_owners_wgeswjas_ci5_addr0_stake.skey')))]\n\n>   ???\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py:1278: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <cardano_node_tests.tests.test_pools.TestPoolCost object at 0x7f9844c0ee50>, cluster_mincost = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f9844b79df0>\npool_owners = [PoolUser(payment=AddressRecord(address='addr_test1qz5x5unrm5uvw7gze8j0ansteqqxgv9yxltwnxrpwglj5smmgjp7z0ggrc89rdg6smx...xPath('pool_owners_wgeswjas_ci5_addr0_stake.vkey'), skey_file=PosixPath('pool_owners_wgeswjas_ci5_addr0_stake.skey')))]\npool_cost = 0\n\n    @hypothesis.given(pool_cost=st.integers(max_value=499))  # minPoolCost is now 500\n    @helpers.HYPOTHESIS_SETTINGS\n    @allure.link(helpers.get_vcs_link())\n    def test_stake_pool_low_cost(\n        self,\n        cluster_mincost: clusterlib.ClusterLib,\n        pool_owners: List[clusterlib.PoolUser],\n        pool_cost: int,\n    ):\n        \"\"\"Try to create and register a stake pool with pool cost lower than *minPoolCost*.\n    \n        Expect failure. Property-based test.\n        \"\"\"\n        cluster = cluster_mincost\n        rand_str = clusterlib.get_rand_str(4)\n        temp_template = f\"test_stake_pool_low_cost_{rand_str}\"\n    \n        pool_data = clusterlib.PoolData(\n            pool_name=f\"pool_{rand_str}\",\n            pool_pledge=12345,\n            pool_cost=pool_cost,\n            pool_margin=0.123,\n        )\n    \n        # register pool, expect failure\n        with pytest.raises(clusterlib.CLIError) as excinfo:\n            _create_register_pool(\n                cluster_obj=cluster,\n                temp_template=temp_template,\n                pool_owners=pool_owners,\n                pool_data=pool_data,\n            )\n    \n        # check that it failed in an expected way\n        expected_msg = \"--pool-cost: Failed reading\" if pool_cost < 0 else \"StakePoolCostTooLowPOOL\"\n>       assert expected_msg in str(excinfo.value)\nE       AssertionError: assert 'StakePoolCostTooLowPOOL' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'\nE        +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file test_stake_p...le FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n'))\nE        +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0 --out-file tes...e FILE] \\n                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --ttl 3187 --fee 0...                                         --out-file FILE\\n  Build a transaction (low-level, inconvenient)\\n') tblen=10>.value\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py:1312: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "3caae7efad86c01f",
+      "name" : "log",
+      "source" : "3caae7efad86c01f.txt",
+      "type" : "text/plain",
+      "size" : 1185
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1607199564474,
+      "stop" : 1607199564756,
+      "duration" : 282
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1607199564756,
+      "stop" : 1607199564756,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1607200172508,
+      "stop" : 1607200172511,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "run(order=2)"
+  }, {
+    "name" : "tag",
+    "value" : "hypothesis"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_pools"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestPoolCost"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1379894-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_pools"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/0ac5d6945b7bd05617409589ac5d401dbe9a6e78/cardano_node_tests/tests/test_pools.py#L1280",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/0ac5d6945b7bd05617409589ac5d401dbe9a6e78/cardano_node_tests/tests/test_pools.py#L1280",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "run(order=2)", "@pytest.mark.usefixtures('temp_dir')", "hypothesis" ]
+  },
+  "source" : "f040a6aec37caf80.json",
+  "parameterValues" : [ ]
+}

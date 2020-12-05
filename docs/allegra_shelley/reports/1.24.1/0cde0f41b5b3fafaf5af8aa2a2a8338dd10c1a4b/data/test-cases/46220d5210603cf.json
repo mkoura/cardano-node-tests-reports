@@ -1,0 +1,269 @@
+{
+  "uid" : "46220d5210603cf",
+  "name" : "test_no_reward_unmet_pledge2",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_no_reward_unmet_pledge2",
+  "historyId" : "2b8e8e241fd5228caa1e81d66f51ca61",
+  "time" : {
+    "start" : 1607095407777,
+    "stop" : 1607098619728,
+    "duration" : 3211951
+  },
+  "description" : "Check that the stake pool is not receiving rewards when pledge is not met.\n\n        When the pledge is higher than available funds, neither pool owners nor those who\n        delegate to that pool receive rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw part of the pledge - the funds are lower than what is needed by the stake pool\n        * check that NO new rewards were received by those delegating to the pool\n        * check that pool owner is also NOT receiving rewards\n        * return the pool to the original state - restore pledge funds\n        * check that new rewards were received by those delegating to the pool\n        * check that pool owner is also receiving rewards\n        ",
+  "descriptionHtml" : "<p>Check that the stake pool is not receiving rewards when pledge is not met.</p>\n<pre><code>    When the pledge is higher than available funds, neither pool owners nor those who\n    delegate to that pool receive rewards.\n\n    * delegate stake address\n    * wait for first reward\n    * withdraw part of the pledge - the funds are lower than what is needed by the stake pool\n    * check that NO new rewards were received by those delegating to the pool\n    * check that pool owner is also NOT receiving rewards\n    * return the pool to the original state - restore pledge funds\n    * check that new rewards were received by those delegating to the pool\n    * check that pool owner is also receiving rewards\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2020-12-04 15:19:50.00 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1000.0)]))]\n\n/home/martink/Source/repos/cardano-node4/state-cluster5/bft3.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:19:52.40 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]",
+  "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7f229e795820>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/allure_commons/_allure.py:185: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/conftest.py:135: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:329: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout'), '\\x1b[31m[bender-3:cardano.node.Fo...t can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\nE       Failed: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2020-12-04 15:19:50.00 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1000.0)]))]\nE       \nE       /home/martink/Source/repos/cardano-node4/state-cluster5/bft3.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:19:52.40 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/logfiles.py:211: Failed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1607094984708,
+      "stop" : 1607094984708,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1607094984708,
+      "stop" : 1607094984709,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1607094984707,
+      "stop" : 1607094984707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1607094984707,
+      "stop" : 1607094984707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1607094984708,
+      "stop" : 1607094984708,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1607094984709,
+      "stop" : 1607095407775,
+      "duration" : 423066
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1607094984707,
+      "stop" : 1607094984707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1607094984709,
+      "stop" : 1607094984709,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1607094984708,
+      "stop" : 1607094984708,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the stake pool is not receiving rewards when pledge is not met.\n\n        When the pledge is higher than available funds, neither pool owners nor those who\n        delegate to that pool receive rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw part of the pledge - the funds are lower than what is needed by the stake pool\n        * check that NO new rewards were received by those delegating to the pool\n        * check that pool owner is also NOT receiving rewards\n        * return the pool to the original state - restore pledge funds\n        * check that new rewards were received by those delegating to the pool\n        * check that pool owner is also receiving rewards\n        ",
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2020-12-04 15:19:50.00 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1000.0)]))]\n\n/home/martink/Source/repos/cardano-node4/state-cluster5/bft3.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:19:52.40 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]",
+    "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7f229e795820>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/allure_commons/_allure.py:185: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/conftest.py:135: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:329: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout'), '\\x1b[31m[bender-3:cardano.node.Fo...t can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\nE       Failed: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2020-12-04 15:19:50.00 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1000.0)]))]\nE       \nE       /home/martink/Source/repos/cardano-node4/state-cluster5/bft3.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:19:52.40 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/logfiles.py:211: Failed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "b0568ac4397fc9a1",
+      "name" : "log",
+      "source" : "b0568ac4397fc9a1.txt",
+      "type" : "text/plain",
+      "size" : 1239
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1607098645721,
+      "stop" : 1607098645722,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1607098622431,
+      "stop" : 1607098622431,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1607098619729,
+      "stop" : 1607098622430,
+      "duration" : 2701
+    },
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node4/state-cluster5/bft1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2020-12-04 15:19:50.00 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1000.0)]))]\n\n/home/martink/Source/repos/cardano-node4/state-cluster5/bft3.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:32]\u001B[0m [2020-12-04 15:19:52.40 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceForgedInvalidBlock\"),(\"reason\",Object (fromList [(\"kind\",String \"ValidationError\"),(\"error\",Object (fromList [(\"kind\",String \"HeaderEnvelopeError\"),(\"error\",Object (fromList [(\"kind\",String \"ObsoleteNode\"),(\"supportedProtocol\",Number 1.0),(\"explanation\",String \"A scheduled major protocol version change (hard fork) has taken place on the chain, but this node does not understand the new major protocol version. This node must be upgraded before it can continue with the new protocol version.\"),(\"currentProtocol\",Number 2.0)]))]))])),(\"slot\",Number 1012.0)]))]\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/allure_commons/_allure.py\", line 185, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/_pytest/fixtures.py\", line 926, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/conftest.py\", line 135, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py\", line 329, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/logfiles.py\", line 211, in report_artifacts_errors\n    pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\n  File \"/home/martink/.local/python_venvs/cardano_node/lib64/python3.8/site-packages/_pytest/outcomes.py\", line 153, in fail\n    raise Failed(msg=msg, pytrace=pytrace)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "924100-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/484e0d906c037031a76a2bc5544a37c6b6d88704/cardano_node_tests/tests/test_staking.py#L1337",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/484e0d906c037031a76a2bc5544a37c6b6d88704/cardano_node_tests/tests/test_staking.py#L1337",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)" ]
+  },
+  "source" : "46220d5210603cf.json",
+  "parameterValues" : [ ]
+}
