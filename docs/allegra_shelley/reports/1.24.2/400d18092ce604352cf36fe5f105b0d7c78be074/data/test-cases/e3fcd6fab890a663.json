@@ -1,0 +1,79 @@
+{
+  "uid" : "e3fcd6fab890a663",
+  "name" : "test_script_after",
+  "fullName" : "cardano_node_tests.tests.test_multisig.TestTimeLocking#test_script_after",
+  "historyId" : "9104849be5ff00a6b177a3c222d36fa9",
+  "time" : {
+    "start" : 1607379680409,
+    "stop" : 1607379680409,
+    "duration" : 0
+  },
+  "description" : "Check that it is possible to spend from script address after given slot.",
+  "descriptionHtml" : "<p>Check that it is possible to spend from script address after given slot.</p>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs on version >= 1.24.0 and with Allegra+ TX",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_multisig.py', 659, 'Skipped: runs on version >= 1.24.0 and with Allegra+ TX')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_multisig"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTimeLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "475041-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_multisig"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/f23c9802d2c6cb1f97729c42848101740901fb9b/cardano_node_tests/tests/test_multisig.py#L660",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/f23c9802d2c6cb1f97729c42848101740901fb9b/cardano_node_tests/tests/test_multisig.py#L660",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "ae294ec3a41e21fd",
+      "status" : "broken",
+      "statusDetails" : "cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324429 --out-file test_script_after_from_tx.body --tx-in cf4102c71b96b73b219aaa99998936be3eb83ebbea04825a90d5a8756ca1c1cf#0 --tx-out addr_test1vz40erfrs2k2r99fpvuzegmen6gxetn0q875k967cjkwvksjuxhmg+1000 --tx-out addr_test1wp580c6ar2gjymasxtznstq03u0gfad9prc538upfkl0hrgl2npn0+1674571 --lower-bound 100 --upper-bound 13087 --shelley-era` on path `/tmp/pytest-of-martink/pytest-2/popen-gw2/test_multisig_py0`: Shelley command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.",
+      "time" : {
+        "start" : 1607372271563,
+        "stop" : 1607372276772,
+        "duration" : 5209
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')" ]
+  },
+  "source" : "e3fcd6fab890a663.json",
+  "parameterValues" : [ ]
+}

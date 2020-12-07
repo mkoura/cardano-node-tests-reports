@@ -1,0 +1,79 @@
+{
+  "uid" : "dc01d0a10049860e",
+  "name" : "test_after_past",
+  "fullName" : "cardano_node_tests.tests.test_multisig.TestTimeLocking#test_after_past",
+  "historyId" : "7322618bd0e9af3f2784c4be65890423",
+  "time" : {
+    "start" : 1607379680417,
+    "stop" : 1607379680417,
+    "duration" : 0
+  },
+  "description" : "Check that it's NOT possible to spend from the script address.\n\n        The \"after\" slot is in the past.\n        ",
+  "descriptionHtml" : "<p>Check that it's NOT possible to spend from the script address.</p>\n<pre><code>    The &quot;after&quot; slot is in the past.\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs on version >= 1.24.0 and with Allegra+ TX",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_multisig.py', 949, 'Skipped: runs on version >= 1.24.0 and with Allegra+ TX')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_multisig"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTimeLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "475041-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_multisig"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/f23c9802d2c6cb1f97729c42848101740901fb9b/cardano_node_tests/tests/test_multisig.py#L950",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/f23c9802d2c6cb1f97729c42848101740901fb9b/cardano_node_tests/tests/test_multisig.py#L950",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "3b7e8247ddeaf0ae",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: assert 'ScriptWitnessNotValidatingUTXOW' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_after_past_fr...ey command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_after_past_fr...ey command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_afte...y command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_afte...y command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out... failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n') tblen=6>.value",
+      "time" : {
+        "start" : 1607373294216,
+        "stop" : 1607373299207,
+        "duration" : 4991
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')" ]
+  },
+  "source" : "dc01d0a10049860e.json",
+  "parameterValues" : [ ]
+}
