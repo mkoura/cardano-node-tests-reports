@@ -1,0 +1,88 @@
+{
+  "uid" : "c6e8f9d28797d699",
+  "name" : "test_script_before",
+  "fullName" : "cardano_node_tests.tests.test_multisig.TestTimeLocking#test_script_before",
+  "historyId" : "9b5d399a8425fd1c6532e6f46c64d999",
+  "time" : {
+    "start" : 1607380322872,
+    "stop" : 1607380322872,
+    "duration" : 0
+  },
+  "description" : "Check that it is possible to spend from script address before given slot.",
+  "descriptionHtml" : "<p>Check that it is possible to spend from script address before given slot.</p>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs on version >= 1.24.0 and with Allegra+ TX",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_multisig.py', 708, 'Skipped: runs on version >= 1.24.0 and with Allegra+ TX')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_multisig"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTimeLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "481466-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_multisig"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/4d7fbbccf5c73aca317a3bc8aa53cbe10c2040af/cardano_node_tests/tests/test_multisig.py#L709",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/4d7fbbccf5c73aca317a3bc8aa53cbe10c2040af/cardano_node_tests/tests/test_multisig.py#L709",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "a6446af0cafca5dd",
+      "status" : "broken",
+      "statusDetails" : "cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324429 --out-file test_script_before_from_tx.body --tx-in b739e15dc76809a4176e80034273ce6650f7a5d0947d6e6c78ff65f0ef4fbf13#0 --tx-out addr_test1vpvh285rwwhe7zwhyzz3kjzxr9dhqmd5cd8x27vftz2lhwqd7t980+1000 --tx-out addr_test1wzg7fgt0cssk4k747j5850f0l274v3dey8w7f7wzlnedjrqmu4fhp+1674571 --invalid-before 100 --invalid-hereafter 1125` on path `/tmp/pytest-of-martink/pytest-4/popen-gw0/test_multisig_py0`: Shelley command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.",
+      "time" : {
+        "start" : 1607379774441,
+        "stop" : 1607379779243,
+        "duration" : 4802
+      }
+    }, {
+      "uid" : "eef7b6981aba3347",
+      "status" : "broken",
+      "statusDetails" : "cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324429 --out-file test_script_before_from_tx.body --tx-in 9e8c5e09d50025d7cfbf298ddea1558b141402b764248290dfcb314f286f3fbe#0 --tx-out addr_test1vqqmutqnzf72ekjsw0a6z37epy8jmf20g2n7dt70q3wsjsskxtwnx+1000 --tx-out addr_test1wp7dduff9u94wpyx58l7mvx4lahpu7l0y2jhy53vd9zcqysrzft69+1674571 --lower-bound 100 --upper-bound 8625` on path `/tmp/pytest-of-martink/pytest-0/popen-gw3/test_multisig_py0`: Shelley command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.",
+      "time" : {
+        "start" : 1607371217146,
+        "stop" : 1607371222399,
+        "duration" : 5253
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')" ]
+  },
+  "source" : "c6e8f9d28797d699.json",
+  "parameterValues" : [ ]
+}

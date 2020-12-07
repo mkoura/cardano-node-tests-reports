@@ -1,0 +1,88 @@
+{
+  "uid" : "42ae369e106cd96e",
+  "name" : "test_after_future",
+  "fullName" : "cardano_node_tests.tests.test_multisig.TestTimeLocking#test_after_future",
+  "historyId" : "b72391f95cbe59ce41c2f9ec8c0552df",
+  "time" : {
+    "start" : 1607380322876,
+    "stop" : 1607380322876,
+    "duration" : 0
+  },
+  "description" : "Check that it's NOT possible to spend from the script address.\n\n        The \"after\" slot is in the future and the given range is invalid.\n        ",
+  "descriptionHtml" : "<p>Check that it's NOT possible to spend from the script address.</p>\n<pre><code>    The &quot;after&quot; slot is in the future and the given range is invalid.\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs on version >= 1.24.0 and with Allegra+ TX",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_multisig.py', 881, 'Skipped: runs on version >= 1.24.0 and with Allegra+ TX')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_multisig"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTimeLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "481466-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_multisig"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/4d7fbbccf5c73aca317a3bc8aa53cbe10c2040af/cardano_node_tests/tests/test_multisig.py#L882",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/4d7fbbccf5c73aca317a3bc8aa53cbe10c2040af/cardano_node_tests/tests/test_multisig.py#L882",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "c357bbbc71c28712",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: assert 'OutsideValidityIntervalUTxO' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_after_future_...ey command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_after_future_...ey command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_afte...y command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_afte...y command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out... failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n') tblen=6>.value",
+      "time" : {
+        "start" : 1607379789412,
+        "stop" : 1607379794204,
+        "duration" : 4792
+      }
+    }, {
+      "uid" : "72f5eee6615c0de3",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: assert 'OutsideValidityIntervalUTxO' in 'An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_after_future_...ey command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n'\n +  where 'An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_after_future_...ey command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n' = str(CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_afte...y command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n'))\n +    where CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out-file test_afte...y command failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n') = <ExceptionInfo CLIError('An error occurred running a CLI command `cardano-cli transaction build-raw --fee 324341 --out... failed: transaction build-raw  Error: A validity lower bound cannot be used for Shelley era transactions.\\n') tblen=6>.value",
+      "time" : {
+        "start" : 1607373121091,
+        "stop" : 1607373126325,
+        "duration" : 5234
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "@pytest.mark.skipif(True, reason='runs on version >= 1.24.0 and with Allegra+ TX')" ]
+  },
+  "source" : "42ae369e106cd96e.json",
+  "parameterValues" : [ ]
+}
