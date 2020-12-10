@@ -1,0 +1,193 @@
+{
+  "uid" : "bbfafb9806a71fb0",
+  "name" : "test_opcert_past_kes_period",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_opcert_past_kes_period",
+  "historyId" : "d90e8f131de3845addb36d0b247e876a",
+  "time" : {
+    "start" : 1607547178961,
+    "stop" : 1607547178961,
+    "duration" : 0
+  },
+  "description" : "Start a stake pool with an operational certificate created with expired `--kes-period`.\n\n        * generate new operational certificate with `--kes-period` in the past\n        * restart the node with the new operational certificate\n        * check that the pool is not producing any blocks\n        * generate new operational certificate with valid `--kes-period` and restart the node\n        ",
+  "descriptionHtml" : "<p>Start a stake pool with an operational certificate created with expired <code>--kes-period</code>.</p>\n<pre><code>    * generate new operational certificate with `--kes-period` in the past\n    * restart the node with the new operational certificate\n    * check that the pool is not producing any blocks\n    * generate new operational certificate with valid `--kes-period` and restart the node\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: meant to run on shelley-only cluster",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_kes.py', 117, 'Skipped: meant to run on shelley-only cluster')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1607547178976,
+      "stop" : 1607547178976,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1607547178976,
+      "stop" : 1607547178976,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1607547178975,
+      "stop" : 1607547178975,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1607547178976,
+      "stop" : 1607547178976,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1607547178975,
+      "stop" : 1607547178976,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1607547178976,
+      "stop" : 1607547178976,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1607548588566,
+      "stop" : 1607548589544,
+      "duration" : 978
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1607548589665,
+      "stop" : 1607548589667,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='meant to run on shelley-only cluster')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "797901-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d2f39dea5ca9bb90e9d24993b1203897d99d9e5a/cardano_node_tests/tests/test_kes.py#L119",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d2f39dea5ca9bb90e9d24993b1203897d99d9e5a/cardano_node_tests/tests/test_kes.py#L119",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)", "@pytest.mark.skipif(True, reason='meant to run on shelley-only cluster')" ]
+  },
+  "source" : "bbfafb9806a71fb0.json",
+  "parameterValues" : [ ]
+}
