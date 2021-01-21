@@ -1,0 +1,815 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Jan 21 13:02:47 CET 2021","Thu Jan 21 13:02:48 CET 2021","471","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_registration_fees[addr_fee3]","Test pool registration fees."
+"passed","Thu Jan 21 13:38:15 CET 2021","Thu Jan 21 13:38:28 CET 2021","12556","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[10000]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"skipped","Thu Jan 21 13:46:25 CET 2021","Thu Jan 21 13:46:25 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[2000]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Jan 21 13:11:00 CET 2021","Thu Jan 21 13:11:05 CET 2021","4983","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_cbor","Send transaction with metadata CBOR.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Jan 21 13:12:48 CET 2021","Thu Jan 21 13:16:03 CET 2021","195223","cardano_node_tests.tests","test_pools","TestStakePool","","","test_deregister_stake_pool[1]","Deregister stake pool.
+
+        * deregister stake pool
+        * check that the stake addresses are no longer delegated
+        * check that the pool deposit was returned to reward account
+        "
+"passed","Thu Jan 21 13:03:30 CET 2021","Thu Jan 21 13:03:35 CET 2021","5030","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[1]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:47 CET 2021","Thu Jan 21 13:02:47 CET 2021","248","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_10_addrs_fees[amount_expected3]","Test fees for 1 tx from 10 payment addresses to 10 payment addresses."
+"passed","Thu Jan 21 21:14:37 CET 2021","Thu Jan 21 21:47:49 CET 2021","1992529","cardano_node_tests.tests","test_staking","TestRewards","","","test_reward_amount","Check that the stake address and pool owner are receiving rewards.
+
+        * delegate to pool
+        * collect data for pool owner and pool users for 10 epochs
+
+           - each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)
+           - each epoch check received reward with reward in ledger state
+
+        * withdraw rewards to payment address
+        "
+"passed","Thu Jan 21 13:02:55 CET 2021","Thu Jan 21 13:02:57 CET 2021","2409","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[1]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:10:10 CET 2021","Thu Jan 21 13:10:10 CET 2021","58","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_reward_address","Try to send funds from payment address to stake address.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:25 CET 2021","Thu Jan 21 13:02:30 CET 2021","4885","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[1000000]","Send a transaction with fee that is same or higher than expected."
+"passed","Thu Jan 21 13:02:57 CET 2021","Thu Jan 21 13:03:00 CET 2021","2625","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[200]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:46 CET 2021","223","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_10_addrs_fees[amount_expected1]","Test fees for 1 tx from 10 payment addresses to 1 payment address."
+"skipped","Thu Jan 21 12:59:55 CET 2021","Thu Jan 21 12:59:55 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_valid_policy_after","Test minting and burning tokens after given slot."
+"passed","Thu Jan 21 13:22:40 CET 2021","Thu Jan 21 13:26:15 CET 2021","214301","cardano_node_tests.tests","test_pools","TestStakePool","","","test_deregister_stake_pool[3]","Deregister stake pool.
+
+        * deregister stake pool
+        * check that the stake addresses are no longer delegated
+        * check that the pool deposit was returned to reward account
+        "
+"passed","Thu Jan 21 13:03:10 CET 2021","Thu Jan 21 13:03:10 CET 2021","112","cardano_node_tests.tests","test_transactions","TestBasic","","","test_missing_tx_out","Try to build a transaction with a missing `--tx-out` parameter.
+
+        Expect failure on node version < 1.24.2 commit 3d201869.
+        "
+"passed","Thu Jan 21 13:02:25 CET 2021","Thu Jan 21 13:02:25 CET 2021","78","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[0]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:09:16 CET 2021","Thu Jan 21 13:12:38 CET 2021","201175","cardano_node_tests.tests","test_pools","TestStakePool","","","test_sign_in_multiple_stages","Create and register a stake pool with TX signed in multiple stages.
+
+        * create stake pool registration cert
+        * create witness file for each signing key
+        * sign TX using witness files
+        * create and register pool
+        * check that the pool was correctly registered on chain
+        "
+"passed","Thu Jan 21 13:00:10 CET 2021","Thu Jan 21 13:00:10 CET 2021","16","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_name","Try to create pool metadata hash when missing the *name* key.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 12:59:26 CET 2021","Thu Jan 21 13:32:30 CET 2021","1984229","cardano_node_tests.tests","test_staking","TestRewards","","","test_reward_addr_delegation","Check that the rewards address can be delegated and receive rewards.
+
+        Tests https://github.com/input-output-hk/cardano-node/issues/1964
+
+        The pool has a reward address that is different from pool owner's stake address.
+
+        Collect data for pool owner for 10 epochs and:
+
+        * delegate reward address to stake pool
+        * deregister pool owner's stake address
+        * each epoch check ledger state (expected data in `_pstake*`, delegation, stake amount)
+        * each epoch check received reward with reward in ledger state
+        * check that reward address still receives rewards for its staked amount even after
+          the pool owner's stake address is deregistered
+        "
+"passed","Thu Jan 21 12:59:35 CET 2021","Thu Jan 21 12:59:50 CET 2021","15058","cardano_node_tests.tests","test_pools","TestPoolCost","","","test_stake_pool_cost[500]","Create and register a stake pool with *pool cost* >= *minPoolCost*."
+"passed","Thu Jan 21 12:59:27 CET 2021","Thu Jan 21 13:12:47 CET 2021","800310","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_deregister","Deregister stake address.
+
+        * submit registration certificate and delegate to pool
+        * attempt to deregister the stake address - deregistration is expected to fail
+          because there are rewards in the stake address
+        * withdraw rewards to payment address
+        * deregister stake address
+        * check that the key deposit was returned
+        * check that the stake address is no longer delegated
+        "
+"passed","Thu Jan 21 13:02:43 CET 2021","Thu Jan 21 13:02:43 CET 2021","99","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_registration_fees[addr_fee0]","Test stake address registration fees."
+"passed","Thu Jan 21 13:01:05 CET 2021","Thu Jan 21 13:01:15 CET 2021","10027","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_script_after","Check that it is possible to spend from script address after given slot."
+"skipped","Thu Jan 21 12:59:50 CET 2021","Thu Jan 21 12:59:50 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_partial_burning","Test minting and partial burning of tokens."
+"passed","Thu Jan 21 13:03:05 CET 2021","Thu Jan 21 13:03:10 CET 2021","5004","cardano_node_tests.tests","test_transactions","TestBasic","","","test_extra_signing_keys","Send a transaction with extra signing key.
+
+        Check that it is possible to use unneded signing key in addition to the necessary
+        signing keys for signing the transaction.
+        "
+"skipped","Thu Jan 21 13:55:58 CET 2021","Thu Jan 21 13:55:58 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[200]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Jan 21 13:10:41 CET 2021","Thu Jan 21 13:10:46 CET 2021","4600","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_from_invalid_chars_address","Try to send funds from address with invalid characters (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:01:55 CET 2021","Thu Jan 21 13:01:55 CET 2021","45","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_invalid","Build transaction with invalid auxiliary script.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:43 CET 2021","Thu Jan 21 13:02:44 CET 2021","240","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_registration_fees[addr_fee3]","Test stake address registration fees."
+"passed","Thu Jan 21 13:00:20 CET 2021","Thu Jan 21 13:00:50 CET 2021","30011","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_atleast","Send funds to and from script address using the *atLeast* script."
+"skipped","Thu Jan 21 13:22:40 CET 2021","Thu Jan 21 13:22:40 CET 2021","0","cardano_node_tests.tests","test_configuration","TestBasic","","","test_epoch_length","Test the *epochLength* configuration."
+"passed","Thu Jan 21 13:02:43 CET 2021","Thu Jan 21 13:02:43 CET 2021","144","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_deregistration_fees[addr_fee2]","Test pool deregistration fees."
+"passed","Thu Jan 21 13:02:57 CET 2021","Thu Jan 21 13:03:00 CET 2021","2693","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[2000]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:05 CET 2021","14","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_homepage","Try to create pool metadata hash when missing the *homepage* key.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:43 CET 2021","Thu Jan 21 13:02:43 CET 2021","155","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_registration_fees[addr_fee2]","Test stake address registration fees."
+"passed","Thu Jan 21 13:05:56 CET 2021","Thu Jan 21 13:09:16 CET 2021","200600","cardano_node_tests.tests","test_pools","TestStakePool","","","test_update_stake_pool_parameters[2]","Update stake pool parameters.
+
+        * register pool
+        * update the pool parameters by resubmitting the pool registration certificate
+        * check that the pool parameters were correctly updated on chain
+        "
+"passed","Thu Jan 21 12:59:30 CET 2021","Thu Jan 21 12:59:44 CET 2021","14006","cardano_node_tests.tests","test_pools","TestPoolCost","","","test_stake_pool_low_cost","Try to create and register a stake pool with pool cost lower than *minPoolCost*.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:05 CET 2021","239","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_missing_payment_skey","Try to register pool using transaction with missing payment skey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:01:50 CET 2021","Thu Jan 21 13:01:55 CET 2021","5043","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_no_metadata","Send transaction with auxiliary script and no other metadata.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Jan 21 13:02:49 CET 2021","Thu Jan 21 13:02:51 CET 2021","1698","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_100_addrs_from_100_addrs_fees[amount_expected3]","Test fees for 1 tx from 100 payment addresses to 100 payment addresses."
+"passed","Thu Jan 21 12:59:38 CET 2021","Thu Jan 21 13:02:35 CET 2021","177509","cardano_node_tests.tests","test_pools","TestStakePool","","","test_update_stake_pool_metadata[2]","Update stake pool metadata.
+
+        * register pool
+        * update the pool metadata by resubmitting the pool registration certificate
+        * check that the pool metadata hash was correctly updated on chain
+        "
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","82","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_1_addr_fees[amount_expected1]","Test fees for 1 tx from 1 payment address to 10 payment addresses."
+"passed","Thu Jan 21 14:06:14 CET 2021","Thu Jan 21 14:06:19 CET 2021","5132","cardano_node_tests.tests","test_scripts","TestBasic","","","test_normal_tx_to_script_addr","Send funds to script address using TX signed with skeys (not using witness files)."
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:09 CET 2021","3341","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_long_metadata_url","Try to create pool registration cert when the *metadata-url* is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 13:02:44 CET 2021","Thu Jan 21 13:02:44 CET 2021","98","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_deregistration_fees[addr_fee0]","Test stake address deregistration fees."
+"passed","Thu Jan 21 13:10:10 CET 2021","Thu Jan 21 13:10:17 CET 2021","6672","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_non_existent_address","Try to send funds from payment address to non-existent address (property-based test).
+
+        Expect failure.
+        "
+"skipped","Thu Jan 21 13:22:40 CET 2021","Thu Jan 21 13:22:40 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_before_past","Test that it's NOT possible to mint tokens when the ""before"" slot is in the past."
+"passed","Thu Jan 21 13:46:52 CET 2021","Thu Jan 21 13:47:03 CET 2021","10722","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[1000000]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:03:00 CET 2021","Thu Jan 21 13:03:05 CET 2021","4993","cardano_node_tests.tests","test_transactions","TestBasic","","","test_get_txid","Get transaction ID (txid) from transaction body.
+
+        Transaction ID is a hash of transaction body and doesn't change for a signed TX.
+
+        * send funds from 1 source address to 1 destination address
+        * get txid from transaction body
+        * check that txid has expected lenght
+        * check that the txid is listed in UTxO hashes for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:03:05 CET 2021","Thu Jan 21 13:03:10 CET 2021","4901","cardano_node_tests.tests","test_transactions","TestBasic","","","test_duplicate_signing_keys","Send a transaction with duplicate signing key.
+
+        Check that it is possible to specify the same signing key twice.
+        "
+"passed","Thu Jan 21 13:09:55 CET 2021","Thu Jan 21 13:10:04 CET 2021","9382","cardano_node_tests.tests","test_transactions","TestNotBalanced","","","test_wrong_balance","Build a transaction with unbalanced change (property-based test).
+
+        * build a not balanced transaction
+        * check that it is not possible to submit such transaction
+        "
+"passed","Thu Jan 21 13:02:43 CET 2021","Thu Jan 21 13:02:43 CET 2021","126","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_registration_fees[addr_fee1]","Test stake address registration fees."
+"passed","Thu Jan 21 13:03:52 CET 2021","Thu Jan 21 13:04:02 CET 2021","10124","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[100]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"skipped","Thu Jan 21 13:53:17 CET 2021","Thu Jan 21 13:53:17 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_after_past","Test that it's NOT possible to mint tokens.
+
+        The ""after"" slot is in the past.
+        "
+"passed","Thu Jan 21 13:02:47 CET 2021","Thu Jan 21 13:02:49 CET 2021","1685","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_100_addrs_from_100_addrs_fees[amount_expected0]","Test fees for 1 tx from 100 payment addresses to 100 payment addresses."
+"passed","Thu Jan 21 13:02:20 CET 2021","Thu Jan 21 13:02:25 CET 2021","4998","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_negative_fee","Try to send a transaction with negative fee (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","80","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_1_addr_fees[amount_expected3]","Test fees for 1 tx from 1 payment address to 10 payment addresses."
+"passed","Thu Jan 21 12:59:27 CET 2021","Thu Jan 21 12:59:37 CET 2021","10144","cardano_node_tests.tests","test_pools","TestStakePool","","","test_stake_pool_metadata","Create and register a stake pool with metadata.
+
+        Check that pool was registered and stake address delegated.
+        "
+"skipped","Thu Jan 21 12:52:30 CET 2021","Thu Jan 21 12:52:30 CET 2021","0","cardano_node_tests.tests","test_configuration","TestBasic","","","test_slot_length","Test the *slotLength* configuration."
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","79","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_1_addr_fees[amount_expected0]","Test fees for 1 tx from 1 payment address to 10 payment addresses."
+"passed","Thu Jan 21 13:03:40 CET 2021","Thu Jan 21 13:03:47 CET 2021","7384","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[11000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:09:50 CET 2021","Thu Jan 21 13:09:50 CET 2021","45","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_cert_wrong_cold","Try to generate pool registration certificate using wrong Cold vkey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:43 CET 2021","Thu Jan 21 13:02:43 CET 2021","148","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_deregistration_fees[addr_fee3]","Test pool deregistration fees."
+"passed","Thu Jan 21 12:59:44 CET 2021","Thu Jan 21 12:59:57 CET 2021","13185","cardano_node_tests.tests","test_pools","TestStakePool","","","test_stake_pool_metadata_not_avail","Create and register a stake pool with metadata file not available.
+
+        Check that pool was registered and stake address delegated.
+        "
+"passed","Thu Jan 21 13:00:10 CET 2021","Thu Jan 21 13:00:10 CET 2021","16","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_description","Try to create pool metadata hash when missing the *description* key.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:10:57 CET 2021","Thu Jan 21 13:10:57 CET 2021","58","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_too_long_metadata_json","Try to build a transaction with metadata JSON longer than 64 bytes."
+"passed","Thu Jan 21 13:00:15 CET 2021","Thu Jan 21 13:00:15 CET 2021","329","cardano_node_tests.tests","test_scripts","TestBasic","","","test_script_addr_length","Check that script address length is the same as lenght of other addresses.
+
+        There was an issue that script address was 32 bytes instead of 28 bytes.
+        "
+"passed","Thu Jan 21 13:04:08 CET 2021","Thu Jan 21 13:04:19 CET 2021","11791","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[1000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:01:45 CET 2021","Thu Jan 21 13:01:50 CET 2021","5302","cardano_node_tests.tests","test_scripts","TestNegative","","","test_multisig_all_missing_skey","Try to send funds from script address using the *all* script, omit one skey.
+
+        Expect failure.
+        "
+"skipped","Thu Jan 21 13:28:00 CET 2021","Thu Jan 21 13:28:00 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_after_future","Test that it's NOT possible to mint tokens.
+
+        The ""after"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Jan 21 13:10:17 CET 2021","Thu Jan 21 13:10:25 CET 2021","7770","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_invalid_length_address","Try to send funds from payment address to address with invalid length.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 13:00:10 CET 2021","Thu Jan 21 13:00:10 CET 2021","237","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_deregistration_not_registered","Try to deregister pool that is not registered.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:44 CET 2021","Thu Jan 21 13:02:44 CET 2021","135","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_deregistration_fees[addr_fee1]","Test stake address deregistration fees."
+"passed","Thu Jan 21 13:04:05 CET 2021","Thu Jan 21 13:04:14 CET 2021","9495","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[100]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:01:15 CET 2021","Thu Jan 21 13:01:25 CET 2021","10046","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_script_before","Check that it is possible to spend from script address before given slot."
+"skipped","Thu Jan 21 13:50:02 CET 2021","Thu Jan 21 13:50:02 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[10]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Jan 21 13:02:42 CET 2021","Thu Jan 21 13:02:43 CET 2021","306","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_registration_fees[addr_fee2]","Test pool registration fees."
+"passed","Thu Jan 21 13:00:15 CET 2021","Thu Jan 21 13:00:25 CET 2021","9801","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_all","Send funds to and from script address using the *all* script."
+"passed","Thu Jan 21 13:27:51 CET 2021","Thu Jan 21 13:28:00 CET 2021","8709","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_delegate_using_pool_id","Submit registration certificate and delegate to pool using pool id.
+
+        * register stake address and delegate it to pool
+        * check that the stake address was delegated
+        "
+"passed","Thu Jan 21 13:02:44 CET 2021","Thu Jan 21 13:02:44 CET 2021","241","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_deregistration_fees[addr_fee3]","Test stake address deregistration fees."
+"passed","Thu Jan 21 13:02:20 CET 2021","Thu Jan 21 13:02:25 CET 2021","5001","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[100000]","Send a transaction with fee that is same or higher than expected."
+"skipped","Thu Jan 21 12:52:30 CET 2021","Thu Jan 21 12:52:30 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_sign","Test minting and burning of tokens, sign the transaction using skeys."
+"passed","Thu Jan 21 13:09:55 CET 2021","Thu Jan 21 13:09:55 CET 2021","133","cardano_node_tests.tests","test_transactions","TestNotBalanced","","","test_negative_change","Try to build a transaction with a negative change.
+
+        Check that it is not possible to built such transaction.
+        "
+"passed","Thu Jan 21 13:02:47 CET 2021","Thu Jan 21 13:02:47 CET 2021","225","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_10_addrs_fees[amount_expected2]","Test fees for 1 tx from 10 payment addresses to 10 payment addresses."
+"passed","Thu Jan 21 13:03:57 CET 2021","Thu Jan 21 13:04:05 CET 2021","7470","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[11000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:05 CET 2021","Thu Jan 21 13:02:05 CET 2021","206","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegate_unregistered_addr","Try to delegate unregistered stake address.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","82","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_1_addr_fees[amount_expected3]","Test fees for 1 tx from 1 payment address to 1 payment address."
+"passed","Thu Jan 21 12:59:27 CET 2021","Thu Jan 21 13:29:16 CET 2021","1788921","cardano_node_tests.tests","test_staking","TestRewards","","","test_2_pools_same_reward_addr","Check that one reward address used for two pools receives rewards for both of them.
+
+        * set pool2 reward address to the reward address of pool1 by resubmitting the pool
+          registration certificate
+        * get combined reward amount per epoch for pool1 and pool2
+        * check that the original reward address for pool2 is NOT receiving rewards
+        * check that the reward address for pool1 is now receiving rewards for both pools
+          by comparing reward amount received in last epoch with reward amount previously received
+          by both pools together
+        "
+"passed","Thu Jan 21 13:00:25 CET 2021","Thu Jan 21 13:01:20 CET 2021","55009","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_any","Send funds using the *any* script.
+
+        * send funds to script address
+        * send funds from script address using single witness
+        * send funds from script address using multiple witnesses
+        "
+"passed","Thu Jan 21 13:04:02 CET 2021","Thu Jan 21 13:04:12 CET 2021","10007","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[1]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:03:00 CET 2021","Thu Jan 21 13:03:05 CET 2021","5015","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[10]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:44 CET 2021","Thu Jan 21 13:02:44 CET 2021","160","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_addr_deregistration_fees[addr_fee2]","Test stake address deregistration fees."
+"passed","Thu Jan 21 13:03:33 CET 2021","Thu Jan 21 13:03:40 CET 2021","7177","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[100]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:00:11 CET 2021","Thu Jan 21 13:00:42 CET 2021","31549","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_description","Try to create pool metadata hash when the *description* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 13:38:06 CET 2021","Thu Jan 21 13:38:15 CET 2021","9681","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[2000]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 12:59:31 CET 2021","Thu Jan 21 13:46:25 CET 2021","2813630","cardano_node_tests.tests","test_staking","TestRewards","","","test_deregister_reward_addr_retire_pool","Test deregistering reward address and retiring stake pool.
+
+        The pool deposit is lost when reward address is deregistered before the pool is retired.
+
+        * wait for first reward for the pool
+        * withdraw pool rewards to payment address
+        * deregister the pool reward address
+        * check that the key deposit was returned
+        * check that pool owner is NOT receiving rewards
+        * deregister stake pool
+        * check that the pool deposit was NOT returned to reward or stake address
+        * return the pool to the original state - reregister the pool, register
+          the reward address, delegate the stake address to the pool
+        * check that pool deposit was needed
+        * check that pool owner is receiving rewards
+        "
+"passed","Thu Jan 21 13:02:15 CET 2021","Thu Jan 21 13:02:20 CET 2021","4695","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegate_addr_with_wrong_key","Try to delegate stake address using wrong payment skey.
+
+        Expect failure.
+        "
+"skipped","Thu Jan 21 12:52:30 CET 2021","Thu Jan 21 12:52:30 CET 2021","0","cardano_node_tests.tests","test_kes","TestKES","","","test_opcert_past_kes_period","Start a stake pool with an operational certificate created with expired `--kes-period`.
+
+        * generate new operational certificate with `--kes-period` in the past
+        * restart the node with the new operational certificate
+        * check that the pool is not producing any blocks
+        * generate new operational certificate with valid `--kes-period` and restart the node
+        "
+"passed","Thu Jan 21 13:02:00 CET 2021","Thu Jan 21 13:02:05 CET 2021","5050","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_metadata_json","Send transaction with auxiliary script and metadata JSON.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Jan 21 13:10:10 CET 2021","Thu Jan 21 13:10:10 CET 2021","175","cardano_node_tests.tests","test_transactions","TestNegative","","","test_wrong_signing_key","Try to send a transaction signed with wrong signing key.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:53:12 CET 2021","Thu Jan 21 13:53:16 CET 2021","3446","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_addr_registration_deregistration","Submit registration and deregistration certificates in single TX.
+
+        * create stake address registration cert
+        * create stake address deregistration cert
+        * register and deregister stake address in single TX
+        * check that the balance for source address was correctly updated and that key deposit
+          was not needed
+        "
+"passed","Thu Jan 21 13:03:25 CET 2021","Thu Jan 21 13:03:33 CET 2021","7891","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[11000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"skipped","Thu Jan 21 12:52:30 CET 2021","Thu Jan 21 12:52:30 CET 2021","0","cardano_node_tests.tests","test_kes","TestKES","","","test_update_valid_opcert","Update a valid operational certificate with another valid operational certificate.
+
+        * generate new operational certificate with valid `--kes-period`
+        * restart the node with the new operational certificate
+        * check that the pool is still producing blocks
+        "
+"passed","Thu Jan 21 13:02:51 CET 2021","Thu Jan 21 13:02:51 CET 2021","168","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_deregistration_fees[addr_fee1]","Test pool deregistration fees."
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:05 CET 2021","15","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_ticker","Try to create pool metadata hash when missing the *ticker* key.
+
+        Expect failure.
+        "
+"failed","Thu Jan 21 13:37:55 CET 2021","Thu Jan 21 13:38:05 CET 2021","10462","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[1]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 12:59:55 CET 2021","Thu Jan 21 13:00:05 CET 2021","10082","cardano_node_tests.tests","test_pools","TestStakePool","","","test_create_stake_pool[3]","Create and register a stake pool (without metadata).
+
+        Check that pool was registered.
+        "
+"passed","Thu Jan 21 13:49:52 CET 2021","Thu Jan 21 13:50:02 CET 2021","10238","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_addr_delegation_deregistration","Submit delegation and deregistration certificates in single TX.
+
+        * create stake address registration cert
+        * create stake address deregistration cert
+        * register stake address
+        * create stake address delegation cert
+        * delegate and deregister stake address in single TX
+        * check that the balance for source address was correctly updated and that the key
+          deposit was returned
+        * check that the stake address was NOT delegated
+        "
+"passed","Thu Jan 21 13:10:25 CET 2021","Thu Jan 21 13:10:32 CET 2021","7229","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_invalid_chars_address","Try to send funds from payment address to address with invalid characters.
+
+        Expect failure. Property-based test.
+        "
+"skipped","Thu Jan 21 13:53:16 CET 2021","Thu Jan 21 13:53:16 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[1]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Jan 21 13:00:09 CET 2021","Thu Jan 21 13:00:09 CET 2021","17","cardano_node_tests.tests","test_protocol","TestProtocol","","","test_protocol_params","Check output of `query protocol-parameters`."
+"passed","Thu Jan 21 13:02:49 CET 2021","Thu Jan 21 13:02:50 CET 2021","1686","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_100_addrs_from_100_addrs_fees[amount_expected1]","Test fees for 1 tx from 100 payment addresses to 100 payment addresses."
+"passed","Thu Jan 21 13:38:09 CET 2021","Thu Jan 21 13:38:20 CET 2021","11383","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[100000]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:46 CET 2021","Thu Jan 21 13:02:46 CET 2021","221","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_10_addrs_fees[amount_expected0]","Test fees for 1 tx from 10 payment addresses to 10 payment addresses."
+"passed","Thu Jan 21 13:10:53 CET 2021","Thu Jan 21 13:10:53 CET 2021","137","cardano_node_tests.tests","test_transactions","TestNegative","","","test_missing_ttl","Try to build a transaction with a missing `--ttl` parameter.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:01:31 CET 2021","Thu Jan 21 13:01:35 CET 2021","4556","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_before_future","Check that it's NOT possible to spend from the script address.
+
+        The ""before"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Jan 21 13:02:15 CET 2021","Thu Jan 21 13:02:20 CET 2021","4993","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[1000]","Send a transaction with fee that is same or higher than expected."
+"passed","Thu Jan 21 13:28:00 CET 2021","Thu Jan 21 13:39:45 CET 2021","704921","cardano_node_tests.tests","test_pools","TestStakePool","","","test_cancel_stake_pool_deregistration","Reregister a stake pool that is in course of being retired.
+
+        * deregister stake pool in epoch + 2
+        * reregister the pool by resubmitting the pool registration certificate
+        * delegate stake address to pool again (the address is already registered)
+        * check that no additional pool deposit was used
+        * check that pool is still correctly setup
+        * check that the stake addresses is still delegated
+        "
+"skipped","Thu Jan 21 12:59:44 CET 2021","Thu Jan 21 12:59:44 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestMinting","","","testmulti_minting_and_burning_sign","Test minting and burning multiple different tokens, sign the TX using skeys."
+"skipped","Thu Jan 21 12:52:30 CET 2021","Thu Jan 21 12:52:30 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_multiple_tokens","Test sending multiple different tokens to payment address.
+
+        * send multiple different tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses for each token
+        * check fees in Lovelace
+        "
+"passed","Thu Jan 21 13:02:46 CET 2021","Thu Jan 21 13:02:46 CET 2021","218","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_10_addrs_fees[amount_expected2]","Test fees for 1 tx from 10 payment addresses to 1 payment address."
+"passed","Thu Jan 21 13:01:55 CET 2021","Thu Jan 21 13:02:00 CET 2021","5323","cardano_node_tests.tests","test_scripts","TestNegative","","","test_multisig_any_unlisted_skey","Try to send funds from script address using the *any* script with unlisted skey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 12:59:29 CET 2021","Thu Jan 21 13:49:45 CET 2021","3016210","cardano_node_tests.tests","test_staking","TestRewards","","","test_no_reward_deregistered_stake_addr","Check that the pool is not receiving rewards when owner's stake address is deregistered.
+
+        When the owner's stake address is deregistered (i.e. owner's stake is lower than pledge),
+        neither pool owners nor those who delegate to that pool receive rewards.
+
+        * delegate stake address
+        * wait for first reward
+        * deregister stake address - owner's stake is lower than pledge
+        * check that the key deposit was returned
+        * check that NO new rewards were received by those delegating to the pool
+        * check that pool owner is also NOT receiving rewards
+        * return the pool to the original state - reregister stake address and
+          delegate it to the pool
+        * check that new rewards were received by those delegating to the pool
+        * check that pool owner is also receiving rewards
+        "
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","223","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_10_addrs_fees[amount_expected0]","Test fees for 1 tx from 10 payment addresses to 1 payment address."
+"passed","Thu Jan 21 13:01:41 CET 2021","Thu Jan 21 13:01:45 CET 2021","4353","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_after_past","Check that it's NOT possible to spend from the script address.
+
+        The ""after"" slot is in the past.
+        "
+"passed","Thu Jan 21 13:03:00 CET 2021","Thu Jan 21 13:03:05 CET 2021","4904","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[100000]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:38:05 CET 2021","Thu Jan 21 13:38:15 CET 2021","10375","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[10]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:10 CET 2021","Thu Jan 21 13:02:10 CET 2021","162","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[1.5]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:10 CET 2021","Thu Jan 21 13:02:10 CET 2021","165","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[1.1]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 12:59:25 CET 2021","Thu Jan 21 13:53:05 CET 2021","3219504","cardano_node_tests.tests","test_staking","TestRewards","","","test_no_reward_unmet_pledge1","Check that the stake pool is not receiving rewards when pledge is not met.
+
+        When the pledge is higher than available funds, neither pool owners nor those who
+        delegate to that pool receive rewards.
+
+        * delegate stake address
+        * wait for first reward
+        * increase the needed pledge amount - update the pool parameters by resubmitting the pool
+          registration certificate - the funds are now lower than what is needed by the stake pool
+        * check that NO new rewards were received by those delegating to the pool
+        * check that pool owner is also NOT receiving rewards
+        * return the pool to the original state - restore pledge settings
+        * check that new rewards were received by those delegating to the pool
+        * check that pool owner is also receiving rewards
+        "
+"skipped","Thu Jan 21 13:12:48 CET 2021","Thu Jan 21 13:12:48 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_valid_policy_before","Test minting and burning tokens before given slot."
+"skipped","Thu Jan 21 13:32:30 CET 2021","Thu Jan 21 13:32:30 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_before_future","Test that it's NOT possible to mint tokens.
+
+        The ""before"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Jan 21 13:02:46 CET 2021","Thu Jan 21 13:02:46 CET 2021","219","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_10_addrs_fees[amount_expected3]","Test fees for 1 tx from 10 payment addresses to 1 payment address."
+"passed","Thu Jan 21 13:02:35 CET 2021","Thu Jan 21 13:05:56 CET 2021","200420","cardano_node_tests.tests","test_pools","TestStakePool","","","test_update_stake_pool_parameters[1]","Update stake pool parameters.
+
+        * register pool
+        * update the pool parameters by resubmitting the pool registration certificate
+        * check that the pool parameters were correctly updated on chain
+        "
+"passed","Thu Jan 21 13:10:53 CET 2021","Thu Jan 21 13:10:53 CET 2021","140","cardano_node_tests.tests","test_transactions","TestNegative","","","test_missing_tx_in","Try to build a transaction with a missing `--tx-in` parameter.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:01:25 CET 2021","Thu Jan 21 13:01:31 CET 2021","5924","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_before_past","Check that it's NOT possible to spend from the script address.
+
+        The ""before"" slot is in the past.
+        "
+"passed","Thu Jan 21 13:03:35 CET 2021","Thu Jan 21 13:03:44 CET 2021","8971","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[100]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:02:44 CET 2021","Thu Jan 21 13:02:44 CET 2021","76","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_1_addr_fees[amount_expected0]","Test fees for 1 tx from 1 payment address to 1 payment address."
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","80","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_1_addr_fees[amount_expected2]","Test fees for 1 tx from 1 payment address to 10 payment addresses."
+"passed","Thu Jan 21 12:59:29 CET 2021","Thu Jan 21 13:09:44 CET 2021","615658","cardano_node_tests.tests","test_pools","TestStakePool","","","test_pool_registration_deregistration","Send both pool registration and deregistration certificates in single TX.
+
+        * create pool registration cert
+        * create pool deregistration cert
+        * register and deregister stake pool in single TX
+        * check that the pool deposit was NOT returned to reward account as the reward address
+          is not registered (deposit is lost)
+        "
+"passed","Thu Jan 21 13:00:42 CET 2021","Thu Jan 21 13:00:44 CET 2021","2130","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_ticker","Try to create pool metadata hash when the *ticker* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 12:59:29 CET 2021","Thu Jan 21 13:27:50 CET 2021","1700419","cardano_node_tests.tests","test_staking","TestRewards","","","test_decreasing_reward_transfered_funds","Check that rewards are gradually decreasing when funds are being transfered.
+
+        Even though nothing is staked and rewards are being transfered from reward address, there
+        are still some funds staked on the reward address at the time ledger snapshot is taken. For
+        that reason the reward amount received every epoch is gradually decreasing over the period
+        of several epochs until it is finally 0.
+
+        * delegate stake address
+        * wait for first reward
+        * transfer all funds from payment address back to faucet, so no funds are staked
+        * keep withdrawing new rewards so reward balance is 0
+        * check that reward amount is decreasing epoch after epoch
+        "
+"passed","Thu Jan 21 13:01:30 CET 2021","Thu Jan 21 13:01:40 CET 2021","10133","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_no_required_atleast","Send funds from script address using the *atLeast* script with no required witnesses."
+"passed","Thu Jan 21 13:02:50 CET 2021","Thu Jan 21 13:02:51 CET 2021","210","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_registration_fees[addr_fee0]","Test pool registration fees."
+"passed","Thu Jan 21 13:03:05 CET 2021","Thu Jan 21 13:03:10 CET 2021","5013","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_all_funds","Send ALL funds from one payment address to another.
+
+        * send all available funds from 1 source address to 1 destination address
+        * check expected balance for destination addresses
+        * check that balance for source address is 0 Lovelace
+        "
+"passed","Thu Jan 21 12:59:50 CET 2021","Thu Jan 21 13:00:00 CET 2021","9984","cardano_node_tests.tests","test_pools","TestStakePool","","","test_create_stake_pool[1]","Create and register a stake pool (without metadata).
+
+        Check that pool was registered.
+        "
+"passed","Thu Jan 21 13:10:06 CET 2021","Thu Jan 21 13:10:07 CET 2021","161","cardano_node_tests.tests","test_transactions","TestNegative","","","test_past_ttl","Try to send a transaction with ttl in the past.
+
+        Expect failure.
+        "
+"skipped","Thu Jan 21 13:29:17 CET 2021","Thu Jan 21 13:29:17 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_witnesses","Test minting and burning of tokens, sign the transaction using witnesses."
+"passed","Thu Jan 21 13:02:44 CET 2021","Thu Jan 21 13:02:45 CET 2021","92","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_1_addr_fees[amount_expected1]","Test fees for 1 tx from 1 payment address to 1 payment address."
+"passed","Thu Jan 21 13:03:20 CET 2021","Thu Jan 21 13:04:02 CET 2021","42370","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_10_transactions","Send 10 transactions to payment address.
+
+        * send funds from 1 source address to 1 destination address in 10 separate transactions
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:53:17 CET 2021","Thu Jan 21 13:56:06 CET 2021","168881","cardano_node_tests.tests","test_pools","TestStakePool","","","test_update_stake_pool_metadata[1]","Update stake pool metadata.
+
+        * register pool
+        * update the pool metadata by resubmitting the pool registration certificate
+        * check that the pool metadata hash was correctly updated on chain
+        "
+"passed","Thu Jan 21 13:53:09 CET 2021","Thu Jan 21 13:53:17 CET 2021","8531","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_delegate_using_vkey","Submit registration certificate and delegate to pool using cold vkey.
+
+        * register stake address and delegate it to pool
+        * check that the stake address was delegated
+        "
+"passed","Thu Jan 21 13:10:10 CET 2021","Thu Jan 21 13:10:10 CET 2021","83","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_utxo_address","Try to send funds from payment address to UTxO address.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:11 CET 2021","5646","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_name","Try to create pool metadata hash when the *name* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 13:09:50 CET 2021","Thu Jan 21 13:09:50 CET 2021","45","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_cert_wrong_vrf","Try to generate pool registration certificate using wrong VRF key.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:05 CET 2021","Thu Jan 21 13:02:05 CET 2021","205","cardano_node_tests.tests","test_staking","TestNegative","","","test_deregister_not_registered_addr","Deregister not registered stake address."
+"passed","Thu Jan 21 13:01:35 CET 2021","Thu Jan 21 13:01:41 CET 2021","5487","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_after_future","Check that it's NOT possible to spend from the script address.
+
+        The ""after"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Jan 21 13:02:05 CET 2021","Thu Jan 21 13:02:10 CET 2021","5049","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_metadata_cbor","Send transaction with auxiliary script and metadata CBOR.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Jan 21 13:02:15 CET 2021","Thu Jan 21 13:02:15 CET 2021","242","cardano_node_tests.tests","test_staking","TestNegative","","","test_register_addr_with_wrong_key","Try to register stake address using wrong payment skey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:45 CET 2021","Thu Jan 21 13:02:45 CET 2021","79","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_1_addr_from_1_addr_fees[amount_expected2]","Test fees for 1 tx from 1 payment address to 1 payment address."
+"passed","Thu Jan 21 13:02:46 CET 2021","Thu Jan 21 13:02:46 CET 2021","216","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_10_addrs_from_10_addrs_fees[amount_expected1]","Test fees for 1 tx from 10 payment addresses to 10 payment addresses."
+"passed","Thu Jan 21 13:10:46 CET 2021","Thu Jan 21 13:10:46 CET 2021","159","cardano_node_tests.tests","test_transactions","TestNegative","","","test_nonexistent_utxo_hash","Try to use nonexistent UTxO hash as an input.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:10:46 CET 2021","Thu Jan 21 13:10:53 CET 2021","6635","cardano_node_tests.tests","test_transactions","TestNegative","","","test_invalid_lenght_utxo_hash","Try to use invalid UTxO hash as an input (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:38:00 CET 2021","Thu Jan 21 13:38:09 CET 2021","9170","cardano_node_tests.tests","test_transactions","TestManyUTXOs","","","test_mini_transactions[200]","Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).
+
+        * use source address with many UTxOs (100000+)
+        * use destination address with many UTxOs (100000+)
+        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address
+          to destination address
+        * check expected balances for both source and destination addresses
+        "
+"skipped","Thu Jan 21 12:52:30 CET 2021","Thu Jan 21 12:52:30 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_multi_minting_and_burning_witnesses","Test minting and burning multiple different tokens, sign the TX using witnesses."
+"passed","Thu Jan 21 12:59:40 CET 2021","Thu Jan 21 12:59:55 CET 2021","15079","cardano_node_tests.tests","test_pools","TestPoolCost","","","test_stake_pool_cost[9999999]","Create and register a stake pool with *pool cost* >= *minPoolCost*."
+"passed","Thu Jan 21 13:39:26 CET 2021","Thu Jan 21 13:42:46 CET 2021","199790","cardano_node_tests.tests","test_pools","TestStakePool","","","test_reregister_stake_pool","Reregister stake pool.
+
+        * deregister stake pool
+        * check that the stake addresses are no longer delegated
+        * reregister the pool by resubmitting the pool registration certificate
+        * delegate stake address to pool again (the address is already registered)
+        * check that pool was correctly setup
+        * check that the stake addresses were delegated
+        "
+"passed","Thu Jan 21 13:49:48 CET 2021","Thu Jan 21 13:55:57 CET 2021","369515","cardano_node_tests.tests","test_update_proposal","TestBasic","","","test_update_proposal","Test changing *decentralisationParam* using update proposal ."
+"passed","Thu Jan 21 13:00:09 CET 2021","Thu Jan 21 13:00:09 CET 2021","16","cardano_node_tests.tests","test_protocol","TestProtocol","","","test_protocol_state","Check output of `query protocol-state`."
+"passed","Thu Jan 21 13:02:05 CET 2021","Thu Jan 21 13:02:05 CET 2021","15","cardano_node_tests.tests","test_staking","TestNegative","","","test_registration_cert_with_wrong_key","Try to generate stake address registration certificate using wrong stake vkey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:04:02 CET 2021","Thu Jan 21 13:04:08 CET 2021","5620","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[1]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:10:36 CET 2021","Thu Jan 21 13:10:41 CET 2021","5050","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_from_invalid_length_address","Try to send funds from address with invalid length (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:05 CET 2021","233","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_missing_cold_skey","Try to register pool using transaction with missing Cold skey.
+
+        Expect failure.
+        "
+"skipped","Thu Jan 21 13:29:17 CET 2021","Thu Jan 21 13:29:17 CET 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[100000]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Jan 21 13:03:47 CET 2021","Thu Jan 21 13:03:57 CET 2021","10288","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[1]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 13:00:50 CET 2021","Thu Jan 21 13:01:00 CET 2021","9253","cardano_node_tests.tests","test_scripts","TestBasic","","","test_normal_tx_from_script_addr","Send funds from script address using TX signed with skeys (not using witness files)."
+"passed","Thu Jan 21 13:03:44 CET 2021","Thu Jan 21 13:03:52 CET 2021","8476","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[100000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Jan 21 12:59:27 CET 2021","Thu Jan 21 13:49:45 CET 2021","3017209","cardano_node_tests.tests","test_staking","TestRewards","","","test_no_reward_deregistered_reward_addr","Check that the reward address is not receiving rewards when deregistered.
+
+        The stake pool continues to operate normally and those who delegate to that pool receive
+        rewards.
+
+        * delegate stake address
+        * wait for first reward
+        * withdraw pool rewards to payment address
+        * deregister the pool reward address
+        * check that the key deposit was returned
+        * check that pool owner is NOT receiving rewards
+        * check that new rewards are received by those delegating to the pool
+        * return the pool to the original state - reregister reward address
+        * check that pool owner is receiving rewards
+        "
+"passed","Thu Jan 21 13:02:10 CET 2021","Thu Jan 21 13:02:10 CET 2021","158","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[2]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:10:32 CET 2021","Thu Jan 21 13:10:36 CET 2021","4041","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_from_non_existent_address","Try to send funds from non-existent address (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:05 CET 2021","Thu Jan 21 13:02:05 CET 2021","17","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegation_cert_with_wrong_key","Try to generate stake address delegation certificate using wrong stake vkey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:00:05 CET 2021","Thu Jan 21 13:00:05 CET 2021","47","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_cert_wrong_stake","Try to generate pool registration certificate using wrong stake vkey.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:01:20 CET 2021","Thu Jan 21 13:01:30 CET 2021","9859","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_empty_all","Send funds from script address using the *all* script with zero skeys."
+"passed","Thu Jan 21 13:11:05 CET 2021","Thu Jan 21 13:11:10 CET 2021","4992","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_both","Send transaction with both metadata JSON and CBOR.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Jan 21 13:10:56 CET 2021","Thu Jan 21 13:10:56 CET 2021","61","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_invalid_json_metadata","Try to build a transaction with invalid metadata JSON.
+
+        The metadata file is an invalid JSON.
+        "
+"passed","Thu Jan 21 13:02:42 CET 2021","Thu Jan 21 13:02:42 CET 2021","226","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_registration_fees[addr_fee1]","Test pool registration fees."
+"passed","Thu Jan 21 13:10:56 CET 2021","Thu Jan 21 13:10:56 CET 2021","71","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_wrong_json_metadata_format","Try to build a transaction with wrong fromat of metadata JSON.
+
+        The metadata file is a valid JSON, but not in a format that is expected.
+        "
+"passed","Thu Jan 21 13:10:57 CET 2021","Thu Jan 21 13:11:00 CET 2021","3030","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_json","Send transaction with metadata JSON.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Jan 21 13:10:46 CET 2021","Thu Jan 21 13:10:46 CET 2021","157","cardano_node_tests.tests","test_transactions","TestNegative","","","test_nonexistent_utxo_ix","Try to use nonexistent UTxO TxIx as an input.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:10 CET 2021","Thu Jan 21 13:02:15 CET 2021","4375","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[0]","Send a transaction with fee that is same or higher than expected."
+"skipped","Thu Jan 21 13:46:25 CET 2021","Thu Jan 21 13:46:25 CET 2021","0","cardano_node_tests.tests","test_kes","TestKES","","","test_no_kes_period_arg","Try to generate new operational certificate without specifying the `--kes-period`.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 13:02:48 CET 2021","Thu Jan 21 13:02:49 CET 2021","1693","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_transaction_to_100_addrs_from_100_addrs_fees[amount_expected2]","Test fees for 1 tx from 100 payment addresses to 100 payment addresses."
+"passed","Thu Jan 21 13:00:44 CET 2021","Thu Jan 21 13:01:49 CET 2021","64812","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_homepage","Try to create pool metadata hash when the *homepage* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Jan 21 13:02:48 CET 2021","Thu Jan 21 13:02:48 CET 2021","146","cardano_node_tests.tests","test_transaction_fees","TestExpectedFees","","","test_pool_deregistration_fees[addr_fee0]","Test pool deregistration fees."
+"passed","Thu Jan 21 13:02:00 CET 2021","Thu Jan 21 13:02:06 CET 2021","6287","cardano_node_tests.tests","test_scripts","TestNegative","","","test_multisig_atleast_low_num_of_skeys","Try to send funds from script address using the *atLeast* script.
+
+        Num of skeys < required. Expect failure.
+        "
+"passed","Thu Jan 21 13:10:07 CET 2021","Thu Jan 21 13:10:10 CET 2021","3118","cardano_node_tests.tests","test_transactions","TestNegative","","","test_duplicated_tx","Try to send an identical transaction twice.
+
+        Expect failure.
+        "
+"skipped","Thu Jan 21 13:32:30 CET 2021","Thu Jan 21 13:32:30 CET 2021","0","cardano_node_tests.tests","test_kes","TestKES","","","test_expired_kes","Test expired KES."
+"passed","Thu Jan 21 13:10:53 CET 2021","Thu Jan 21 13:10:53 CET 2021","139","cardano_node_tests.tests","test_transactions","TestNegative","","","test_missing_fee","Try to build a transaction with a missing `--fee` parameter.
+
+        Expect failure.
+        "
+"passed","Thu Jan 21 12:59:29 CET 2021","Thu Jan 21 13:53:05 CET 2021","3215629","cardano_node_tests.tests","test_staking","TestRewards","","","test_no_reward_unmet_pledge2","Check that the stake pool is not receiving rewards when pledge is not met.
+
+        When the pledge is higher than available funds, neither pool owners nor those who
+        delegate to that pool receive rewards.
+
+        * delegate stake address
+        * wait for first reward
+        * withdraw part of the pledge - the funds are lower than what is needed by the stake pool
+        * check that NO new rewards were received by those delegating to the pool
+        * check that pool owner is also NOT receiving rewards
+        * return the pool to the original state - restore pledge funds
+        * check that new rewards were received by those delegating to the pool
+        * check that pool owner is also receiving rewards
+        "

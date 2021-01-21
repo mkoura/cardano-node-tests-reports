@@ -1,0 +1,314 @@
+{
+  "uid" : "b3357f4ddf1c9e77",
+  "name" : "test_mini_transactions[1]",
+  "fullName" : "cardano_node_tests.tests.test_transactions.TestManyUTXOs#test_mini_transactions",
+  "historyId" : "27ff03a6ef7b21930bcd402b06470e72",
+  "time" : {
+    "start" : 1611232675272,
+    "stop" : 1611232685734,
+    "duration" : 10462
+  },
+  "description" : "Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).\n\n        * use source address with many UTxOs (100000+)\n        * use destination address with many UTxOs (100000+)\n        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address\n          to destination address\n        * check expected balances for both source and destination addresses\n        ",
+  "descriptionHtml" : "<p>Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).</p>\n<pre><code>    * use source address with many UTxOs (100000+)\n    * use destination address with many UTxOs (100000+)\n    * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address\n      to destination address\n    * check expected balances for both source and destination addresses\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-01-21 12:29:16.02 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]",
+  "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7f83a7ef17c0>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/allure_commons/_allure.py:200: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/conftest.py:173: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/parallel_run.py:302: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout'), '\\x1b[31m[bender-3:cardano.node.F...als\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\nE       Failed: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-01-21 12:29:16.02 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/logfiles.py:210: Failed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "many_utxos",
+    "time" : {
+      "start" : 1611230657447,
+      "stop" : 1611232675271,
+      "duration" : 2017824
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1611230652918,
+      "stop" : 1611230652919,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1611230571277,
+      "stop" : 1611230571277,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1611229950188,
+      "stop" : 1611229950188,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1611229950187,
+      "stop" : 1611229950187,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1611229950187,
+      "stop" : 1611229950188,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1611230652919,
+      "stop" : 1611230652919,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1611230652920,
+      "stop" : 1611230657447,
+      "duration" : 4527
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1611230652919,
+      "stop" : 1611230652920,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1611229950187,
+      "stop" : 1611229950187,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1611229950187,
+      "stop" : 1611229950187,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).\n\n        * use source address with many UTxOs (100000+)\n        * use destination address with many UTxOs (100000+)\n        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address\n          to destination address\n        * check expected balances for both source and destination addresses\n        ",
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-01-21 12:29:16.02 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]",
+    "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7f83a7ef17c0>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/allure_commons/_allure.py:200: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/conftest.py:173: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/parallel_run.py:302: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout'), '\\x1b[31m[bender-3:cardano.node.F...als\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\nE       Failed: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-01-21 12:29:16.02 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/logfiles.py:210: Failed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "b7bdbdd6c105e3a1",
+      "name" : "log",
+      "source" : "b7bdbdd6c105e3a1.txt",
+      "type" : "text/plain",
+      "size" : 9296
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1611232686131,
+      "stop" : 1611232686131,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1611232695852,
+      "stop" : 1611232695853,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1611232685736,
+      "stop" : 1611232686131,
+      "duration" : 395
+    },
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node3/state-cluster1/pool2.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-01-21 12:29:16.02 UTC] fromList [(\"credentials\",String \"Cardano\"),(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 11004.0)]))]\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/allure_commons/_allure.py\", line 200, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 941, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/conftest.py\", line 173, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/parallel_run.py\", line 302, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/logfiles.py\", line 210, in report_artifacts_errors\n    pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/outcomes.py\", line 153, in fail\n    raise Failed(msg=msg, pytrace=pytrace)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestManyUTXOs"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "424428-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "1"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/1f7bc8a77734c72fb1d70d2474aeb8cb1b85679c/cardano_node_tests/tests/test_transactions.py#L747",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/1f7bc8a77734c72fb1d70d2474aeb8cb1b85679c/cardano_node_tests/tests/test_transactions.py#L747",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "1bf3ce992a83a1dd",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1611229948452,
+        "stop" : 1611229948452,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "b3357f4ddf1c9e77.json",
+  "parameterValues" : [ "1" ]
+}
