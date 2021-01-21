@@ -120,7 +120,7 @@ read -r
 
 git fetch "$remote"
 git checkout "$branch"
-git pull "$remote" "$branch"
+git pull --no-rebase "$remote" "$branch"
 git add "$docs_dir"
 git commit --no-verify -m "report for ${cardano_rev}"
 git push "$remote" "$branch"
