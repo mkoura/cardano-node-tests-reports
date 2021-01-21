@@ -1,0 +1,314 @@
+{
+  "uid" : "2fb428eaa3bab9d6",
+  "name" : "test_mini_transactions[10000]",
+  "fullName" : "cardano_node_tests.tests.test_transactions.TestManyUTXOs#test_mini_transactions",
+  "historyId" : "007d5726ed64d2b50d71ac0f8784570f",
+  "time" : {
+    "start" : 1611236408793,
+    "stop" : 1611236408793,
+    "duration" : 0
+  },
+  "description" : "Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).\n\n        * use source address with many UTxOs (100000+)\n        * use destination address with many UTxOs (100000+)\n        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address\n          to destination address\n        * check expected balances for both source and destination addresses\n        ",
+  "descriptionHtml" : "<p>Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).</p>\n<pre><code>    * use source address with many UTxOs (100000+)\n    * use destination address with many UTxOs (100000+)\n    * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address\n      to destination address\n    * check expected balances for both source and destination addresses\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli query tip --testnet-magic 42 --cardano-mode` on path `/tmp/pytest-of-martink/pytest-3/popen-gw12/test_transactions_py0`: \ncardano-cli: Network.Socket.connect: <socket: 11>: does not exist (Connection refused)",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_transactions.TestManyUTXOs object at 0x7f0bae3047c0>, cluster_manager = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7f0bae3048b0>\ncluster = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f0bae33fd60>\npayment_addrs = [AddressRecord(address='addr_test1vqua333v3dr0n473a8c69xgd3y5w02up6tdqnpzvkl5h8jg5zvq57', vkey_file=PosixPath('tiny_tx...96gae7gmrvx9rsnhyndt', vkey_file=PosixPath('tiny_tx_addr_ci3_2.vkey'), skey_file=PosixPath('tiny_tx_addr_ci3_2.skey'))]\n\n    @pytest.fixture\n    def many_utxos(\n        self,\n        cluster_manager: parallel_run.ClusterManager,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n    ) -> Tuple[clusterlib.AddressRecord, clusterlib.AddressRecord]:\n        \"\"\"Generate many UTxOs (100000+) with small amounts of Lovelace (1-1000000).\"\"\"\n        with cluster_manager.cache_fixture() as fixture_cache:\n            if fixture_cache.value:\n                return fixture_cache.value  # type: ignore\n    \n            temp_template = helpers.get_func_name()\n    \n            LOGGER.info(\"Generating lot of UTxO addresses, will take a while.\")\n            start = time.time()\n            payment_addr = payment_addrs[0]\n            out_addrs1 = [payment_addrs[1] for __ in range(200)]\n            out_addrs2 = [payment_addrs[2] for __ in range(200)]\n            out_addrs = [*out_addrs1, *out_addrs2]\n    \n            for i in range(25):\n                for amount in range(1, 21):\n>                   self._from_to_transactions(\n                        cluster_obj=cluster,\n                        payment_addr=payment_addr,\n                        tx_name=f\"{temp_template}_{amount}_{i}\",\n                        out_addrs=out_addrs,\n                        amount=amount,\n                    )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:719: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:694: in _from_to_transactions\n    cluster_obj.wait_for_new_block(new_blocks=2)\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:1786: in wait_for_new_block\n    last_block_block_no = self.get_last_block_block_no()\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:955: in get_last_block_block_no\n    return int(self.get_tip()[\"blockNo\"])\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:431: in get_tip\n    return json.loads(self.query_cli([\"tip\"]))  # type: ignore\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:358: in query_cli\n    stdout = self.cli(\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:346: in cli\n    return self.cli_base(cmd)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f0bae33fd60>, cli_args = ['cardano-cli', 'query', 'tip', '--testnet-magic', '42', '--cardano-mode']\n\n    def cli_base(self, cli_args: List[str]) -> CLIOut:\n        \"\"\"Run command.\"\"\"\n        cmd_str = \" \".join(cli_args)\n        LOGGER.debug(\"Running `%s`\", cmd_str)\n    \n        # re-run the command when running into\n        # Network.Socket.connect: <socket: X>: resource exhausted (Resource temporarily unavailable)\n        for __ in range(3):\n            p = subprocess.Popen(cli_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)\n            stdout, stderr = p.communicate()\n    \n            if p.returncode == 0:\n                break\n    \n            stderr_dec = stderr.decode()\n            err_msg = (\n                f\"An error occurred running a CLI command `{cmd_str}` on path \"\n                f\"`{os.getcwd()}`: {stderr_dec}\"\n            )\n            if \"resource exhausted\" in stderr_dec:\n                LOGGER.error(err_msg)\n                time.sleep(0.4)\n                continue\n>           raise CLIError(err_msg)\nE           cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli query tip --testnet-magic 42 --cardano-mode` on path `/tmp/pytest-of-martink/pytest-3/popen-gw12/test_transactions_py0`: \nE           cardano-cli: Network.Socket.connect: <socket: 11>: does not exist (Connection refused)\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:336: CLIError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1611233411700,
+      "stop" : 1611233411700,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1611234245323,
+      "stop" : 1611234245323,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1611236408814,
+      "stop" : 1611236411132,
+      "duration" : 2318
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "many_utxos",
+    "time" : {
+      "start" : 1611236411132,
+      "stop" : 1611238176770,
+      "duration" : 1765638
+    },
+    "status" : "broken",
+    "statusMessage" : "cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli query tip --testnet-magic 42 --cardano-mode` on path `/tmp/pytest-of-martink/pytest-3/popen-gw12/test_transactions_py0`: \ncardano-cli: Network.Socket.connect: <socket: 11>: does not exist (Connection refused)\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/pluggy/callers.py\", line 187, in _multicall\n    res = hook_impl.function(*args)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 932, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py\", line 719, in many_utxos\n    self._from_to_transactions(\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py\", line 694, in _from_to_transactions\n    cluster_obj.wait_for_new_block(new_blocks=2)\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py\", line 1786, in wait_for_new_block\n    last_block_block_no = self.get_last_block_block_no()\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py\", line 955, in get_last_block_block_no\n    return int(self.get_tip()[\"blockNo\"])\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py\", line 431, in get_tip\n    return json.loads(self.query_cli([\"tip\"]))  # type: ignore\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py\", line 358, in query_cli\n    stdout = self.cli(\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py\", line 346, in cli\n    return self.cli_base(cmd)\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py\", line 336, in cli_base\n    raise CLIError(err_msg)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1611236408793,
+      "stop" : 1611236408794,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1611233411700,
+      "stop" : 1611233411701,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1611236408793,
+      "stop" : 1611236408793,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1611233411701,
+      "stop" : 1611233411701,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1611233411700,
+      "stop" : 1611233411700,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1611236408794,
+      "stop" : 1611236408814,
+      "duration" : 20
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1611233411701,
+      "stop" : 1611233411701,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Test transaction with many UTxOs (300+) with tiny amounts of Lovelace (1-1000000).\n\n        * use source address with many UTxOs (100000+)\n        * use destination address with many UTxOs (100000+)\n        * sent transaction with many UTxOs (300+) with tiny amounts of Lovelace from source address\n          to destination address\n        * check expected balances for both source and destination addresses\n        ",
+    "status" : "broken",
+    "statusMessage" : "cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli query tip --testnet-magic 42 --cardano-mode` on path `/tmp/pytest-of-martink/pytest-3/popen-gw12/test_transactions_py0`: \ncardano-cli: Network.Socket.connect: <socket: 11>: does not exist (Connection refused)",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_transactions.TestManyUTXOs object at 0x7f0bae3047c0>, cluster_manager = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7f0bae3048b0>\ncluster = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f0bae33fd60>\npayment_addrs = [AddressRecord(address='addr_test1vqua333v3dr0n473a8c69xgd3y5w02up6tdqnpzvkl5h8jg5zvq57', vkey_file=PosixPath('tiny_tx...96gae7gmrvx9rsnhyndt', vkey_file=PosixPath('tiny_tx_addr_ci3_2.vkey'), skey_file=PosixPath('tiny_tx_addr_ci3_2.skey'))]\n\n    @pytest.fixture\n    def many_utxos(\n        self,\n        cluster_manager: parallel_run.ClusterManager,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n    ) -> Tuple[clusterlib.AddressRecord, clusterlib.AddressRecord]:\n        \"\"\"Generate many UTxOs (100000+) with small amounts of Lovelace (1-1000000).\"\"\"\n        with cluster_manager.cache_fixture() as fixture_cache:\n            if fixture_cache.value:\n                return fixture_cache.value  # type: ignore\n    \n            temp_template = helpers.get_func_name()\n    \n            LOGGER.info(\"Generating lot of UTxO addresses, will take a while.\")\n            start = time.time()\n            payment_addr = payment_addrs[0]\n            out_addrs1 = [payment_addrs[1] for __ in range(200)]\n            out_addrs2 = [payment_addrs[2] for __ in range(200)]\n            out_addrs = [*out_addrs1, *out_addrs2]\n    \n            for i in range(25):\n                for amount in range(1, 21):\n>                   self._from_to_transactions(\n                        cluster_obj=cluster,\n                        payment_addr=payment_addr,\n                        tx_name=f\"{temp_template}_{amount}_{i}\",\n                        out_addrs=out_addrs,\n                        amount=amount,\n                    )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:719: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_transactions.py:694: in _from_to_transactions\n    cluster_obj.wait_for_new_block(new_blocks=2)\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:1786: in wait_for_new_block\n    last_block_block_no = self.get_last_block_block_no()\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:955: in get_last_block_block_no\n    return int(self.get_tip()[\"blockNo\"])\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:431: in get_tip\n    return json.loads(self.query_cli([\"tip\"]))  # type: ignore\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:358: in query_cli\n    stdout = self.cli(\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:346: in cli\n    return self.cli_base(cmd)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.utils.clusterlib.ClusterLib object at 0x7f0bae33fd60>, cli_args = ['cardano-cli', 'query', 'tip', '--testnet-magic', '42', '--cardano-mode']\n\n    def cli_base(self, cli_args: List[str]) -> CLIOut:\n        \"\"\"Run command.\"\"\"\n        cmd_str = \" \".join(cli_args)\n        LOGGER.debug(\"Running `%s`\", cmd_str)\n    \n        # re-run the command when running into\n        # Network.Socket.connect: <socket: X>: resource exhausted (Resource temporarily unavailable)\n        for __ in range(3):\n            p = subprocess.Popen(cli_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)\n            stdout, stderr = p.communicate()\n    \n            if p.returncode == 0:\n                break\n    \n            stderr_dec = stderr.decode()\n            err_msg = (\n                f\"An error occurred running a CLI command `{cmd_str}` on path \"\n                f\"`{os.getcwd()}`: {stderr_dec}\"\n            )\n            if \"resource exhausted\" in stderr_dec:\n                LOGGER.error(err_msg)\n                time.sleep(0.4)\n                continue\n>           raise CLIError(err_msg)\nE           cardano_node_tests.utils.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli query tip --testnet-magic 42 --cardano-mode` on path `/tmp/pytest-of-martink/pytest-3/popen-gw12/test_transactions_py0`: \nE           cardano-cli: Network.Socket.connect: <socket: 11>: does not exist (Connection refused)\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib.py:336: CLIError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "abdc712a6652c02",
+      "name" : "log",
+      "source" : "abdc712a6652c02.txt",
+      "type" : "text/plain",
+      "size" : 618
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1611238176915,
+      "stop" : 1611238177946,
+      "duration" : 1031
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1611238177946,
+      "stop" : 1611238177946,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1611238177948,
+      "stop" : 1611238177950,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestManyUTXOs"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "824268-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "10000"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/1f7bc8a77734c72fb1d70d2474aeb8cb1b85679c/cardano_node_tests/tests/test_transactions.py#L747",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/1f7bc8a77734c72fb1d70d2474aeb8cb1b85679c/cardano_node_tests/tests/test_transactions.py#L747",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "cdf751eb6a4c17e",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1611233409877,
+        "stop" : 1611233409877,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "2fb428eaa3bab9d6.json",
+  "parameterValues" : [ "10000" ]
+}
