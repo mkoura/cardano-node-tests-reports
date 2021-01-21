@@ -1,0 +1,287 @@
+{
+  "uid" : "4cd3ade29f123f45",
+  "name" : "test_stake_pool_cost[9999999]",
+  "fullName" : "cardano_node_tests.tests.test_pools.TestPoolCost#test_stake_pool_cost",
+  "historyId" : "3200ad920a1b096bb49756fd9a262ecb",
+  "time" : {
+    "start" : 1611238176428,
+    "stop" : 1611238176428,
+    "duration" : 0
+  },
+  "description" : "Create and register a stake pool with *pool cost* >= *minPoolCost*.",
+  "descriptionHtml" : "<p>Create and register a stake pool with <em>pool cost</em> &gt;= <em>minPoolCost</em>.</p>\n",
+  "status" : "broken",
+  "statusMessage" : "RuntimeError: Cluster instance not set.",
+  "statusTrace" : "cluster_manager = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7febcc690820>, pool_cost_start_cluster = PosixPath('/tmp/pytest-of-martink/pytest-6/tmp/startup_files_pool_500/start-cluster-hfc')\n\n    @pytest.fixture\n    def cluster_mincost(\n        cluster_manager: parallel_run.ClusterManager, pool_cost_start_cluster: Path\n    ) -> clusterlib.ClusterLib:\n>       return cluster_manager.get(\n            mark=\"minPoolCost\", cleanup=True, start_cmd=str(pool_cost_start_cluster)\n        )\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py:74: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:314: in get\n    return _ClusterGetter(self).get(\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:593: in get\n    self._restart(start_cmd=start_cmd)\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:349: in _restart\n    f\"c{self.cm.cluster_instance}: called `_restart`, start_cmd='{start_cmd}', \"\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7febcc690820>\n\n    @property\n    def cluster_instance(self) -> int:\n        if self._cluster_instance == -1:\n>           raise RuntimeError(\"Cluster instance not set.\")\nE           RuntimeError: Cluster instance not set.\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:137: RuntimeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1611238176429,
+      "stop" : 1611238176430,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1611238176430,
+      "stop" : 1611238176430,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_cost_start_cluster",
+    "time" : {
+      "start" : 1611238176431,
+      "stop" : 1611238176433,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_mincost",
+    "time" : {
+      "start" : 1611238176433,
+      "stop" : 1611242225517,
+      "duration" : 4049084
+    },
+    "status" : "broken",
+    "statusMessage" : "RuntimeError: Cluster instance not set.\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/pluggy/callers.py\", line 187, in _multicall\n    res = hook_impl.function(*args)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 932, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py\", line 74, in cluster_mincost\n    return cluster_manager.get(\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py\", line 314, in get\n    return _ClusterGetter(self).get(\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py\", line 593, in get\n    self._restart(start_cmd=start_cmd)\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py\", line 349, in _restart\n    f\"c{self.cm.cluster_instance}: called `_restart`, start_cmd='{start_cmd}', \"\n  File \"/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py\", line 137, in cluster_instance\n    raise RuntimeError(\"Cluster instance not set.\")\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1611238176430,
+      "stop" : 1611238176430,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1611238176433,
+      "stop" : 1611238176433,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1611238176431,
+      "stop" : 1611238176431,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1611238176430,
+      "stop" : 1611238176430,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1611238176433,
+      "stop" : 1611238176433,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1611238176429,
+      "stop" : 1611238176429,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Create and register a stake pool with *pool cost* >= *minPoolCost*.",
+    "status" : "broken",
+    "statusMessage" : "RuntimeError: Cluster instance not set.",
+    "statusTrace" : "cluster_manager = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7febcc690820>, pool_cost_start_cluster = PosixPath('/tmp/pytest-of-martink/pytest-6/tmp/startup_files_pool_500/start-cluster-hfc')\n\n    @pytest.fixture\n    def cluster_mincost(\n        cluster_manager: parallel_run.ClusterManager, pool_cost_start_cluster: Path\n    ) -> clusterlib.ClusterLib:\n>       return cluster_manager.get(\n            mark=\"minPoolCost\", cleanup=True, start_cmd=str(pool_cost_start_cluster)\n        )\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_pools.py:74: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:314: in get\n    return _ClusterGetter(self).get(\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:593: in get\n    self._restart(start_cmd=start_cmd)\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:349: in _restart\n    f\"c{self.cm.cluster_instance}: called `_restart`, start_cmd='{start_cmd}', \"\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <cardano_node_tests.utils.parallel_run.ClusterManager object at 0x7febcc690820>\n\n    @property\n    def cluster_instance(self) -> int:\n        if self._cluster_instance == -1:\n>           raise RuntimeError(\"Cluster instance not set.\")\nE           RuntimeError: Cluster instance not set.\n\n/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/utils/parallel_run.py:137: RuntimeError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "7c2ca4b689c584a9",
+      "name" : "log",
+      "source" : "7c2ca4b689c584a9.txt",
+      "type" : "text/plain",
+      "size" : 1500
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1611242225610,
+      "stop" : 1611242225610,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1611242249363,
+      "stop" : 1611242249364,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1611242225609,
+      "stop" : 1611242225609,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=2)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_pools"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestPoolCost"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1407269-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_pools"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "pool_cost",
+    "value" : "9999999"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ae6c7d4538f0a5d06e57be0454b8b3bbbc7a6b5b/cardano_node_tests/tests/test_pools.py#L1318",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ae6c7d4538f0a5d06e57be0454b8b3bbbc7a6b5b/cardano_node_tests/tests/test_pools.py#L1318",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "run(order=2)", "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "4cd3ade29f123f45.json",
+  "parameterValues" : [ "9999999" ]
+}
