@@ -20,7 +20,7 @@ get_coverage() {
   fi
   oldpwd="$(pwd)"
   cd "$tests_repo"
-  url="$(./cli_coverage.py -i .cli_coverage/cli_coverage_* -o .cli_coverage/out.json -b)"
+  url="$(cardano_node_tests/cardano_cli_coverage.py -i .cli_coverage/cli_coverage_* -o .cli_coverage/out.json -b)"
   cd "$oldpwd"
   cp "$tests_repo/.cli_coverage/out.json" "$docs_dir/cli_coverage.json"
   curl "$url" --output "$docs_dir/cli_coverage_badge.svg"
