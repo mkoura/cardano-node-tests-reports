@@ -115,7 +115,7 @@ EoF
 
 remote="$(git remote | grep upstream || echo "origin")"
 branch="main"
-echo "Push to ${remote}/${branch}? (Ctrl+C to abort)"
+echo "Commit to ${remote}/${branch}? (Ctrl+C to abort)"
 read -r
 
 git fetch "$remote"
@@ -123,4 +123,6 @@ git checkout "$branch"
 git pull --no-rebase "$remote" "$branch"
 git add "$docs_dir"
 git commit --no-verify -m "report for ${cardano_rev}"
+echo "Push to ${remote}/${branch}? (Ctrl+C to abort)"
+read -r
 git push "$remote" "$branch"
