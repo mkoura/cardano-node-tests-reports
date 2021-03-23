@@ -1,0 +1,282 @@
+{
+  "uid" : "ce649f4c4c766c29",
+  "name" : "test_slot_length",
+  "fullName" : "cardano_node_tests.tests.test_configuration.TestBasic#test_slot_length",
+  "historyId" : "a26f7a09e73652d0bac20434887ff572",
+  "time" : {
+    "start" : 1616492480790,
+    "stop" : 1616492958945,
+    "duration" : 478155
+  },
+  "description" : "Test the *slotLength* configuration.",
+  "descriptionHtml" : "<p>Test the <em>slotLength</em> configuration.</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 5 == 4\n  +5\n  -4",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_configuration.TestBasic object at 0x7f2bf9164040>, cluster_slot_length = <ClusterLib: protocol=cardano, era=mary, tx_era=allegra>\n\n    @pytest.mark.run(order=2)\n    @allure.link(helpers.get_vcs_link())\n    def test_slot_length(self, cluster_slot_length: clusterlib.ClusterLib):\n        \"\"\"Test the *slotLength* configuration.\"\"\"\n        cluster = cluster_slot_length\n    \n        assert cluster.slot_length == 0.3\n        assert cluster.epoch_length == 1000\n>       check_epoch_length(cluster)\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_configuration.py:144: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncluster_obj = <ClusterLib: protocol=cardano, era=mary, tx_era=allegra>\n\n    def check_epoch_length(cluster_obj: clusterlib.ClusterLib) -> None:\n        cluster_obj.wait_for_new_epoch()\n        epoch_no = cluster_obj.get_last_block_epoch()\n        time.sleep((cluster_obj.slot_length * cluster_obj.epoch_length) - 15)\n        assert epoch_no == cluster_obj.get_last_block_epoch()\n        time.sleep(5)\n>       assert epoch_no + 1 == cluster_obj.get_last_block_epoch()\nE       assert 5 == 4\nE         +5\nE         -4\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_configuration.py:120: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1616491561503,
+      "stop" : 1616491561503,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1616491561503,
+      "stop" : 1616491561503,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1616491561503,
+      "stop" : 1616491561503,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "slot_length_start_cluster",
+    "time" : {
+      "start" : 1616491561504,
+      "stop" : 1616491561507,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1616491561503,
+      "stop" : 1616491561504,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1616491561504,
+      "stop" : 1616491561504,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1616491561507,
+      "stop" : 1616491561507,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1616491561504,
+      "stop" : 1616491561504,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1616491561507,
+      "stop" : 1616491561507,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_slot_length",
+    "time" : {
+      "start" : 1616491561507,
+      "stop" : 1616492480788,
+      "duration" : 919281
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Test the *slotLength* configuration.",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 5 == 4\n  +5\n  -4",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_configuration.TestBasic object at 0x7f2bf9164040>, cluster_slot_length = <ClusterLib: protocol=cardano, era=mary, tx_era=allegra>\n\n    @pytest.mark.run(order=2)\n    @allure.link(helpers.get_vcs_link())\n    def test_slot_length(self, cluster_slot_length: clusterlib.ClusterLib):\n        \"\"\"Test the *slotLength* configuration.\"\"\"\n        cluster = cluster_slot_length\n    \n        assert cluster.slot_length == 0.3\n        assert cluster.epoch_length == 1000\n>       check_epoch_length(cluster)\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_configuration.py:144: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncluster_obj = <ClusterLib: protocol=cardano, era=mary, tx_era=allegra>\n\n    def check_epoch_length(cluster_obj: clusterlib.ClusterLib) -> None:\n        cluster_obj.wait_for_new_epoch()\n        epoch_no = cluster_obj.get_last_block_epoch()\n        time.sleep((cluster_obj.slot_length * cluster_obj.epoch_length) - 15)\n        assert epoch_no == cluster_obj.get_last_block_epoch()\n        time.sleep(5)\n>       assert epoch_no + 1 == cluster_obj.get_last_block_epoch()\nE       assert 5 == 4\nE         +5\nE         -4\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_configuration.py:120: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "1c461c042a6dee4c",
+      "name" : "log",
+      "source" : "1c461c042a6dee4c.txt",
+      "type" : "text/plain",
+      "size" : 805
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1616495485241,
+      "stop" : 1616495485242,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1616492959538,
+      "stop" : 1616492959538,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1616492958997,
+      "stop" : 1616492959537,
+      "duration" : 540
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=2)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_configuration"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBasic"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3446369-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_configuration"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ab37ae0f236e877205b988695897b0b539bf86d9/cardano_node_tests/tests/test_configuration.py#L138",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ab37ae0f236e877205b988695897b0b539bf86d9/cardano_node_tests/tests/test_configuration.py#L138",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "run(order=2)", "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "ce649f4c4c766c29.json",
+  "parameterValues" : [ ]
+}
