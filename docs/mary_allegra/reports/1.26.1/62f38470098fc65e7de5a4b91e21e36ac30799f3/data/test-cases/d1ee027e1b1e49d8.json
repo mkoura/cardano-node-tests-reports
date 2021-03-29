@@ -1,0 +1,267 @@
+{
+  "uid" : "d1ee027e1b1e49d8",
+  "name" : "test_update_valid_opcert",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_update_valid_opcert",
+  "historyId" : "763c73d3b0678568285bf0f21cdefe58",
+  "time" : {
+    "start" : 1617035246594,
+    "stop" : 1617035819502,
+    "duration" : 572908
+  },
+  "description" : "Update a valid operational certificate with another valid operational certificate.\n\n        * generate new operational certificate with valid `--kes-period`\n        * restart the node with the new operational certificate\n        * check that the pool is still producing blocks\n        ",
+  "descriptionHtml" : "<p>Update a valid operational certificate with another valid operational certificate.</p>\n<pre><code>    * generate new operational certificate with valid `--kes-period`\n    * restart the node with the new operational certificate\n    * check that the pool is still producing blocks\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Failed to wait for given interval from 182.0s to 195.0s",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_kes.TestKES object at 0x7f0f62747190>, cluster_lock_pool2 = <ClusterLib: protocol=cardano, era=, tx_era=allegra>, cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7f0f62747a60>\n\n    @pytest.mark.run(order=2)\n    @allure.link(helpers.get_vcs_link())\n    def test_update_valid_opcert(\n        self,\n        cluster_lock_pool2: clusterlib.ClusterLib,\n        cluster_manager: cluster_management.ClusterManager,\n    ):\n        \"\"\"Update a valid operational certificate with another valid operational certificate.\n    \n        * generate new operational certificate with valid `--kes-period`\n        * restart the node with the new operational certificate\n        * check that the pool is still producing blocks\n        \"\"\"\n        pool_name = \"node-pool2\"\n        node_name = \"pool2\"\n        cluster = cluster_lock_pool2\n    \n        temp_template = helpers.get_func_name()\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n    \n        node_cold = pool_rec[\"cold_key_pair\"]\n        stake_pool_id = cluster.get_stake_pool_id(node_cold.vkey_file)\n        stake_pool_id_dec = helpers.decode_bech32(stake_pool_id)\n    \n        opcert_file = pool_rec[\"pool_operational_cert\"]\n    \n        with cluster_manager.restart_on_failure():\n            # generate new operational certificate with valid `--kes-period`\n            new_opcert_file = cluster.gen_node_operational_cert(\n                node_name=node_name,\n                kes_vkey_file=pool_rec[\"kes_key_pair\"].vkey_file,\n                cold_skey_file=pool_rec[\"cold_key_pair\"].skey_file,\n                cold_counter_file=pool_rec[\"cold_key_pair\"].counter_file,\n                kes_period=cluster.get_kes_period(),\n            )\n    \n            # restart the node with the new operational certificate\n            logfiles.add_ignore_rule(\"*.stdout\", \"MuxBearerClosed\")\n            shutil.copy(new_opcert_file, opcert_file)\n            cluster_nodes.restart_node(node_name)\n    \n            LOGGER.info(\"Checking blocks production for 5 epochs.\")\n            blocks_made_db = []\n            this_epoch = -1\n            updated_epoch = cluster.get_epoch()\n            for __ in range(5):\n                # wait for next epoch\n                if cluster.get_epoch() == this_epoch:\n                    cluster.wait_for_new_epoch()\n    \n                # wait for the end of the epoch\n>               clusterlib_utils.wait_for_epoch_interval(cluster_obj=cluster, start=-18, stop=-5)\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_kes.py:284: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncluster_obj = <ClusterLib: protocol=cardano, era=, tx_era=allegra>, start = -18, stop = -5\n\n    def wait_for_epoch_interval(cluster_obj: clusterlib.ClusterLib, start: int, stop: int) -> None:\n        \"\"\"Wait for time interval within an epoch.\n    \n        Args:\n            cluster_obj: An instance of `clusterlib.ClusterLib`.\n            start: A start of the interval, in seconds. Negative number for counting from the\n                end of an epoch.\n            stop: An end of the interval, in seconds. Negative number for counting from the\n                end of an epoch.\n        \"\"\"\n        start_abs = start if start >= 0 else cluster_obj.epoch_length_sec + start\n        stop_abs = stop if stop >= 0 else cluster_obj.epoch_length_sec + stop\n    \n        if start_abs >= stop_abs:\n            raise AssertionError(\n                f\"The 'start' ({start_abs}) needs to be lower than 'stop' ({stop_abs})\"\n            )\n    \n        s_to_epoch_stop = cluster_obj.time_to_next_epoch_start() - 0.5\n        s_from_epoch_start = cluster_obj.epoch_length_sec - s_to_epoch_stop\n    \n        # if we are after the required interval, wait for next epoch\n        if stop_abs > s_to_epoch_stop:\n            cluster_obj.wait_for_new_epoch()\n    \n        for __ in range(10):\n            # check if we are in the required interval right now\n            if start_abs <= s_from_epoch_start:\n                break\n    \n            s_to_epoch_stop = cluster_obj.time_to_next_epoch_start() - 0.5\n            s_from_epoch_start = cluster_obj.epoch_length_sec - s_to_epoch_stop\n            to_sleep = start_abs - s_from_epoch_start\n            if to_sleep > 0:\n                time.sleep(to_sleep)\n        else:\n>           raise AssertionError(f\"Failed to wait for given interval from {start_abs}s to {stop_abs}s\")\nE           AssertionError: Failed to wait for given interval from 182.0s to 195.0s\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/clusterlib_utils.py:571: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1617034630708,
+      "stop" : 1617035246592,
+      "duration" : 615884
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1617034630707,
+      "stop" : 1617034630707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1617034630706,
+      "stop" : 1617034630706,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1617034630707,
+      "stop" : 1617034630707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1617034630707,
+      "stop" : 1617034630707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1617034630707,
+      "stop" : 1617034630707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1617034630707,
+      "stop" : 1617034630707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1617034630707,
+      "stop" : 1617034630707,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1617034630706,
+      "stop" : 1617034630707,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Update a valid operational certificate with another valid operational certificate.\n\n        * generate new operational certificate with valid `--kes-period`\n        * restart the node with the new operational certificate\n        * check that the pool is still producing blocks\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Failed to wait for given interval from 182.0s to 195.0s",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_kes.TestKES object at 0x7f0f62747190>, cluster_lock_pool2 = <ClusterLib: protocol=cardano, era=, tx_era=allegra>, cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7f0f62747a60>\n\n    @pytest.mark.run(order=2)\n    @allure.link(helpers.get_vcs_link())\n    def test_update_valid_opcert(\n        self,\n        cluster_lock_pool2: clusterlib.ClusterLib,\n        cluster_manager: cluster_management.ClusterManager,\n    ):\n        \"\"\"Update a valid operational certificate with another valid operational certificate.\n    \n        * generate new operational certificate with valid `--kes-period`\n        * restart the node with the new operational certificate\n        * check that the pool is still producing blocks\n        \"\"\"\n        pool_name = \"node-pool2\"\n        node_name = \"pool2\"\n        cluster = cluster_lock_pool2\n    \n        temp_template = helpers.get_func_name()\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n    \n        node_cold = pool_rec[\"cold_key_pair\"]\n        stake_pool_id = cluster.get_stake_pool_id(node_cold.vkey_file)\n        stake_pool_id_dec = helpers.decode_bech32(stake_pool_id)\n    \n        opcert_file = pool_rec[\"pool_operational_cert\"]\n    \n        with cluster_manager.restart_on_failure():\n            # generate new operational certificate with valid `--kes-period`\n            new_opcert_file = cluster.gen_node_operational_cert(\n                node_name=node_name,\n                kes_vkey_file=pool_rec[\"kes_key_pair\"].vkey_file,\n                cold_skey_file=pool_rec[\"cold_key_pair\"].skey_file,\n                cold_counter_file=pool_rec[\"cold_key_pair\"].counter_file,\n                kes_period=cluster.get_kes_period(),\n            )\n    \n            # restart the node with the new operational certificate\n            logfiles.add_ignore_rule(\"*.stdout\", \"MuxBearerClosed\")\n            shutil.copy(new_opcert_file, opcert_file)\n            cluster_nodes.restart_node(node_name)\n    \n            LOGGER.info(\"Checking blocks production for 5 epochs.\")\n            blocks_made_db = []\n            this_epoch = -1\n            updated_epoch = cluster.get_epoch()\n            for __ in range(5):\n                # wait for next epoch\n                if cluster.get_epoch() == this_epoch:\n                    cluster.wait_for_new_epoch()\n    \n                # wait for the end of the epoch\n>               clusterlib_utils.wait_for_epoch_interval(cluster_obj=cluster, start=-18, stop=-5)\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_kes.py:284: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncluster_obj = <ClusterLib: protocol=cardano, era=, tx_era=allegra>, start = -18, stop = -5\n\n    def wait_for_epoch_interval(cluster_obj: clusterlib.ClusterLib, start: int, stop: int) -> None:\n        \"\"\"Wait for time interval within an epoch.\n    \n        Args:\n            cluster_obj: An instance of `clusterlib.ClusterLib`.\n            start: A start of the interval, in seconds. Negative number for counting from the\n                end of an epoch.\n            stop: An end of the interval, in seconds. Negative number for counting from the\n                end of an epoch.\n        \"\"\"\n        start_abs = start if start >= 0 else cluster_obj.epoch_length_sec + start\n        stop_abs = stop if stop >= 0 else cluster_obj.epoch_length_sec + stop\n    \n        if start_abs >= stop_abs:\n            raise AssertionError(\n                f\"The 'start' ({start_abs}) needs to be lower than 'stop' ({stop_abs})\"\n            )\n    \n        s_to_epoch_stop = cluster_obj.time_to_next_epoch_start() - 0.5\n        s_from_epoch_start = cluster_obj.epoch_length_sec - s_to_epoch_stop\n    \n        # if we are after the required interval, wait for next epoch\n        if stop_abs > s_to_epoch_stop:\n            cluster_obj.wait_for_new_epoch()\n    \n        for __ in range(10):\n            # check if we are in the required interval right now\n            if start_abs <= s_from_epoch_start:\n                break\n    \n            s_to_epoch_stop = cluster_obj.time_to_next_epoch_start() - 0.5\n            s_from_epoch_start = cluster_obj.epoch_length_sec - s_to_epoch_stop\n            to_sleep = start_abs - s_from_epoch_start\n            if to_sleep > 0:\n                time.sleep(to_sleep)\n        else:\n>           raise AssertionError(f\"Failed to wait for given interval from {start_abs}s to {stop_abs}s\")\nE           AssertionError: Failed to wait for given interval from 182.0s to 195.0s\n\n/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/clusterlib_utils.py:571: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "94d18b46eff52be8",
+      "name" : "log",
+      "source" : "94d18b46eff52be8.txt",
+      "type" : "text/plain",
+      "size" : 2044
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1617035819566,
+      "stop" : 1617035819810,
+      "duration" : 244
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1617035819811,
+      "stop" : 1617035821053,
+      "duration" : 1242
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1617035819811,
+      "stop" : 1617035819811,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=2)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "592721-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/49cf8bf8ad05984733fe4be1f8d026a531ef2264/cardano_node_tests/tests/test_kes.py#L235",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/49cf8bf8ad05984733fe4be1f8d026a531ef2264/cardano_node_tests/tests/test_kes.py#L235",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "run(order=2)", "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "d1ee027e1b1e49d8.json",
+  "parameterValues" : [ ]
+}
