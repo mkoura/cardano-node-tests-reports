@@ -1,0 +1,274 @@
+{
+  "uid" : "a94d68bc0ec0f6bd",
+  "name" : "test_no_reward_deregistered_reward_addr",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_no_reward_deregistered_reward_addr",
+  "historyId" : "c912143688f3eed2668a24d86d0b8f36",
+  "time" : {
+    "start" : 1617022707160,
+    "stop" : 1617025723306,
+    "duration" : 3016146
+  },
+  "description" : "Check that the reward address is not receiving rewards when deregistered.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * check that new rewards are received by those delegating to the pool\n        * return the pool to the original state - reregister reward address\n        * check that pool owner is receiving rewards\n        ",
+  "descriptionHtml" : "<p>Check that the reward address is not receiving rewards when deregistered.</p>\n<pre><code>    The stake pool continues to operate normally and those who delegate to that pool receive\n    rewards.\n\n    * delegate stake address\n    * wait for first reward\n    * withdraw pool rewards to payment address\n    * deregister the pool reward address\n    * check that the key deposit was returned\n    * check that pool owner is NOT receiving rewards\n    * check that new rewards are received by those delegating to the pool\n    * return the pool to the original state - reregister reward address\n    * check that pool owner is receiving rewards\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1617022088221,
+      "stop" : 1617022707158,
+      "duration" : 618937
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1617022088220,
+      "stop" : 1617022088220,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1617022088219,
+      "stop" : 1617022088219,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1617022088220,
+      "stop" : 1617022088220,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1617022088220,
+      "stop" : 1617022088220,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1617022088220,
+      "stop" : 1617022088220,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1617022088220,
+      "stop" : 1617022088221,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1617022088220,
+      "stop" : 1617022088220,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1617022088218,
+      "stop" : 1617022088219,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the reward address is not receiving rewards when deregistered.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * check that new rewards are received by those delegating to the pool\n        * return the pool to the original state - reregister reward address\n        * check that pool owner is receiving rewards\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "e9bc957898f77e4a",
+      "name" : "log",
+      "source" : "e9bc957898f77e4a.txt",
+      "type" : "text/plain",
+      "size" : 1134
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1617025724056,
+      "stop" : 1617025724056,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1617025723308,
+      "stop" : 1617025724055,
+      "duration" : 747
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1617026094350,
+      "stop" : 1617026094351,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3378012-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/9e47dee067e6d8893536b5debfcc773b00be3e00/cardano_node_tests/tests/test_staking.py#L1826",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/9e47dee067e6d8893536b5debfcc773b00be3e00/cardano_node_tests/tests/test_staking.py#L1826",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "ae0537f2c0d1b30f",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1617022085725,
+        "stop" : 1617022085725,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)" ]
+  },
+  "source" : "a94d68bc0ec0f6bd.json",
+  "parameterValues" : [ ]
+}

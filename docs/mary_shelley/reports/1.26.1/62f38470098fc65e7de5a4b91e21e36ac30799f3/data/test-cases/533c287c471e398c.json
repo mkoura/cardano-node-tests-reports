@@ -1,0 +1,274 @@
+{
+  "uid" : "533c287c471e398c",
+  "name" : "test_opcert_past_kes_period",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_opcert_past_kes_period",
+  "historyId" : "d90e8f131de3845addb36d0b247e876a",
+  "time" : {
+    "start" : 1617022706834,
+    "stop" : 1617025289497,
+    "duration" : 2582663
+  },
+  "description" : "Start a stake pool with an operational certificate created with expired `--kes-period`.\n\n        * generate new operational certificate with `--kes-period` in the past\n        * restart the node with the new operational certificate\n        * check that the pool is not producing any blocks\n        * generate new operational certificate with valid `--kes-period` and restart the node\n        * check that the pool is producing blocks again\n        ",
+  "descriptionHtml" : "<p>Start a stake pool with an operational certificate created with expired <code>--kes-period</code>.</p>\n<pre><code>    * generate new operational certificate with `--kes-period` in the past\n    * restart the node with the new operational certificate\n    * check that the pool is not producing any blocks\n    * generate new operational certificate with valid `--kes-period` and restart the node\n    * check that the pool is producing blocks again\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1617022088212,
+      "stop" : 1617022088212,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1617022088211,
+      "stop" : 1617022088211,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1617022088212,
+      "stop" : 1617022088212,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1617022088212,
+      "stop" : 1617022088212,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1617022088212,
+      "stop" : 1617022088213,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1617022088211,
+      "stop" : 1617022088211,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1617022088212,
+      "stop" : 1617022088212,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1617022088213,
+      "stop" : 1617022706833,
+      "duration" : 618620
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1617022088212,
+      "stop" : 1617022088212,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Start a stake pool with an operational certificate created with expired `--kes-period`.\n\n        * generate new operational certificate with `--kes-period` in the past\n        * restart the node with the new operational certificate\n        * check that the pool is not producing any blocks\n        * generate new operational certificate with valid `--kes-period` and restart the node\n        * check that the pool is producing blocks again\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "bc0b29f36137ab18",
+      "name" : "log",
+      "source" : "bc0b29f36137ab18.txt",
+      "type" : "text/plain",
+      "size" : 2146
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1617025290138,
+      "stop" : 1617025290138,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1617025307527,
+      "stop" : 1617025307528,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1617025289499,
+      "stop" : 1617025290137,
+      "duration" : 638
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3377971-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/9e47dee067e6d8893536b5debfcc773b00be3e00/cardano_node_tests/tests/test_kes.py#L125",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/9e47dee067e6d8893536b5debfcc773b00be3e00/cardano_node_tests/tests/test_kes.py#L125",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "6484f1786bbf1af3",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1617022085718,
+        "stop" : 1617022085718,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)" ]
+  },
+  "source" : "533c287c471e398c.json",
+  "parameterValues" : [ ]
+}
