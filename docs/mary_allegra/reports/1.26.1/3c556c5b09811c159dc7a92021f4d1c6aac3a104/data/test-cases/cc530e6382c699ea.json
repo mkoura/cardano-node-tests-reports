@@ -1,0 +1,284 @@
+{
+  "uid" : "cc530e6382c699ea",
+  "name" : "test_no_reward_deregistered_reward_addr",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_no_reward_deregistered_reward_addr",
+  "historyId" : "c912143688f3eed2668a24d86d0b8f36",
+  "time" : {
+    "start" : 1617870716162,
+    "stop" : 1617873736494,
+    "duration" : 3020332
+  },
+  "description" : "Check that the reward address is not receiving rewards when deregistered.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * check that new rewards are received by those delegating to the pool\n        * return the pool to the original state - reregister reward address\n        * check that pool owner is receiving rewards\n        ",
+  "descriptionHtml" : "<p>Check that the reward address is not receiving rewards when deregistered.</p>\n<pre><code>    The stake pool continues to operate normally and those who delegate to that pool receive\n    rewards.\n\n    * delegate stake address\n    * wait for first reward\n    * withdraw pool rewards to payment address\n    * deregister the pool reward address\n    * check that the key deposit was returned\n    * check that pool owner is NOT receiving rewards\n    * check that new rewards are received by those delegating to the pool\n    * return the pool to the original state - reregister reward address\n    * check that pool owner is receiving rewards\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-04-08 09:18:29.45 UTC] fromList [(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]",
+  "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7fe153ea83a0>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/allure_commons/_allure.py:200: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/conftest.py:179: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/cluster_management.py:313: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout'), '\\x1b[31m[bender-3:cardano.node.F...ect (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\nE       Failed: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-04-08 09:18:29.45 UTC] fromList [(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/logfiles.py:210: Failed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1617870101622,
+      "stop" : 1617870101623,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1617870101623,
+      "stop" : 1617870101623,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1617870101623,
+      "stop" : 1617870101623,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1617870101623,
+      "stop" : 1617870101624,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1617870101623,
+      "stop" : 1617870101623,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1617870101622,
+      "stop" : 1617870101622,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1617870101624,
+      "stop" : 1617870716161,
+      "duration" : 614537
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1617870101623,
+      "stop" : 1617870101623,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1617870101623,
+      "stop" : 1617870101623,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the reward address is not receiving rewards when deregistered.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * check that new rewards are received by those delegating to the pool\n        * return the pool to the original state - reregister reward address\n        * check that pool owner is receiving rewards\n        ",
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-04-08 09:18:29.45 UTC] fromList [(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]",
+    "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7fe153ea83a0>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/allure_commons/_allure.py:200: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/conftest.py:179: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/cluster_management.py:313: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout'), '\\x1b[31m[bender-3:cardano.node.F...ect (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\nE       Failed: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-04-08 09:18:29.45 UTC] fromList [(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/logfiles.py:210: Failed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "aff000e0c4fc21e9",
+      "name" : "log",
+      "source" : "aff000e0c4fc21e9.txt",
+      "type" : "text/plain",
+      "size" : 570
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1617873736772,
+      "stop" : 1617873736772,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1617873736495,
+      "stop" : 1617873736772,
+      "duration" : 277
+    },
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node2/state-cluster0/pool1.stdout: \u001B[31m[bender-3:cardano.node.Forge:Error:42]\u001B[0m [2021-04-08 09:18:29.45 UTC] fromList [(\"val\",Object (fromList [(\"kind\",String \"TraceDidntAdoptBlock\"),(\"slot\",Number 17015.0)])),(\"credentials\",String \"Cardano\")]\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/allure_commons/_allure.py\", line 200, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 941, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/conftest.py\", line 179, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/cluster_management.py\", line 313, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/logfiles.py\", line 210, in report_artifacts_errors\n    pytest.fail(f\"Errors found in cluster log files:\\n{err_joined}\")\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/outcomes.py\", line 153, in fail\n    raise Failed(msg=msg, pytrace=pytrace)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1617874107451,
+      "stop" : 1617874119689,
+      "duration" : 12238
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "352980-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/140007e6418147eda4b268edd117f8daae669de4/cardano_node_tests/tests/test_staking.py#L1827",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/140007e6418147eda4b268edd117f8daae669de4/cardano_node_tests/tests/test_staking.py#L1827",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "63840bb1f9b5f7d7",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1617870099560,
+        "stop" : 1617870099560,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)" ]
+  },
+  "source" : "cc530e6382c699ea.json",
+  "parameterValues" : [ ]
+}
