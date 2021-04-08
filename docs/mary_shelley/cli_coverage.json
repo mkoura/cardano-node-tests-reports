@@ -8,10 +8,10 @@
             "key-gen": {
                 "--normal-key": 0,
                 "--extended-key": 0,
-                "--verification-key-file": 943,
-                "--signing-key-file": 943,
+                "--verification-key-file": 519,
+                "--signing-key-file": 519,
                 "-h,--help": 0,
-                "_count_key-gen": 943,
+                "_count_key-gen": 519,
                 "_coverage_key-gen": 40.0
             },
             "key-hash": {
@@ -24,14 +24,15 @@
             },
             "build": {
                 "--payment-verification-key": 0,
-                "--payment-verification-key-file": 943,
+                "--payment-verification-key-file": 519,
+                "--script-file": 0,
                 "--stake-verification-key": 0,
-                "--stake-verification-key-file": 467,
-                "--testnet-magic": 943,
-                "--out-file": 943,
+                "--stake-verification-key-file": 263,
+                "--testnet-magic": 519,
+                "--out-file": 519,
                 "-h,--help": 0,
-                "_count_build": 943,
-                "_coverage_build": 57.142857142857146
+                "_count_build": 519,
+                "_coverage_build": 50.0
             },
             "build-script": {
                 "--script-file": 11,
@@ -48,25 +49,25 @@
                 "_count_info": 0,
                 "_coverage_info": 0
             },
-            "_count_address": 2066,
-            "_coverage_address": 41.66666666666667
+            "_count_address": 1218,
+            "_coverage_address": 40.0
         },
         "stake-address": {
             "-h,--help": 0,
             "key-gen": {
-                "--verification-key-file": 467,
-                "--signing-key-file": 467,
+                "--verification-key-file": 263,
+                "--signing-key-file": 263,
                 "-h,--help": 0,
-                "_count_key-gen": 467,
+                "_count_key-gen": 263,
                 "_coverage_key-gen": 66.66666666666667
             },
             "build": {
                 "--stake-verification-key": 0,
-                "--stake-verification-key-file": 467,
-                "--testnet-magic": 467,
-                "--out-file": 467,
+                "--stake-verification-key-file": 263,
+                "--testnet-magic": 263,
+                "--out-file": 263,
                 "-h,--help": 0,
-                "_count_build": 467,
+                "_count_build": 263,
                 "_coverage_build": 60.0
             },
             "key-hash": {
@@ -79,10 +80,10 @@
             },
             "registration-certificate": {
                 "--stake-verification-key": 0,
-                "--stake-verification-key-file": 64,
-                "--out-file": 64,
+                "--stake-verification-key-file": 63,
+                "--out-file": 63,
                 "-h,--help": 0,
-                "_count_registration-certificate": 64,
+                "_count_registration-certificate": 63,
                 "_coverage_registration-certificate": 50.0
             },
             "deregistration-certificate": {
@@ -95,16 +96,16 @@
             },
             "delegation-certificate": {
                 "--stake-verification-key": 0,
-                "--stake-verification-key-file": 45,
+                "--stake-verification-key-file": 44,
                 "--stake-pool-verification-key": 0,
-                "--cold-verification-key-file": 44,
+                "--cold-verification-key-file": 43,
                 "--stake-pool-id": 1,
-                "--out-file": 45,
+                "--out-file": 44,
                 "-h,--help": 0,
-                "_count_delegation-certificate": 45,
+                "_count_delegation-certificate": 44,
                 "_coverage_delegation-certificate": 57.142857142857146
             },
-            "_count_stake-address": 1070,
+            "_count_stake-address": 660,
             "_coverage_stake-address": 46.42857142857143
         },
         "key": {
@@ -140,16 +141,16 @@
         "transaction": {
             "-h,--help": 0,
             "build-raw": {
-                "--shelley-era": 5210,
+                "--shelley-era": 5206,
                 "--allegra-era": 0,
                 "--mary-era": 0,
-                "--tx-in": 11005,
-                "--tx-out": 1610976,
+                "--tx-in": 11013,
+                "--tx-out": 1610942,
                 "--mint": 0,
                 "--invalid-before": 0,
                 "--invalid-hereafter": 0,
-                "--fee": 5212,
-                "--certificate-file": 360,
+                "--fee": 5208,
+                "--certificate-file": 364,
                 "--withdrawal": 9,
                 "--json-metadata-no-schema": 0,
                 "--json-metadata-detailed-schema": 0,
@@ -157,36 +158,36 @@
                 "--metadata-json-file": 7,
                 "--metadata-cbor-file": 4,
                 "--update-proposal-file": 2,
-                "--out-file": 5213,
+                "--out-file": 5209,
                 "-h,--help": 0,
-                "_count_build-raw": 5213,
+                "_count_build-raw": 5209,
                 "_coverage_build-raw": 52.631578947368425
             },
             "sign": {
-                "--tx-body-file": 2344,
-                "--signing-key-file": 2774,
+                "--tx-body-file": 2343,
+                "--signing-key-file": 2780,
                 "--address": 0,
                 "--script-file": 1,
-                "--testnet-magic": 2344,
-                "--out-file": 2344,
+                "--testnet-magic": 2343,
+                "--out-file": 2343,
                 "-h,--help": 0,
-                "_count_sign": 2344,
+                "_count_sign": 2343,
                 "_coverage_sign": 71.42857142857143
             },
             "witness": {
-                "--tx-body-file": 230,
-                "--signing-key-file": 204,
+                "--tx-body-file": 218,
+                "--signing-key-file": 192,
                 "--address": 0,
                 "--script-file": 26,
-                "--testnet-magic": 230,
-                "--out-file": 230,
+                "--testnet-magic": 218,
+                "--out-file": 218,
                 "-h,--help": 0,
-                "_count_witness": 230,
+                "_count_witness": 218,
                 "_coverage_witness": 71.42857142857143
             },
             "assemble": {
                 "--tx-body-file": 36,
-                "--witness-file": 230,
+                "--witness-file": 218,
                 "--out-file": 36,
                 "-h,--help": 0,
                 "_count_assemble": 36,
@@ -195,11 +196,11 @@
             "submit": {
                 "--shelley-mode": 0,
                 "--epoch-slots": 0,
-                "--cardano-mode": 2381,
-                "--testnet-magic": 2381,
-                "--tx-file": 2381,
+                "--cardano-mode": 2380,
+                "--testnet-magic": 2380,
+                "--tx-file": 2380,
                 "-h,--help": 0,
-                "_count_submit": 2381,
+                "_count_submit": 2380,
                 "_coverage_submit": 50.0
             },
             "policyid": {
@@ -209,16 +210,16 @@
                 "_coverage_policyid": 0
             },
             "calculate-min-fee": {
-                "--tx-body-file": 2317,
-                "--testnet-magic": 2317,
+                "--tx-body-file": 2315,
+                "--testnet-magic": 2315,
                 "--genesis": 0,
-                "--protocol-params-file": 2317,
-                "--tx-in-count": 2317,
-                "--tx-out-count": 2317,
-                "--witness-count": 2317,
-                "--byron-witness-count": 2317,
+                "--protocol-params-file": 2315,
+                "--tx-in-count": 2315,
+                "--tx-out-count": 2315,
+                "--witness-count": 2315,
+                "--byron-witness-count": 2315,
                 "-h,--help": 0,
-                "_count_calculate-min-fee": 2317,
+                "_count_calculate-min-fee": 2315,
                 "_coverage_calculate-min-fee": 77.77777777777777
             },
             "txid": {
@@ -235,7 +236,7 @@
                 "_count_view": 0,
                 "_coverage_view": 0
             },
-            "_count_transaction": 12522,
+            "_count_transaction": 12502,
             "_coverage_transaction": 55.73770491803278
         },
         "node": {
@@ -332,17 +333,17 @@
             },
             "id": {
                 "--stake-pool-verification-key": 0,
-                "--cold-verification-key-file": 34,
+                "--cold-verification-key-file": 33,
                 "--output-format": 0,
                 "-h,--help": 0,
-                "_count_id": 34,
+                "_count_id": 33,
                 "_coverage_id": 25.0
             },
             "metadata-hash": {
-                "--pool-metadata-file": 424,
+                "--pool-metadata-file": 425,
                 "--out-file": 0,
                 "-h,--help": 0,
-                "_count_metadata-hash": 424,
+                "_count_metadata-hash": 425,
                 "_coverage_metadata-hash": 33.333333333333336
             },
             "_count_stake-pool": 712,
@@ -353,21 +354,21 @@
             "protocol-parameters": {
                 "--shelley-mode": 0,
                 "--epoch-slots": 0,
-                "--cardano-mode": 2593,
-                "--testnet-magic": 2593,
-                "--out-file": 2593,
+                "--cardano-mode": 2596,
+                "--testnet-magic": 2596,
+                "--out-file": 2596,
                 "-h,--help": 0,
-                "_count_protocol-parameters": 2593,
+                "_count_protocol-parameters": 2596,
                 "_coverage_protocol-parameters": 50.0
             },
             "tip": {
                 "--shelley-mode": 0,
                 "--epoch-slots": 0,
-                "--cardano-mode": 48623,
-                "--testnet-magic": 48623,
+                "--cardano-mode": 48407,
+                "--testnet-magic": 48407,
                 "--out-file": 0,
                 "-h,--help": 0,
-                "_count_tip": 48623,
+                "_count_tip": 48407,
                 "_coverage_tip": 33.333333333333336
             },
             "stake-distribution": {
@@ -383,33 +384,33 @@
             "stake-address-info": {
                 "--shelley-mode": 0,
                 "--epoch-slots": 0,
-                "--cardano-mode": 720,
-                "--address": 720,
-                "--testnet-magic": 720,
+                "--cardano-mode": 718,
+                "--address": 718,
+                "--testnet-magic": 718,
                 "--out-file": 0,
                 "-h,--help": 0,
-                "_count_stake-address-info": 720,
+                "_count_stake-address-info": 718,
                 "_coverage_stake-address-info": 42.857142857142854
             },
             "utxo": {
                 "--shelley-mode": 0,
                 "--epoch-slots": 0,
-                "--cardano-mode": 7916,
-                "--address": 7916,
-                "--testnet-magic": 7916,
-                "--out-file": 7916,
+                "--cardano-mode": 7894,
+                "--address": 7894,
+                "--testnet-magic": 7894,
+                "--out-file": 7894,
                 "-h,--help": 0,
-                "_count_utxo": 7916,
+                "_count_utxo": 7894,
                 "_coverage_utxo": 57.142857142857146
             },
             "ledger-state": {
                 "--shelley-mode": 0,
                 "--epoch-slots": 0,
-                "--cardano-mode": 154,
-                "--testnet-magic": 154,
+                "--cardano-mode": 168,
+                "--testnet-magic": 168,
                 "--out-file": 0,
                 "-h,--help": 0,
-                "_count_ledger-state": 154,
+                "_count_ledger-state": 168,
                 "_coverage_ledger-state": 33.333333333333336
             },
             "protocol-state": {
@@ -422,7 +423,7 @@
                 "_count_protocol-state": 0,
                 "_coverage_protocol-state": 0
             },
-            "_count_query": 60026,
+            "_count_query": 59803,
             "_coverage_query": 35.55555555555556
         },
         "governance": {
@@ -434,6 +435,30 @@
                 "--reward": 0,
                 "--out-file": 0,
                 "-h,--help": 0,
+                "stake-addresses": {
+                    "--reserves": 0,
+                    "--treasury": 0,
+                    "--stake-address": 0,
+                    "--reward": 0,
+                    "--out-file": 0,
+                    "-h,--help": 0,
+                    "_count_stake-addresses": 0,
+                    "_coverage_stake-addresses": 0
+                },
+                "transfer-to-treasury": {
+                    "--transfer": 0,
+                    "--out-file": 0,
+                    "-h,--help": 0,
+                    "_count_transfer-to-treasury": 0,
+                    "_coverage_transfer-to-treasury": 0
+                },
+                "transfer-to-rewards": {
+                    "--transfer": 0,
+                    "--out-file": 0,
+                    "-h,--help": 0,
+                    "_count_transfer-to-rewards": 0,
+                    "_coverage_transfer-to-rewards": 0
+                },
                 "_count_create-mir-certificate": 0,
                 "_coverage_create-mir-certificate": 0
             },
@@ -480,7 +505,7 @@
                 "_coverage_create-update-proposal": 17.391304347826086
             },
             "_count_governance": 1,
-            "_coverage_governance": 9.75609756097561
+            "_coverage_governance": 7.547169811320755
         },
         "text-view": {
             "-h,--help": 0,
@@ -495,7 +520,7 @@
             "_coverage_text-view": 0
         },
         "version": 0,
-        "_count_cardano-cli": 76768,
-        "_coverage_cardano-cli": 36.39575971731448
+        "_count_cardano-cli": 75267,
+        "_coverage_cardano-cli": 34.7972972972973
     }
 }
