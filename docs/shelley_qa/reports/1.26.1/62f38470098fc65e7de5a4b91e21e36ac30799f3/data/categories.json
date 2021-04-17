@@ -4,44 +4,40 @@
   "children" : [ {
     "name" : "Product defects",
     "children" : [ {
-      "name" : "AssertionError: User of pool 'node-pool1' hasn't received any rewards\nassert False",
+      "name" : "Failed: DID NOT RAISE <class 'cardano_clusterlib.clusterlib.CLIError'>",
       "children" : [ {
-        "name" : "test_reward_simple",
-        "uid" : "f465a58a229b892e",
-        "parentUid" : "5190505871f6e35ac9489ffc7d56cac9",
+        "name" : "test_transfer_no_ada",
+        "uid" : "a0c23c23c2794380",
+        "parentUid" : "80e6fe52815d3f131ffa42a9ca7ebc17",
         "status" : "failed",
         "time" : {
-          "start" : 1617021187779,
-          "stop" : 1617066299159,
-          "duration" : 45111380
+          "start" : 1618663402775,
+          "stop" : 1618663402893,
+          "duration" : 118
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       } ],
-      "uid" : "5190505871f6e35ac9489ffc7d56cac9"
+      "uid" : "80e6fe52815d3f131ffa42a9ca7ebc17"
+    }, {
+      "name" : "AssertionError: Incorrect balance for source address `addr_test1qryxd244zvtkjxrtcddagcpvys3ct930w0yq7vs9y4rfzusydd9g267um8gxgj8skgrkzs058tdyw0wrycrszappcwnqnpr60q`\nassert 997578738 == 497362759\n  +997578738\n  -497362759",
+      "children" : [ {
+        "name" : "test_reregister_stake_pool",
+        "uid" : "a6c2b11bb1ad3850",
+        "parentUid" : "2e4323bd92c7771e5c3ac06ce53eb403",
+        "status" : "failed",
+        "time" : {
+          "start" : 1618664426098,
+          "stop" : 1618671681206,
+          "duration" : 7255108
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2e4323bd92c7771e5c3ac06ce53eb403"
     } ],
     "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
-  }, {
-    "name" : "Test defects",
-    "children" : [ {
-      "name" : "UnicodeDecodeError: 'utf-8' codec can't decode byte 0x83 in position 0: invalid start byte",
-      "children" : [ {
-        "name" : "test_protocol_state_outfile",
-        "uid" : "f4fe9dc0dd0871a1",
-        "parentUid" : "778ceb3d221b2f1b7ccc915e0aab55e9",
-        "status" : "broken",
-        "time" : {
-          "start" : 1617021866720,
-          "stop" : 1617021866739,
-          "duration" : 19
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      } ],
-      "uid" : "778ceb3d221b2f1b7ccc915e0aab55e9"
-    } ],
-    "uid" : "bdbf199525818fae7a8651db9eafe741"
   } ]
 }
