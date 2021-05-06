@@ -1,0 +1,71 @@
+{
+  "uid" : "6f627906f0209806",
+  "name" : "test_no_reward_deregistered_stake_addr",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_no_reward_deregistered_stake_addr",
+  "historyId" : "8ce1b7debf9341e2e31920b7d2774989",
+  "time" : {
+    "start" : 1620224902167,
+    "stop" : 1620224902167,
+    "duration" : 0
+  },
+  "description" : "Check that the pool is not receiving rewards when owner's stake address is deregistered.\n\n        When the owner's stake address is deregistered (i.e. owner's stake is lower than pledge),\n        neither pool owners nor those who delegate to that pool receive rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * deregister stake address - owner's stake is lower than pledge\n        * check that the key deposit was returned\n        * check that NO new rewards were received by those delegating to the pool\n        * check that pool owner is also NOT receiving rewards\n        * return the pool to the original state - reregister stake address and\n          delegate it to the pool\n        * check that new rewards were received by those delegating to the pool\n        * check that pool owner is also receiving rewards\n        ",
+  "descriptionHtml" : "<p>Check that the pool is not receiving rewards when owner's stake address is deregistered.</p>\n<pre><code>    When the owner's stake address is deregistered (i.e. owner's stake is lower than pledge),\n    neither pool owners nor those who delegate to that pool receive rewards.\n\n    * delegate stake address\n    * wait for first reward\n    * deregister stake address - owner's stake is lower than pledge\n    * check that the key deposit was returned\n    * check that NO new rewards were received by those delegating to the pool\n    * check that pool owner is also NOT receiving rewards\n    * return the pool to the original state - reregister stake address and\n      delegate it to the pool\n    * check that new rewards were received by those delegating to the pool\n    * check that pool owner is also receiving rewards\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_staking.py', 1659, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "run(order=1)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2708223-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d805a51f2af268b611592ec5180de91f7077b579/cardano_node_tests/tests/test_staking.py#L1659",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d805a51f2af268b611592ec5180de91f7077b579/cardano_node_tests/tests/test_staking.py#L1659",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "run(order=1)", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "6f627906f0209806.json",
+  "parameterValues" : [ ]
+}
