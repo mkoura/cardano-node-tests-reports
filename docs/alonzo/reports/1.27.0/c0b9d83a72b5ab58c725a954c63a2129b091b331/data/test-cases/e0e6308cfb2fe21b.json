@@ -1,0 +1,290 @@
+{
+  "uid" : "e0e6308cfb2fe21b",
+  "name" : "test_transfer_to_rewards",
+  "fullName" : "cardano_node_tests.tests.test_governance.TestMIRCerts#test_transfer_to_rewards",
+  "historyId" : "aace621e9beefedf27628ef34ea86558",
+  "time" : {
+    "start" : 1622197168301,
+    "stop" : 1622197187800,
+    "duration" : 19499
+  },
+  "description" : "Send funds from the treasury pot to the reserves pot.\n\n        Expected to fail until Alonzo.\n        ",
+  "descriptionHtml" : "<p>Send funds from the treasury pot to the reserves pot.</p>\n<pre><code>    Expected to fail until Alonzo.\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "Failed: DID NOT RAISE <class 'cardano_clusterlib.clusterlib.CLIError'>",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_governance.TestMIRCerts object at 0x7fa8f7751160>, cluster_pots = <ClusterLib: protocol=cardano, tx_era=mary>\npool_users = [PoolUser(payment=AddressRecord(address='addr_test1qrrk08plfjk6aq3qwl32qs2kt2npffdqmzcx59ayrtmejtv9jlr44mr82psd8y50yux...ey_file=PosixPath('test_mir_certs_ci2_addr1_stake.vkey'), skey_file=PosixPath('test_mir_certs_ci2_addr1_stake.skey')))]\n\n    @allure.link(helpers.get_vcs_link())\n    def test_transfer_to_rewards(\n        self, cluster_pots: clusterlib.ClusterLib, pool_users: List[clusterlib.PoolUser]\n    ):\n        \"\"\"Send funds from the treasury pot to the reserves pot.\n    \n        Expected to fail until Alonzo.\n        \"\"\"\n        temp_template = helpers.get_func_name()\n        cluster = cluster_pots\n        pool_user = pool_users[0]\n        amount = 50_000\n    \n        mir_cert = cluster.gen_mir_cert_to_rewards(transfer=amount, tx_name=temp_template)\n        tx_files = clusterlib.TxFiles(\n            certificate_files=[mir_cert],\n            signing_key_files=[pool_user.payment.skey_file, *cluster.genesis_keys.delegate_skeys],\n        )\n    \n        # send the transaction at the beginning of an epoch\n        if cluster.time_from_epoch_start() > (cluster.epoch_length_sec // 6):\n            cluster.wait_for_new_epoch()\n    \n        # fail is expected until Alonzo\n        with pytest.raises(clusterlib.CLIError) as excinfo:\n>           cluster.send_tx(\n                src_address=pool_user.payment.address,\n                tx_name=temp_template,\n                tx_files=tx_files,\n            )\nE           Failed: DID NOT RAISE <class 'cardano_clusterlib.clusterlib.CLIError'>\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_governance.py:283: Failed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1622195976139,
+      "stop" : 1622195976139,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_cleanup",
+    "time" : {
+      "start" : 1622195976139,
+      "stop" : 1622195976139,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir",
+    "time" : {
+      "start" : 1622197166703,
+      "stop" : 1622197166703,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users",
+    "time" : {
+      "start" : 1622197166721,
+      "stop" : 1622197168300,
+      "duration" : 1579
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_pots",
+    "time" : {
+      "start" : 1622197166703,
+      "stop" : 1622197166720,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "create_temp_dir",
+    "time" : {
+      "start" : 1622197166703,
+      "stop" : 1622197166703,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1622195976138,
+      "stop" : 1622195976139,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1622195976138,
+      "stop" : 1622195976138,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1622195976138,
+      "stop" : 1622195976138,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1622197166703,
+      "stop" : 1622197166703,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1622195976139,
+      "stop" : 1622195976139,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_cleanup::0",
+    "time" : {
+      "start" : 1622197226256,
+      "stop" : 1622197226259,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "temp_dir::0",
+    "time" : {
+      "start" : 1622197188415,
+      "stop" : 1622197188415,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1622197226260,
+      "stop" : 1622197226260,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1622197187817,
+      "stop" : 1622197188415,
+      "duration" : 598
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_governance"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMIRCerts"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1122970-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_governance"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/cbc9c25b18f52a40bef01f3cca57a0b2f6e42c9b/cardano_node_tests/tests/test_governance.py#L258",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/cbc9c25b18f52a40bef01f3cca57a0b2f6e42c9b/cardano_node_tests/tests/test_governance.py#L258",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')" ]
+  },
+  "source" : "e0e6308cfb2fe21b.json",
+  "parameterValues" : [ ]
+}
