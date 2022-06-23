@@ -1,0 +1,1314 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"skipped","Thu Sep 02 14:41:35 CEST 2021","Thu Sep 02 14:41:35 CEST 2021","0","cardano_node_tests.tests","test_cli","TestCLI","","","test_protocol_mode","Check the default protocol mode - command works even without specifying protocol mode."
+"passed","Thu Sep 02 15:39:29 CEST 2021","Thu Sep 02 15:40:52 CEST 2021","82927","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_after_future[build]","Check that it's NOT possible to spend from the script address.
+
+        The ""after"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Sep 02 16:08:56 CEST 2021","Thu Sep 02 16:08:56 CEST 2021","153","cardano_node_tests.tests","test_transactions","TestNegative","","","test_nonexistent_utxo_hash[build_raw]","Try to use nonexistent UTxO hash as an input.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:47:28 CEST 2021","Thu Sep 02 15:48:29 CEST 2021","60652","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_collateral_w_tokens","Test spending the locked UTxO while collateral contains native tokens.
+
+        * create a collateral UTxO with native tokens
+        * try to spend the locked UTxO
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:46:37 CEST 2021","Thu Sep 02 15:47:28 CEST 2021","51486","cardano_node_tests.tests","test_scripts","TestBasic","","","test_normal_tx_to_script_addr[build]","Send funds to script address using TX signed with skeys (not using witness files)."
+"passed","Thu Sep 02 15:21:33 CEST 2021","Thu Sep 02 15:22:05 CEST 2021","32115","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build_raw-2000]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:28:05 CEST 2021","Thu Sep 02 16:28:12 CEST 2021","6779","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_to_invalid_address","Try to send funds from payment address to non-existent address (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:05:49 CEST 2021","Thu Sep 02 15:07:38 CEST 2021","109325","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_all[build_raw]","Send funds to and from script address using the *all* script."
+"passed","Thu Sep 02 16:14:48 CEST 2021","Thu Sep 02 16:14:56 CEST 2021","8442","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_to_invalid_length_address","Try to send funds from payment address to address with invalid length.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 16:08:56 CEST 2021","Thu Sep 02 16:09:03 CEST 2021","6737","cardano_node_tests.tests","test_transactions","TestNegative","","","test_invalid_lenght_utxo_hash","Try to use invalid UTxO hash as an input (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:12:57 CEST 2021","Thu Sep 02 16:14:48 CEST 2021","110447","cardano_node_tests.tests","test_transactions","TestNegative","","","test_duplicated_tx","Try to send an identical transaction twice.
+
+        Expect failure.
+        "
+"passed","Fri Sep 03 09:56:45 CEST 2021","Fri Sep 03 09:56:46 CEST 2021","1000","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_before_past","Test that it's NOT possible to mint tokens when the ""before"" slot is in the past."
+"passed","Thu Sep 02 14:53:47 CEST 2021","Thu Sep 02 14:54:55 CEST 2021","67418","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_homepage","Try to create pool metadata hash when the *homepage* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 15:04:52 CEST 2021","Thu Sep 02 15:04:52 CEST 2021","14","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_ticker","Try to create pool metadata hash when missing the *ticker* key.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:00:51 CEST 2021","Thu Sep 02 16:04:04 CEST 2021","192366","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[build_raw-1500000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:20:50 CEST 2021","Thu Sep 02 15:21:20 CEST 2021","29946","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_no_metadata[build]","Send transaction with auxiliary script and no other metadata.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Sep 02 15:29:31 CEST 2021","Thu Sep 02 15:31:31 CEST 2021","119737","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_guessing_game[guessing_game_42]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:00:41 CEST 2021","Thu Sep 02 16:02:57 CEST 2021","135296","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[build-2000000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:44:00 CEST 2021","Thu Sep 02 15:46:36 CEST 2021","156278","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_guessing_game[guessing_game_42]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:09:53 CEST 2021","Thu Sep 02 15:09:53 CEST 2021","44","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_cert_wrong_stake","Try to generate pool registration certificate using wrong stake vkey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:23:31 CEST 2021","Thu Sep 02 15:23:31 CEST 2021","16","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_name","Try to create pool metadata hash when missing the *name* key.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 14:47:06 CEST 2021","Thu Sep 02 14:49:47 CEST 2021","161507","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_witnesses[build-empty_asset_name]","Test minting and burning of tokens, sign the transaction using witnesses.
+
+        * mint 2 tokens - one itentified by policyid + asset name
+          and one identified by just policyid
+        * burn the minted tokens
+        * check fees in Lovelace
+        * check output of the `transaction view` command
+        "
+"passed","Thu Sep 02 16:31:12 CEST 2021","Thu Sep 02 16:31:12 CEST 2021","51","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_reward_address[build_raw]","Try to send funds from payment address to stake address.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:48:46 CEST 2021","Thu Sep 02 15:48:46 CEST 2021","281","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[2]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:19:05 CEST 2021","Thu Sep 02 15:21:20 CEST 2021","135110","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_empty_all","Send funds from script address using the *all* script with zero skeys."
+"passed","Thu Sep 02 16:00:09 CEST 2021","Thu Sep 02 16:02:56 CEST 2021","167167","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_txin_token_locking","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * create a Tx ouput that contains native tokens with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:20:50 CEST 2021","Thu Sep 02 15:20:50 CEST 2021","82","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_invalid[build]","Build transaction with invalid auxiliary script.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:17:17 CEST 2021","Thu Sep 02 16:17:17 CEST 2021","63","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_build_tx_wrong_json_metadata_format","Try to build a transaction with wrong fromat of metadata JSON.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        The metadata file is a valid JSON, but not in a format that is expected.
+        "
+"passed","Thu Sep 02 15:48:46 CEST 2021","Thu Sep 02 15:49:41 CEST 2021","55405","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[2000000]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:56:41 CEST 2021","Thu Sep 02 16:00:09 CEST 2021","207323","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[build-1500000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:05:49 CEST 2021","Thu Sep 02 15:05:50 CEST 2021","1216","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_after_future","Test that it's NOT possible to mint tokens when the policy is not met.
+
+        The ""after"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Sep 02 14:44:05 CEST 2021","Thu Sep 02 14:44:05 CEST 2021","17","cardano_node_tests.tests","test_cli","TestAddressInfo","","","test_address_info_payment[static]","Check payment address info."
+"passed","Thu Sep 02 15:31:31 CEST 2021","Thu Sep 02 15:32:55 CEST 2021","84050","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_guessing_game[guessing_game_42_43]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:34:23 CEST 2021","Thu Sep 02 16:35:38 CEST 2021","74655","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_no_datum_txin","Test using UTxO without datum hash in place of locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * create a Tx ouput without a datum hash
+        * try to spend the UTxO like it was locked Plutus UTxO
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:27:49 CEST 2021","Thu Sep 02 16:27:49 CEST 2021","82","cardano_node_tests.tests","test_transactions","TestNotBalanced","","","test_build_not_enough_for_fee","Try to build a transaction with a negative change using `transaction build`.
+
+        Check that it is not possible to built such transaction.
+        "
+"passed","Thu Sep 02 16:00:41 CEST 2021","Thu Sep 02 16:02:56 CEST 2021","135095","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_valid_policy_before[build_raw]","Test minting and burning of tokens before a given slot, check fees in Lovelace."
+"passed","Thu Sep 02 16:19:48 CEST 2021","Thu Sep 02 16:19:55 CEST 2021","6968","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_invalid_length_address","Try to send funds from payment address to address with invalid length.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 15:25:53 CEST 2021","Thu Sep 02 15:26:29 CEST 2021","36047","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build-200]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:19:04 CEST 2021","Thu Sep 02 15:20:50 CEST 2021","105319","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_metadata_json[build_raw]","Send transaction with auxiliary script and metadata JSON.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Sep 02 16:37:05 CEST 2021","Thu Sep 02 16:38:06 CEST 2021","61433","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_no_datum_txin","Test using UTxO without datum hash in place of locked UTxO.
+
+        * create a Tx ouput without a datum hash
+        * try to spend the UTxO like it was locked Plutus UTxO
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:10:42 CEST 2021","Thu Sep 02 16:22:57 CEST 2021","735945","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_10_transactions","Send 10 transactions to payment address.
+
+        * send funds from 1 source address to 1 destination address in 10 separate transactions
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 16:09:10 CEST 2021","Thu Sep 02 16:09:10 CEST 2021","68","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_missing_change_address","Try to build a transaction with a missing `--change-address` parameter.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:33:26 CEST 2021","Thu Sep 02 16:33:52 CEST 2021","25925","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_collaterals[none]","Test dividing required collateral amount into multiple collateral UTxOs.
+
+        Test 3 scenarios:
+        1. maximum allowed number of collateral inputs
+        2. more collateral inputs than what is allowed
+        3. no collateral input
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * create multiple UTxOs for collateral
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:43:28 CEST 2021","Thu Sep 02 15:47:42 CEST 2021","254044","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_atleast[build]","Send funds to and from script address using the *atLeast* script."
+"passed","Thu Sep 02 16:08:24 CEST 2021","Thu Sep 02 16:08:26 CEST 2021","2039","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_from_invalid_address","Try to send funds from invalid address (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:04:50 CEST 2021","Thu Sep 02 16:06:42 CEST 2021","112617","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[build-10000000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 16:08:40 CEST 2021","Thu Sep 02 16:08:48 CEST 2021","7407","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_invalid_chars_change_address","Try to send funds using change address with invalid characters (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:49:41 CEST 2021","Thu Sep 02 15:50:28 CEST 2021","47083","cardano_node_tests.tests","test_transactions","TestBasic","","","test_missing_ttl","Submit a transaction with a missing `--ttl` (`--invalid-hereafter`) parameter."
+"passed","Thu Sep 02 16:04:18 CEST 2021","Thu Sep 02 16:05:57 CEST 2021","99302","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[build-10000000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:40:57 CEST 2021","Thu Sep 02 15:40:58 CEST 2021","223","cardano_node_tests.tests","test_staking","TestNegative","","","test_deregister_not_registered_addr[build_raw]","Deregister not registered stake address."
+"passed","Thu Sep 02 15:36:20 CEST 2021","Thu Sep 02 15:38:42 CEST 2021","142121","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_script_invalid","Test failing script together with the `--script-invalid` argument - collateral is taken.
+
+        Test with with ""always fails"" script that fails for all datum / redeemer values.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * try to spend the locked UTxO
+        * check that the amount was not transferred and collateral UTxO was spent
+        "
+"passed","Thu Sep 02 15:04:51 CEST 2021","Thu Sep 02 15:05:49 CEST 2021","57329","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_burning_same_token_single_tx","Test minting one token and burning the same token in single transaction.
+
+        Sign transactions using skeys.
+
+        * create a script
+        * specify amount to mint and amount to burn in the same transaction
+        * check that the expected amount was minted (to_mint_amount - to_burn_amount)
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:54:01 CEST 2021","Thu Sep 02 15:54:01 CEST 2021","182","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[1.1]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:31:31 CEST 2021","Thu Sep 02 15:32:55 CEST 2021","84144","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build_raw-1]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:17:53 CEST 2021","Thu Sep 02 16:17:53 CEST 2021","73","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_invalid_json_metadata","Try to build a transaction with invalid metadata JSON.
+
+        The metadata file is an invalid JSON.
+        "
+"passed","Thu Sep 02 15:25:53 CEST 2021","Thu Sep 02 15:26:30 CEST 2021","36561","cardano_node_tests.tests","test_scripts","TestNegative","","","test_multisig_all_missing_skey","Try to send funds from script address using the *all* script, omit one skey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:26:30 CEST 2021","Thu Sep 02 15:27:44 CEST 2021","74113","cardano_node_tests.tests","test_scripts","TestNegative","","","test_multisig_any_unlisted_skey","Try to send funds from script address using the *any* script with unlisted skey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:28:05 CEST 2021","Thu Sep 02 16:28:05 CEST 2021","179","cardano_node_tests.tests","test_transactions","TestNegative","","","test_wrong_signing_key","Try to send a transaction signed with wrong signing key.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:19:48 CEST 2021","Thu Sep 02 16:24:08 CEST 2021","260462","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_no_txout","Send transaction with just metadata, no UTxO is produced.
+
+        * submit a transaction where all funds available on source address is used for fee
+        * check that no UTxOs are created by the transaction
+        * check that there are no funds left on source address
+        * check that the metadata in TX body matches the original metadata
+        "
+"passed","Thu Sep 02 15:46:36 CEST 2021","Thu Sep 02 15:47:28 CEST 2021","51578","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_guessing_game[guessing_game_42_43]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:08:48 CEST 2021","Thu Sep 02 16:08:55 CEST 2021","7862","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_invalid_length_change_address","Try to send funds using change address with invalid length (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:22:49 CEST 2021","Thu Sep 02 16:22:56 CEST 2021","6320","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_invalid_address","Try to send funds from payment address to non-existent address (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:00:09 CEST 2021","Thu Sep 02 16:00:51 CEST 2021","42780","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[build-1500000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 14:53:51 CEST 2021","Thu Sep 02 14:59:30 CEST 2021","338496","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_witnesses[build_raw-asset_name]","Test minting and burning of tokens, sign the transaction using witnesses.
+
+        * mint 2 tokens - one itentified by policyid + asset name
+          and one identified by just policyid
+        * burn the minted tokens
+        * check fees in Lovelace
+        * check output of the `transaction view` command
+        "
+"passed","Thu Sep 02 15:14:10 CEST 2021","Thu Sep 02 15:14:38 CEST 2021","27983","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_valid_policy_after[build_raw]","Test minting and burning of tokens after a given slot, check fees in Lovelace."
+"passed","Thu Sep 02 15:09:53 CEST 2021","Thu Sep 02 15:09:53 CEST 2021","267","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_missing_payment_skey","Try to register pool using transaction with missing payment skey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:28:54 CEST 2021","Thu Sep 02 15:30:27 CEST 2021","92817","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_script_before[build]","Check that it is possible to spend from script address before given slot."
+"passed","Thu Sep 02 15:39:58 CEST 2021","Thu Sep 02 15:42:12 CEST 2021","134002","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_script_invalid","Test failing script together with the `--script-invalid` argument - collateral is taken.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Test with with ""always fails"" script that fails for all datum / redeemer values.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * try to spend the locked UTxO
+        * check that the amount was not transferred and collateral UTxO was spent
+        "
+"passed","Thu Sep 02 15:45:12 CEST 2021","Thu Sep 02 15:46:36 CEST 2021","83755","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[100000]","Send a transaction with fee that is same or higher than expected."
+"passed","Thu Sep 02 16:09:09 CEST 2021","Thu Sep 02 16:09:10 CEST 2021","173","cardano_node_tests.tests","test_transactions","TestNegative","","","test_missing_fee","Try to build a transaction with a missing `--fee` parameter.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:24:08 CEST 2021","Thu Sep 02 16:25:55 CEST 2021","106257","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[build-2000000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:54:01 CEST 2021","Thu Sep 02 15:54:38 CEST 2021","37014","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[1000000]","Send a transaction with fee that is same or higher than expected."
+"passed","Thu Sep 02 15:47:42 CEST 2021","Thu Sep 02 15:48:28 CEST 2021","46258","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[10000000]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:54:38 CEST 2021","Thu Sep 02 15:54:56 CEST 2021","18816","cardano_node_tests.tests","test_transactions","TestBasic","","","test_get_txid","Get transaction ID (txid) from transaction body.
+
+        Transaction ID is a hash of transaction body and doesn't change for a signed TX.
+
+        * send funds from 1 source address to 1 destination address
+        * get txid from transaction body
+        * get txid from signed transaction
+        * check that txid from transaction body matches the txid from signed transaction
+        * check that txid has expected lenght
+        * check that the txid is listed in UTxO hashes for both source and destination addresses
+        "
+"skipped","Thu Sep 02 14:59:30 CEST 2021","Thu Sep 02 14:59:30 CEST 2021","0","cardano_node_tests.tests","test_protocol","TestProtocol","","","test_protocol_params","Check output of `query protocol-parameters`."
+"passed","Thu Sep 02 16:04:18 CEST 2021","Thu Sep 02 16:04:50 CEST 2021","32181","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_same_collateral_txin","Test spending the locked UTxO while using the same UTxO as collateral.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * try to spend the locked UTxO while using the same UTxO as collateral
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:14:28 CEST 2021","Thu Sep 02 15:14:38 CEST 2021","9318","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_before_future[build]","Check that it's NOT possible to spend from the script address.
+
+        The ""before"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Sep 02 16:08:55 CEST 2021","Thu Sep 02 16:08:56 CEST 2021","150","cardano_node_tests.tests","test_transactions","TestNegative","","","test_nonexistent_utxo_ix[build_raw]","Try to use nonexistent UTxO TxIx as an input.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:43:53 CEST 2021","Thu Sep 02 15:44:01 CEST 2021","7687","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegate_addr_with_wrong_key","Try to delegate stake address using wrong payment skey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:22:58 CEST 2021","Thu Sep 02 16:22:58 CEST 2021","61","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_build_tx_invalid_json_metadata","Try to build a transaction with invalid metadata JSON.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        The metadata file is an invalid JSON.
+        "
+"skipped","Thu Sep 02 14:41:35 CEST 2021","Thu Sep 02 14:41:35 CEST 2021","0","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_delegate_using_vkey[build_raw]","Submit registration certificate and delegate to pool using cold vkey.
+
+        * register stake address and delegate it to pool
+        * check that the stake address was delegated
+        "
+"passed","Fri Sep 03 09:52:42 CEST 2021","Fri Sep 03 09:54:33 CEST 2021","111265","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_valid_policy_before[build]","Test minting and burning of tokens before a given slot, check fees in Lovelace."
+"passed","Thu Sep 02 14:44:05 CEST 2021","Thu Sep 02 14:44:05 CEST 2021","47","cardano_node_tests.tests","test_cli","TestAddressInfo","","","test_address_info_stake[dynamic]","Check stake address info."
+"passed","Thu Sep 02 15:26:29 CEST 2021","Thu Sep 02 15:28:54 CEST 2021","144998","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_minting","Test minting a token with a plutus script.
+
+        * fund the token issuer and create a UTxO for collateral
+        * check that the expected amount was transferred to token issuer's address
+        * mint the token using a plutus script
+        * check that the token was minted and collateral UTxO was not spent
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:17:53 CEST 2021","Thu Sep 02 16:18:55 CEST 2021","61313","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_cbor","Send transaction with metadata CBOR.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Sep 02 16:02:56 CEST 2021","Thu Sep 02 16:03:06 CEST 2021","10544","cardano_node_tests.tests","test_native_tokens","TestNegative","","","test_long_name","Try to create token with asset name that is longer than allowed.
+
+        The name can also contain characters that are not allowed. Expect failure.
+        "
+"passed","Thu Sep 02 15:54:56 CEST 2021","Thu Sep 02 15:54:56 CEST 2021","82","cardano_node_tests.tests","test_transactions","TestBasic","","","test_build_multiple_same_txins","Build a transaction with multiple identical txins.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+        "
+"skipped","Thu Sep 02 16:09:10 CEST 2021","Thu Sep 02 16:09:10 CEST 2021","0","cardano_node_tests.tests","test_transactions","TestNegative","","","test_missing_ttl","Try to build a Shelley era TX with a missing `--ttl` (`--invalid-hereafter`) parameter.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:43:41 CEST 2021","Thu Sep 02 15:43:48 CEST 2021","6368","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_negative_fee","Try to send a transaction with negative fee (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:58:52 CEST 2021","Thu Sep 02 16:00:08 CEST 2021","75722","cardano_node_tests.tests","test_transactions","TestBasic","","","test_funds_to_valid_address","Send funds to a valid payment address.
+
+        The destination address is a valid address that was generated sometime
+        in the past. The test verifies it is possible to use a valid address
+        even though it was not generated while running a speciffic cardano
+        network.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:14:38 CEST 2021","Thu Sep 02 15:17:32 CEST 2021","173720","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_witnesses[tokens_db1]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using witnesses.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:40:57 CEST 2021","Thu Sep 02 15:40:57 CEST 2021","16","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegation_cert_with_wrong_key","Try to generate stake address delegation certificate using wrong stake vkey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:21:59 CEST 2021","Thu Sep 02 16:22:10 CEST 2021","11016","cardano_node_tests.tests","test_transactions","TestNotBalanced","","","test_wrong_balance","Build a transaction with unbalanced change (property-based test).
+
+        * build a not balanced transaction
+        * check that it is not possible to submit such transaction
+        "
+"passed","Thu Sep 02 15:23:35 CEST 2021","Thu Sep 02 15:23:51 CEST 2021","16177","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_guessing_game[guessing_game_43_42]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:22:06 CEST 2021","Thu Sep 02 15:22:52 CEST 2021","46051","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_before_future[build_raw]","Check that it's NOT possible to spend from the script address.
+
+        The ""before"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Sep 02 14:53:13 CEST 2021","Thu Sep 02 14:53:45 CEST 2021","32218","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_description","Try to create pool metadata hash when the *description* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 14:58:18 CEST 2021","Thu Sep 02 15:02:21 CEST 2021","243355","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_partial_burning[build_raw]","Test minting and partial burning of tokens.
+
+        * mint a token
+        * burn part of the minted token, check the expected amount
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:36:19 CEST 2021","Thu Sep 02 15:38:41 CEST 2021","141762","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_script_after[build]","Check that it is possible to spend from script address after given slot."
+"skipped","Thu Sep 02 14:59:30 CEST 2021","Thu Sep 02 14:59:30 CEST 2021","0","cardano_node_tests.tests","test_protocol","TestProtocol","","","test_protocol_state_outfile","Check output file produced by `query protocol-state`."
+"passed","Thu Sep 02 16:04:34 CEST 2021","Thu Sep 02 16:06:43 CEST 2021","129025","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[build-5000000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:34:56 CEST 2021","Thu Sep 02 15:37:32 CEST 2021","156355","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_multiple_tokens[build]","Test sending multiple different tokens to payment addresses.
+
+        * send multiple different tokens from 1 source address to 2 destination addresses
+        * check expected token balances for both source and destination addresses for each token
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:07:21 CEST 2021","Thu Sep 02 16:08:25 CEST 2021","63608","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[build_raw-1500000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:45:13 CEST 2021","Thu Sep 02 15:46:37 CEST 2021","84116","cardano_node_tests.tests","test_scripts","TestBasic","","","test_normal_tx_to_script_addr[build_raw]","Send funds to script address using TX signed with skeys (not using witness files)."
+"passed","Thu Sep 02 15:52:07 CEST 2021","Thu Sep 02 15:54:01 CEST 2021","113274","cardano_node_tests.tests","test_transactions","TestBasic","","","test_multiple_same_txins","Try to build a transaction with multiple identical txins."
+"passed","Thu Sep 02 15:43:48 CEST 2021","Thu Sep 02 15:43:48 CEST 2021","100","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[0]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:23:51 CEST 2021","Thu Sep 02 15:24:33 CEST 2021","42431","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_guessing_game[guessing_game_43_43]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 14:53:45 CEST 2021","Thu Sep 02 14:53:47 CEST 2021","1925","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_ticker","Try to create pool metadata hash when the *ticker* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 16:22:57 CEST 2021","Thu Sep 02 16:24:09 CEST 2021","71588","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[build_raw-2000000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:48:29 CEST 2021","Thu Sep 02 15:48:46 CEST 2021","16867","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_same_collateral_txin","Test spending the locked UTxO while using the same UTxO as collateral.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * try to spend the locked UTxO while using the same UTxO as collateral
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 14:59:30 CEST 2021","Thu Sep 02 15:04:06 CEST 2021","276701","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_partial_burning[build]","Test minting and partial burning of tokens.
+
+        * mint a token
+        * burn part of the minted token, check the expected amount
+        * check fees in Lovelace
+        "
+"passed","Fri Sep 03 09:54:33 CEST 2021","Fri Sep 03 09:57:34 CEST 2021","181016","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_multiple_scripts","Test minting of tokens using several different scripts in single transaction.
+
+        * create tokens issuers
+        * create a script for each issuer
+        * mint 2 tokens with each script - one itentified by policyid + asset name
+          and one identified by just policyid. The minting is done in single transaction,
+          the transaction is signed using skeys.
+        * check that the tokens were minted
+        * burn the minted tokens
+        * check that the tokens were burnt
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 14:59:30 CEST 2021","Thu Sep 02 14:59:30 CEST 2021","902","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_before_future","Test that it's NOT possible to mint tokens when the policy is not met.
+
+        The ""before"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Sep 02 16:29:20 CEST 2021","Thu Sep 02 16:29:20 CEST 2021","51","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_build_tx_too_long_metadata_json","Try to build a transaction with metadata JSON longer than 64 bytes.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+        "
+"passed","Thu Sep 02 14:48:46 CEST 2021","Thu Sep 02 14:51:09 CEST 2021","143242","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_sign[tokens_db1]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using skeys.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:08:33 CEST 2021","Thu Sep 02 16:08:40 CEST 2021","6765","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_invalid_change_address","Try to send funds using invalid change address (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Fri Sep 03 11:11:05 CEST 2021","Fri Sep 03 11:15:54 CEST 2021","288869","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_addr_delegation_deregistration[build]","Submit delegation and deregistration certificates in single TX.
+
+        * create stake address registration cert
+        * create stake address deregistration cert
+        * register stake address
+        * create stake address delegation cert
+        * delegate and deregister stake address in single TX
+        * check that the balance for source address was correctly updated and that the key
+          deposit was returned
+        * check that the stake address was NOT delegated
+        "
+"passed","Thu Sep 02 16:08:24 CEST 2021","Thu Sep 02 16:08:24 CEST 2021","146","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_utxo_address[build]","Try to send funds from payment address to UTxO address.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:22:51 CEST 2021","Thu Sep 02 15:23:55 CEST 2021","63807","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_sign[tokens_db3]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using skeys.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:23:31 CEST 2021","Thu Sep 02 15:23:31 CEST 2021","204","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_deregistration_not_registered[build]","Try to deregister pool that is not registered.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:39:13 CEST 2021","Thu Sep 02 15:39:58 CEST 2021","45238","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_metadata_cbor[build]","Send transaction with auxiliary script and metadata CBOR.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Sep 02 16:32:12 CEST 2021","Thu Sep 02 16:33:26 CEST 2021","74008","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_collaterals[max+1]","Test dividing required collateral amount into multiple collateral UTxOs.
+
+        Test 3 scenarios:
+        1. maximum allowed number of collateral inputs
+        2. more collateral inputs than what is allowed
+        3. no collateral input
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * create multiple UTxOs for collateral
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:27:43 CEST 2021","Thu Sep 02 15:29:31 CEST 2021","108463","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_unicode_asset_name","Test minting and burning of token with unicode non-ascii chars in its asset name.
+
+        Tests https://github.com/input-output-hk/cardano-node/issues/2337
+
+        * mint a token that has non-ascii characters in its asset name
+        * burn the minted token
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:09:10 CEST 2021","Thu Sep 02 16:09:10 CEST 2021","161","cardano_node_tests.tests","test_transactions","TestNegative","","","test_missing_tx_in","Try to build a transaction with a missing `--tx-in` parameter.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:07:38 CEST 2021","Thu Sep 02 15:09:44 CEST 2021","125362","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_all[build]","Send funds to and from script address using the *all* script."
+"passed","Thu Sep 02 15:43:48 CEST 2021","Thu Sep 02 15:43:59 CEST 2021","11645","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[0]","Send a transaction with fee that is same or higher than expected."
+"passed","Thu Sep 02 16:22:56 CEST 2021","Thu Sep 02 16:23:03 CEST 2021","7002","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_to_invalid_chars_address","Try to send funds from payment address to address with invalid characters.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 16:06:42 CEST 2021","Thu Sep 02 16:07:38 CEST 2021","55363","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[build_raw-10000000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 16:18:55 CEST 2021","Thu Sep 02 16:19:48 CEST 2021","53061","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_build_tx_metadata_cbor","Send transaction with metadata CBOR.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Sep 02 15:56:41 CEST 2021","Thu Sep 02 15:56:41 CEST 2021","16","cardano_node_tests.tests","test_staking","TestNegative","","","test_registration_cert_with_wrong_key","Try to generate stake address registration certificate using wrong stake vkey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:14:10 CEST 2021","Thu Sep 02 15:14:41 CEST 2021","31503","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_multiple_tokens[build_raw]","Test sending multiple different tokens to payment addresses.
+
+        * send multiple different tokens from 1 source address to 2 destination addresses
+        * check expected token balances for both source and destination addresses for each token
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:07:23 CEST 2021","Thu Sep 02 16:08:25 CEST 2021","62277","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[build_raw-2000000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 16:08:56 CEST 2021","Thu Sep 02 16:08:56 CEST 2021","52","cardano_node_tests.tests","test_transactions","TestNegative","","","test_nonexistent_utxo_hash[build]","Try to use nonexistent UTxO hash as an input.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:48:45 CEST 2021","Thu Sep 02 15:49:41 CEST 2021","56336","cardano_node_tests.tests","test_transactions","TestBasic","","","test_extra_signing_keys","Send a transaction with extra signing key.
+
+        Check that it is possible to use unneded signing key in addition to the necessary
+        signing keys for signing the transaction.
+        "
+"passed","Thu Sep 02 15:56:16 CEST 2021","Thu Sep 02 15:58:53 CEST 2021","157169","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[build-2000000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"skipped","Thu Sep 02 15:21:20 CEST 2021","Thu Sep 02 15:21:33 CEST 2021","13351","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_no_required_atleast","Send funds from script address using the *atLeast* script with no required witnesses."
+"passed","Thu Sep 02 16:22:58 CEST 2021","Thu Sep 02 16:23:46 CEST 2021","48093","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_json","Send transaction with metadata JSON.
+
+        * check that the metadata in TX body matches the original metadata
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:42:12 CEST 2021","Thu Sep 02 15:43:53 CEST 2021","101392","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_sign[asset_name]","Test minting and burning of tokens, sign the transaction using skeys.
+
+        * mint 2 tokens - one itentified by policyid + asset name
+          and one identified by just policyid
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:14:48 CEST 2021","Thu Sep 02 15:17:32 CEST 2021","164056","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_after_past[build]","Check that it's NOT possible to spend from the script address.
+
+        The ""after"" slot is in the past.
+        "
+"passed","Fri Sep 03 09:57:34 CEST 2021","Fri Sep 03 09:58:35 CEST 2021","61484","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build_raw-200]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 14:59:30 CEST 2021","Thu Sep 02 14:59:33 CEST 2021","3103","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_long_metadata_url","Try to create pool registration cert when the *metadata-url* is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Fri Sep 03 11:03:42 CEST 2021","Fri Sep 03 11:08:24 CEST 2021","281713","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_delegate_using_pool_id[build]","Submit registration certificate and delegate to pool using pool id.
+
+        * register stake address and delegate it to pool
+        * check that the stake address was delegated
+        "
+"passed","Thu Sep 02 16:24:30 CEST 2021","Thu Sep 02 16:25:49 CEST 2021","78946","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_collateral_percent","Try to spend locked UTxO while collateral is less than required by `collateralPercentage`.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * create a collateral UTxO with amount of ADA less than required by `collateralPercentage`
+        * try to spend the UTxO
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:00:50 CEST 2021","Thu Sep 02 16:03:53 CEST 2021","183278","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[build-1500000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 16:25:48 CEST 2021","Thu Sep 02 16:25:49 CEST 2021","157","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_utxo_address[build_raw]","Try to send funds from payment address to UTxO address.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:21:20 CEST 2021","Thu Sep 02 15:21:20 CEST 2021","61","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_invalid[build_raw]","Build transaction with invalid auxiliary script.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:58:53 CEST 2021","Thu Sep 02 16:00:41 CEST 2021","108123","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[build-10000000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 14:46:07 CEST 2021","Thu Sep 02 14:48:48 CEST 2021","161392","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_sign[tokens_db2]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using skeys.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:19:48 CEST 2021","Thu Sep 02 16:21:59 CEST 2021","131556","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_duplicate_metadata_keys","Send transaction with multiple metadata JSON files and with duplicate keys.
+
+        * check that the metadata in TX body matches the original metadata
+        * check that in case of duplicate keys the first occurrence is used
+        "
+"passed","Thu Sep 02 16:36:31 CEST 2021","Thu Sep 02 16:36:31 CEST 2021","225","cardano_node_tests.tests","test_staking","TestNegative","","","test_register_addr_with_wrong_key","Try to register stake address using wrong payment skey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:06:41 CEST 2021","Thu Sep 02 16:07:37 CEST 2021","55930","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[build_raw-1500000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 14:53:08 CEST 2021","Thu Sep 02 14:59:30 CEST 2021","381459","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_burning_diff_tokens_single_tx","Test minting one token and burning other token in single transaction.
+
+        Sign transactions using skeys.
+
+        * create a script
+        * 1st TX - mint first token
+        * 2nd TX - mint second token, burn first token
+        * 3rd TX - burn second token
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:19:05 CEST 2021","Thu Sep 02 15:20:50 CEST 2021","105258","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_metadata_cbor[build_raw]","Send transaction with auxiliary script and metadata CBOR.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Sep 02 16:08:56 CEST 2021","Thu Sep 02 16:08:56 CEST 2021","83","cardano_node_tests.tests","test_transactions","TestNegative","","","test_nonexistent_utxo_ix[build]","Try to use nonexistent UTxO TxIx as an input.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 14:44:04 CEST 2021","Thu Sep 02 14:44:04 CEST 2021","45","cardano_node_tests.tests","test_cli","TestAddressInfo","","","test_address_info_payment[dynamic]","Check payment address info."
+"passed","Thu Sep 02 15:51:54 CEST 2021","Thu Sep 02 15:52:08 CEST 2021","13775","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_guessing_game[guessing_game_43_43]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:07:37 CEST 2021","Thu Sep 02 16:10:42 CEST 2021","184942","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[build_raw-10000000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:21:20 CEST 2021","Thu Sep 02 15:21:33 CEST 2021","12818","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build_raw-100000]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:49:41 CEST 2021","Thu Sep 02 15:51:42 CEST 2021","121490","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_minting","Test minting a token with a plutus script.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * fund the token issuer and create a UTxO for collateral
+        * check that the expected amount was transferred to token issuer's address
+        * mint the token using a plutus script
+        * check that the token was minted and collateral UTxO was not spent
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:31:30 CEST 2021","Thu Sep 02 15:34:56 CEST 2021","205401","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_txin_locking","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Corresponds to Exercise 3 for Alonzo Blue.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent
+        * (optional) check transactions in db-sync
+        "
+"passed","Fri Sep 03 10:01:23 CEST 2021","Fri Sep 03 10:01:23 CEST 2021","44","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_cert_wrong_cold","Try to generate pool registration certificate using wrong Cold vkey.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:04:04 CEST 2021","Thu Sep 02 16:05:23 CEST 2021","79719","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[build_raw-5000000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 16:08:29 CEST 2021","Thu Sep 02 16:08:31 CEST 2021","2460","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_from_invalid_chars_address","Try to send funds from address with invalid characters (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:03:52 CEST 2021","Thu Sep 02 16:04:18 CEST 2021","26266","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_guessing_game[guessing_game_43_42]","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Test with with ""guessing game"" script that expects specific datum and redeemer value.
+        Test also negative scenarios where datum or redeemer value is different than expected.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:07:36 CEST 2021","Thu Sep 02 16:07:36 CEST 2021","248","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegate_unregistered_addr[build_raw]","Try to delegate unregistered stake address.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 14:49:47 CEST 2021","Thu Sep 02 14:53:08 CEST 2021","200896","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_valid_policy_after[build]","Test minting and burning of tokens after a given slot, check fees in Lovelace."
+"passed","Thu Sep 02 15:40:57 CEST 2021","Thu Sep 02 15:40:57 CEST 2021","128","cardano_node_tests.tests","test_staking","TestNegative","","","test_delegate_unregistered_addr[build]","Try to delegate unregistered stake address.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:40:52 CEST 2021","Thu Sep 02 15:42:02 CEST 2021","70528","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_after_past[build_raw]","Check that it's NOT possible to spend from the script address.
+
+        The ""after"" slot is in the past.
+        "
+"passed","Thu Sep 02 16:18:55 CEST 2021","Thu Sep 02 16:19:48 CEST 2021","53055","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_build_tx_metadata_both","Send transaction with both metadata JSON and CBOR.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Sep 02 16:08:26 CEST 2021","Thu Sep 02 16:08:28 CEST 2021","2080","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_from_invalid_address","Try to send funds from non-existent address (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"skipped","Thu Sep 02 15:14:38 CEST 2021","Thu Sep 02 15:14:38 CEST 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_no_ada[build_raw]","Try to create an UTxO with just native tokens, no ADA. Expect failure."
+"passed","Thu Sep 02 15:40:58 CEST 2021","Thu Sep 02 15:40:58 CEST 2021","109","cardano_node_tests.tests","test_staking","TestNegative","","","test_deregister_not_registered_addr[build]","Deregister not registered stake address."
+"passed","Thu Sep 02 16:08:31 CEST 2021","Thu Sep 02 16:08:33 CEST 2021","2451","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_from_invalid_chars_address","Try to send funds from address with invalid characters (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Fri Sep 03 10:01:23 CEST 2021","Fri Sep 03 10:01:46 CEST 2021","22799","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build_raw-10]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:55:57 CEST 2021","Thu Sep 02 15:56:41 CEST 2021","43772","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[build_raw-10000000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Fri Sep 03 09:50:42 CEST 2021","Fri Sep 03 09:52:44 CEST 2021","121408","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_witnesses[tokens_db2]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using witnesses.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 16:19:55 CEST 2021","Thu Sep 02 16:19:58 CEST 2021","2822","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_send_funds_from_invalid_length_address","Try to send funds from address with invalid length (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:23:30 CEST 2021","Thu Sep 02 15:23:31 CEST 2021","372","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_deregistration_not_registered[build_raw]","Try to deregister pool that is not registered.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:11:25 CEST 2021","Thu Sep 02 15:14:10 CEST 2021","165478","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_witnesses[build-asset_name]","Test minting and burning of tokens, sign the transaction using witnesses.
+
+        * mint 2 tokens - one itentified by policyid + asset name
+          and one identified by just policyid
+        * burn the minted tokens
+        * check fees in Lovelace
+        * check output of the `transaction view` command
+        "
+"passed","Thu Sep 02 15:55:58 CEST 2021","Thu Sep 02 15:56:16 CEST 2021","18831","cardano_node_tests.tests","test_transactions","TestBasic","","","test_duplicate_signing_keys","Send a transaction with duplicate signing key.
+
+        Check that it is possible to specify the same signing key twice.
+        "
+"passed","Thu Sep 02 16:25:49 CEST 2021","Thu Sep 02 16:27:34 CEST 2021","105314","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_txin_locking","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Corresponds to Exercise 3 for Alonzo Blue.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:48:46 CEST 2021","Thu Sep 02 15:51:42 CEST 2021","176344","cardano_node_tests.tests","test_transactions","TestBasic","","","test_no_txout","Send transaction with just fee, no UTxO is produced.
+
+        * submit a transaction where all funds available on source address is used for fee
+        * check that no UTxOs are created by the transaction
+        * check that there are no funds left on source address
+        "
+"passed","Thu Sep 02 16:26:34 CEST 2021","Thu Sep 02 16:26:34 CEST 2021","158","cardano_node_tests.tests","test_transactions","TestNotBalanced","","","test_negative_change","Try to build a transaction with a negative change.
+
+        Check that it is not possible to built such transaction.
+        "
+"passed","Thu Sep 02 15:04:51 CEST 2021","Thu Sep 02 15:05:49 CEST 2021","57431","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build-10]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:34:55 CEST 2021","Thu Sep 02 15:36:20 CEST 2021","84113","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_always_fails","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Test with with ""always fails"" script that fails for all datum / redeemer values.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * try to spend the locked UTxO
+        * check that the amount was not transferred, collateral UTxO was not spent
+          and the expected error was raised
+        "
+"passed","Thu Sep 02 16:38:06 CEST 2021","Thu Sep 02 16:42:08 CEST 2021","242002","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_collaterals[max]","Test dividing required collateral amount into multiple collateral UTxOs.
+
+        Test 3 scenarios:
+        1. maximum allowed number of collateral inputs
+        2. more collateral inputs than what is allowed
+        3. no collateral input
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * create multiple UTxOs for collateral
+        * spend the locked UTxO
+        * check that the expected amount was spent when success is expected
+        * OR check that the amount was not transferred and collateral UTxO was not spent
+          when failure is expected
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:05:48 CEST 2021","Thu Sep 02 15:05:49 CEST 2021","311","cardano_node_tests.tests","test_scripts","TestBasic","","","test_script_addr_length","Check that script address length is the same as lenght of other addresses.
+
+        There was an issue that script address was 32 bytes instead of 28 bytes.
+        "
+"passed","Thu Sep 02 15:54:56 CEST 2021","Thu Sep 02 15:55:58 CEST 2021","61488","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_all_funds","Send ALL funds from one payment address to another.
+
+        * send all available funds from 1 source address to 1 destination address
+        * check expected balance for destination addresses
+        * check that balance for source address is 0 Lovelace
+        * check output of the `transaction view` command
+        "
+"passed","Thu Sep 02 14:49:47 CEST 2021","Thu Sep 02 14:53:08 CEST 2021","201333","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_witnesses[build_raw-empty_asset_name]","Test minting and burning of tokens, sign the transaction using witnesses.
+
+        * mint 2 tokens - one itentified by policyid + asset name
+          and one identified by just policyid
+        * burn the minted tokens
+        * check fees in Lovelace
+        * check output of the `transaction view` command
+        "
+"passed","Thu Sep 02 16:17:54 CEST 2021","Thu Sep 02 16:17:54 CEST 2021","53","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_too_long_metadata_json","Try to build a transaction with metadata JSON longer than 64 bytes."
+"passed","Thu Sep 02 16:02:56 CEST 2021","Thu Sep 02 16:04:18 CEST 2021","82470","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_1_addr[build-2000000]","Test 1 transaction from 1 payment address to 10 payment addresses.
+
+        * send funds from 1 source address to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:09:44 CEST 2021","Thu Sep 02 15:20:55 CEST 2021","671131","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_any[build_raw]","Send funds using the *any* script.
+
+        * send funds to script address
+        * send funds from script address using single witness
+        * send funds from script address using multiple witnesses
+        "
+"passed","Fri Sep 03 11:18:06 CEST 2021","Fri Sep 03 11:19:45 CEST 2021","98665","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_addr_delegation_deregistration[build_raw]","Submit delegation and deregistration certificates in single TX.
+
+        * create stake address registration cert
+        * create stake address deregistration cert
+        * register stake address
+        * create stake address delegation cert
+        * delegate and deregister stake address in single TX
+        * check that the balance for source address was correctly updated and that the key
+          deposit was returned
+        * check that the stake address was NOT delegated
+        "
+"passed","Thu Sep 02 16:05:56 CEST 2021","Thu Sep 02 16:07:23 CEST 2021","86805","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_10_addrs_from_10_addrs[build_raw-1500000]","Test 1 transaction from 10 payment addresses to 10 payment addresses.
+
+        * send funds from 10 source addresses to 10 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:48:28 CEST 2021","Thu Sep 02 15:48:45 CEST 2021","16597","cardano_node_tests.tests","test_transactions","TestBasic","","","test_build_transfer_funds","Send funds to payment address.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"skipped","Thu Sep 02 14:59:33 CEST 2021","Thu Sep 02 14:59:33 CEST 2021","0","cardano_node_tests.tests","test_protocol","TestProtocol","","","test_protocol_state_keys","Check output of `query protocol-state`."
+"skipped","Thu Sep 02 14:41:35 CEST 2021","Thu Sep 02 14:41:35 CEST 2021","0","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_delegate_using_vkey[build]","Submit registration certificate and delegate to pool using cold vkey.
+
+        * register stake address and delegate it to pool
+        * check that the stake address was delegated
+        "
+"passed","Thu Sep 02 15:42:12 CEST 2021","Thu Sep 02 15:43:42 CEST 2021","89959","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build-100000]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Fri Sep 03 11:03:42 CEST 2021","Fri Sep 03 11:11:06 CEST 2021","443674","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_delegate_using_pool_id[build_raw]","Submit registration certificate and delegate to pool using pool id.
+
+        * register stake address and delegate it to pool
+        * check that the stake address was delegated
+        "
+"passed","Thu Sep 02 16:08:24 CEST 2021","Thu Sep 02 16:08:24 CEST 2021","236","cardano_node_tests.tests","test_transactions","TestNegative","","","test_past_ttl","Try to send a transaction with ttl in the past.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:51:42 CEST 2021","Thu Sep 02 15:52:07 CEST 2021","24800","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_collateral_w_tokens","Test spending the locked UTxO while collateral contains native tokens.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * create a collateral UTxO with native tokens
+        * try to spend the locked UTxO
+        * check that the expected error was raised
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:03:53 CEST 2021","Thu Sep 02 16:04:50 CEST 2021","56269","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_1_addr_from_10_addrs[build_raw-2000000]","Test 1 transaction from 10 payment addresses to 1 payment address.
+
+        * send funds from 10 source addresses to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:23:50 CEST 2021","Thu Sep 02 15:24:47 CEST 2021","57103","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_witnesses[tokens_db0]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using witnesses.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:18:07 CEST 2021","Thu Sep 02 15:19:05 CEST 2021","57404","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_metadata_json[build]","Send transaction with auxiliary script and metadata JSON.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Thu Sep 02 15:09:53 CEST 2021","Thu Sep 02 15:09:53 CEST 2021","245","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_missing_cold_skey","Try to register pool using transaction with missing Cold skey.
+
+        Expect failure.
+        "
+"passed","Fri Sep 03 09:53:33 CEST 2021","Fri Sep 03 09:56:45 CEST 2021","191800","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_minting_and_burning_sign[empty_asset_name]","Test minting and burning of tokens, sign the transaction using skeys.
+
+        * mint 2 tokens - one itentified by policyid + asset name
+          and one identified by just policyid
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 14:44:04 CEST 2021","Thu Sep 02 14:44:04 CEST 2021","28","cardano_node_tests.tests","test_cli","TestCLI","","","test_tx_view","Check that the output of `transaction view` is as expected."
+"passed","Thu Sep 02 15:09:00 CEST 2021","Thu Sep 02 15:09:44 CEST 2021","44060","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_addr_registration_deregistration[build]","Submit registration and deregistration certificates in single TX.
+
+        * create stake address registration cert
+        * create stake address deregistration cert
+        * register and deregister stake address in single TX
+        * check that the balance for source address was correctly updated and that key deposit
+          was not needed
+        "
+"passed","Thu Sep 02 16:17:54 CEST 2021","Thu Sep 02 16:18:55 CEST 2021","61203","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_metadata_both","Send transaction with both metadata JSON and CBOR.
+
+        Check that the metadata in TX body matches the original metadata.
+        "
+"passed","Thu Sep 02 15:36:19 CEST 2021","Thu Sep 02 15:43:28 CEST 2021","428914","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_atleast[build_raw]","Send funds to and from script address using the *atLeast* script."
+"passed","Thu Sep 02 16:02:57 CEST 2021","Thu Sep 02 16:04:34 CEST 2021","97332","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[build_raw-2000000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:38:41 CEST 2021","Thu Sep 02 15:39:59 CEST 2021","77880","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_script_before[build_raw]","Check that it is possible to spend from script address before given slot."
+"passed","Thu Sep 02 15:07:38 CEST 2021","Thu Sep 02 15:07:38 CEST 2021","627","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_sign[tokens_db4]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using skeys.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:39:58 CEST 2021","Thu Sep 02 15:40:57 CEST 2021","58484","cardano_node_tests.tests","test_scripts","TestAuxiliaryScripts","","","test_tx_script_no_metadata[build_raw]","Send transaction with auxiliary script and no other metadata.
+
+        Check that the auxiliary script is present in the TX body.
+        "
+"passed","Fri Sep 03 09:57:35 CEST 2021","Fri Sep 03 09:57:35 CEST 2021","44","cardano_node_tests.tests","test_pools","TestNegative","","","test_pool_registration_cert_wrong_vrf","Try to generate pool registration certificate using wrong VRF key.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:17:17 CEST 2021","Thu Sep 02 16:17:53 CEST 2021","36751","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_build_tx_metadata_json","Send transaction with metadata JSON.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        * check that the metadata in TX body matches the original metadata
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 16:09:03 CEST 2021","Thu Sep 02 16:09:09 CEST 2021","6721","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_invalid_lenght_utxo_hash","Try to use invalid UTxO hash as an input (property-based test).
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:24:33 CEST 2021","Thu Sep 02 15:36:19 CEST 2021","705954","cardano_node_tests.tests","test_scripts","TestBasic","","","test_multisig_any[build]","Send funds using the *any* script.
+
+        * send funds to script address
+        * send funds from script address using single witness
+        * send funds from script address using multiple witnesses
+        "
+"passed","Thu Sep 02 15:17:31 CEST 2021","Thu Sep 02 15:18:07 CEST 2021","36124","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build-2000]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:47:28 CEST 2021","Thu Sep 02 15:48:29 CEST 2021","60288","cardano_node_tests.tests","test_scripts","TestBasic","","","test_normal_tx_from_script_addr[build_raw]","Send funds from script address using TX signed with skeys (not using witness files)."
+"passed","Thu Sep 02 15:24:47 CEST 2021","Thu Sep 02 15:24:48 CEST 2021","846","cardano_node_tests.tests","test_native_tokens","TestPolicies","","","test_policy_after_past","Test that it's NOT possible to mint tokens when the policy is not met.
+
+        The ""after"" slot is in the past.
+        "
+"passed","Thu Sep 02 15:48:28 CEST 2021","Thu Sep 02 15:48:46 CEST 2021","17871","cardano_node_tests.tests","test_transactions","TestBasic","","","test_transfer_funds[1500000]","Send funds to payment address.
+
+        * send funds from 1 source address to 1 destination address
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:14:38 CEST 2021","Thu Sep 02 15:14:48 CEST 2021","10167","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_after_future[build_raw]","Check that it's NOT possible to spend from the script address.
+
+        The ""after"" slot is in the future and the given range is invalid.
+        "
+"passed","Thu Sep 02 16:27:34 CEST 2021","Thu Sep 02 16:27:37 CEST 2021","2705","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_from_invalid_length_address","Try to send funds from address with invalid length (property-based test).
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:14:47 CEST 2021","Thu Sep 02 16:14:56 CEST 2021","8205","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_invalid_chars_address","Try to send funds from payment address to address with invalid characters.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 15:37:32 CEST 2021","Thu Sep 02 15:39:29 CEST 2021","117455","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_script_after[build_raw]","Check that it is possible to spend from script address after given slot."
+"passed","Thu Sep 02 16:09:10 CEST 2021","Thu Sep 02 16:09:10 CEST 2021","79","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_multiple_change_addresses","Try to build a transaction with multiple `--change-address` parameters.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"skipped","Thu Sep 02 14:53:08 CEST 2021","Thu Sep 02 14:53:08 CEST 2021","0","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_no_ada[build]","Try to create an UTxO with just native tokens, no ADA. Expect failure."
+"passed","Thu Sep 02 15:04:06 CEST 2021","Thu Sep 02 15:04:52 CEST 2021","45259","cardano_node_tests.tests","test_native_tokens","TestTransfer","","","test_transfer_tokens[build-1]","Test sending tokens to payment address.
+
+        * send tokens from 1 source address to 1 destination address
+        * check expected token balances for both source and destination addresses
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:46:36 CEST 2021","Thu Sep 02 15:47:29 CEST 2021","52410","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_build_always_fails","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Test with with ""always fails"" script that fails for all datum / redeemer values.
+
+        * create a Tx ouput with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * try to spend the locked UTxO
+        * check that the expected error was raised
+        "
+"passed","Thu Sep 02 15:01:23 CEST 2021","Thu Sep 02 15:04:07 CEST 2021","163849","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_sign[tokens_db0]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using skeys.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 14:51:08 CEST 2021","Thu Sep 02 14:51:09 CEST 2021","760","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_witnesses[tokens_db4]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using witnesses.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 15:49:41 CEST 2021","Thu Sep 02 15:49:41 CEST 2021","187","cardano_node_tests.tests","test_transactions","TestBasic","","","test_missing_tx_out","Build a transaction with a missing `--tx-out` parameter."
+"passed","Thu Sep 02 15:04:52 CEST 2021","Thu Sep 02 15:04:52 CEST 2021","16","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_description","Try to create pool metadata hash when missing the *description* key.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 14:44:05 CEST 2021","Thu Sep 02 14:44:05 CEST 2021","16","cardano_node_tests.tests","test_cli","TestAddressInfo","","","test_address_info_stake[static]","Check stake address info."
+"passed","Thu Sep 02 15:04:52 CEST 2021","Thu Sep 02 15:04:52 CEST 2021","14","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_no_homepage","Try to create pool metadata hash when missing the *homepage* key.
+
+        Expect failure.
+        "
+"passed","Fri Sep 03 09:51:43 CEST 2021","Fri Sep 03 09:53:37 CEST 2021","114707","cardano_node_tests.tests","test_native_tokens","TestMinting","","","test_bundle_minting_and_burning_witnesses[tokens_db3]","Test minting and burning multiple different tokens that are in single bundle.
+
+        Sign the TX using witnesses.
+
+        * mint several tokens using a single script
+        * burn the minted tokens
+        * check fees in Lovelace
+        "
+"passed","Thu Sep 02 14:44:04 CEST 2021","Thu Sep 02 14:44:05 CEST 2021","78","cardano_node_tests.tests","test_cli","TestAddressInfo","","","test_address_info_script","Check script address info."
+"passed","Thu Sep 02 15:17:31 CEST 2021","Thu Sep 02 15:19:05 CEST 2021","93506","cardano_node_tests.tests","test_scripts","TestBasic","","","test_normal_tx_from_script_addr[build]","Send funds from script address using TX signed with skeys (not using witness files)."
+"passed","Thu Sep 02 16:09:10 CEST 2021","Thu Sep 02 16:09:10 CEST 2021","69","cardano_node_tests.tests","test_transactions","TestNegative","","","test_build_missing_tx_in","Try to build a transaction with a missing `--tx-in` parameter.
+
+        Uses `cardano-cli transaction build` command for building the transactions.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:12:12 CEST 2021","Thu Sep 02 16:14:56 CEST 2021","163281","cardano_node_tests.tests","test_transactions","TestMultiInOut","","","test_transaction_to_100_addrs_from_50_addrs[build-1500000]","Test 1 transaction from 50 payment addresses to 100 payment addresses.
+
+        * send funds from 50 source addresses to 100 destination addresses
+        * check expected balances for both source and destination addresses
+        "
+"passed","Thu Sep 02 15:14:10 CEST 2021","Thu Sep 02 15:14:31 CEST 2021","20926","cardano_node_tests.tests","test_scripts","TestNegative","","","test_multisig_atleast_low_num_of_skeys","Try to send funds from script address using the *atLeast* script.
+
+        Num of skeys < required. Expect failure.
+        "
+"passed","Thu Sep 02 15:21:34 CEST 2021","Thu Sep 02 15:22:06 CEST 2021","32118","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_before_past[build]","Check that it's NOT possible to spend from the script address.
+
+        The ""before"" slot is in the past.
+        "
+"passed","Thu Sep 02 15:43:59 CEST 2021","Thu Sep 02 15:45:12 CEST 2021","72611","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_expected_or_higher_fee[1000]","Send a transaction with fee that is same or higher than expected."
+"passed","Thu Sep 02 15:22:04 CEST 2021","Thu Sep 02 15:22:52 CEST 2021","47191","cardano_node_tests.tests","test_staking","TestDelegateAddr","","","test_addr_registration_deregistration[build_raw]","Submit registration and deregistration certificates in single TX.
+
+        * create stake address registration cert
+        * create stake address deregistration cert
+        * register and deregister stake address in single TX
+        * check that the balance for source address was correctly updated and that key deposit
+          was not needed
+        "
+"passed","Thu Sep 02 16:17:17 CEST 2021","Thu Sep 02 16:17:17 CEST 2021","61","cardano_node_tests.tests","test_transactions","TestMetadata","","","test_tx_wrong_json_metadata_format","Try to build a transaction with wrong fromat of metadata JSON.
+
+        The metadata file is a valid JSON, but not in a format that is expected.
+        "
+"passed","Thu Sep 02 14:53:08 CEST 2021","Thu Sep 02 14:53:13 CEST 2021","4914","cardano_node_tests.tests","test_pools","TestNegative","","","test_stake_pool_metadata_long_name","Try to create pool metadata hash when the *name* value is longer than allowed.
+
+        Expect failure. Property-based test.
+        "
+"passed","Thu Sep 02 16:27:34 CEST 2021","Thu Sep 02 16:27:34 CEST 2021","62","cardano_node_tests.tests","test_transactions","TestNegative","","","test_send_funds_to_reward_address[build]","Try to send funds from payment address to stake address.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 16:18:56 CEST 2021","Thu Sep 02 16:18:56 CEST 2021","172","cardano_node_tests.tests","test_transaction_fees","TestFee","","","test_smaller_fee[1.5]","Try to send a transaction with smaller-than-expected fee.
+
+        Expect failure.
+        "
+"passed","Thu Sep 02 15:38:41 CEST 2021","Thu Sep 02 15:40:56 CEST 2021","135343","cardano_node_tests.tests","test_smart_contracts","TestPlutus","","","test_txin_token_locking","Test locking a Tx output with a plutus script and spending the locked UTxO.
+
+        * create a Tx ouput that contains native tokens with a datum hash at the script address
+        * check that the expected amount was locked at the script address
+        * spend the locked UTxO
+        * check that the expected amount was spent
+        * (optional) check transactions in db-sync
+        "
+"passed","Thu Sep 02 15:30:27 CEST 2021","Thu Sep 02 15:31:32 CEST 2021","65059","cardano_node_tests.tests","test_scripts","TestTimeLocking","","","test_before_past[build_raw]","Check that it's NOT possible to spend from the script address.
+
+        The ""before"" slot is in the past.
+        "

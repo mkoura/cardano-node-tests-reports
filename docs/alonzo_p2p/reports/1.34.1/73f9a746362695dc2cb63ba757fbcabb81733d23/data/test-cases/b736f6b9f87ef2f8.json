@@ -1,0 +1,319 @@
+{
+  "uid" : "b736f6b9f87ef2f8",
+  "name" : "test_transaction_to_1_addr_from_10_addrs[build-10000000]",
+  "fullName" : "cardano_node_tests.tests.test_transactions.TestMultiInOut#test_transaction_to_1_addr_from_10_addrs",
+  "historyId" : "4f02e4b9bdc2ca2a9a8dad207d867048",
+  "time" : {
+    "start" : 1646643948931,
+    "stop" : 1646643948931,
+    "duration" : 0
+  },
+  "description" : "Test 1 transaction from 10 payment addresses to 1 payment address.\n\n        * send funds from 10 source addresses to 1 destination address\n        * check expected balances for both source and destination addresses\n        ",
+  "descriptionHtml" : "<p>Test 1 transaction from 10 payment addresses to 1 payment address.</p>\n<pre><code>    * send funds from 10 source addresses to 1 destination address\n    * check expected balances for both source and destination addresses\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "RuntimeError: All clusters are dead, cannot run.",
+  "statusTrace" : "cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7f96b4d4d190>\n\n    @pytest.fixture\n    def cluster(\n        cluster_manager: cluster_management.ClusterManager,\n    ) -> clusterlib.ClusterLib:\n        \"\"\"Return instance of `clusterlib.ClusterLib`.\"\"\"\n>       return cluster_manager.get()\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/conftest.py:292: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:345: in get\n    return _ClusterGetter(self).get(\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:960: in get\n    self._cleanup_dead_clusters(cget_status)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <cardano_node_tests.utils.cluster_management._ClusterGetter object at 0x7f96b4d4d160>\ncget_status = ClusterGetStatus(mark='', lock_resources=(), use_resources=['cluster'], cleanup=False, start_cmd='', selected_instance...ardano-node-tests5/tmp/pytest-of-martink/pytest-17/cluster0'), started_tests=(), marked_starting=(), marked_running=())\n\n    def _cleanup_dead_clusters(self, cget_status: ClusterGetStatus) -> None:\n        \"\"\"Cleanup if the selected cluster instance failed to start.\"\"\"\n        # move on to other cluster instance\n        cget_status.selected_instance = -1\n        cget_status.restart_here = False\n        cget_status.restart_ready = False\n    \n        # remove status files that are checked by other workers\n        for sf in (\n            *cget_status.instance_dir.glob(f\"{TEST_CURR_MARK_GLOB}_*\"),\n            *cget_status.instance_dir.glob(f\"{TEST_MARK_STARTING_GLOB}_*\"),\n        ):\n            sf.unlink()\n    \n        dead_clusters = list(\n            self.cm.pytest_tmp_dir.glob(f\"{CLUSTER_DIR_TEMPLATE}*/{CLUSTER_DEAD_FILE}\")\n        )\n        if len(dead_clusters) == self.cm.num_of_instances:\n>           raise RuntimeError(\"All clusters are dead, cannot run.\")\nE           RuntimeError: All clusters are dead, cannot run.\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:767: RuntimeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646643948932,
+      "stop" : 1646643948932,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646643926613,
+      "stop" : 1646643926613,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1646643948932,
+      "stop" : 1646643948932,
+      "duration" : 0
+    },
+    "status" : "broken",
+    "statusMessage" : "RuntimeError: All clusters are dead, cannot run.\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 932, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/conftest.py\", line 292, in cluster\n    return cluster_manager.get()\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 345, in get\n    return _ClusterGetter(self).get(\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 960, in get\n    self._cleanup_dead_clusters(cget_status)\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 767, in _cleanup_dead_clusters\n    raise RuntimeError(\"All clusters are dead, cannot run.\")\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646643926612,
+      "stop" : 1646643926613,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646643948747,
+      "stop" : 1646643948747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646643926628,
+      "stop" : 1646643926628,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646643948932,
+      "stop" : 1646643948932,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646643926613,
+      "stop" : 1646643926613,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646643926612,
+      "stop" : 1646643926612,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646643948932,
+      "stop" : 1646643948932,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646643926613,
+      "stop" : 1646643926628,
+      "duration" : 15
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646643948956,
+      "stop" : 1646643948956,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646643949462,
+      "stop" : 1646643949462,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646643948956,
+      "stop" : 1646643948956,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646643949458,
+      "stop" : 1646643949459,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='cannot use `build` with cluster era 'alonzo' and TX era 'alonzo'')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMultiInOut"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3307979-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "10000000"
+  }, {
+    "name" : "use_build_cmd",
+    "value" : "True"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_transactions.py#L1017",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_transactions.py#L1017",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "fd981c27495df3c7",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646643923655,
+        "stop" : 1646643923655,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "dbsync", "testnets", "@pytest.mark.skipif(False, reason='cannot use `build` with cluster era 'alonzo' and TX era 'alonzo'')" ]
+  },
+  "source" : "b736f6b9f87ef2f8.json",
+  "parameterValues" : [ "10000000", "True" ]
+}

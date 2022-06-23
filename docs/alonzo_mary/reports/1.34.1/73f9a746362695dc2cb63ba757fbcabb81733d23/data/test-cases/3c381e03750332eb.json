@@ -1,0 +1,319 @@
+{
+  "uid" : "3c381e03750332eb",
+  "name" : "test_no_reward_unmet_pledge1",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_no_reward_unmet_pledge1",
+  "historyId" : "9c8876c1a5b1f11b5ade653c52c1bae6",
+  "time" : {
+    "start" : 1646413569820,
+    "stop" : 1646416783287,
+    "duration" : 3213467
+  },
+  "description" : "Check that the stake pool is not receiving rewards when pledge is not met.\n\n        When the pledge is higher than available funds, neither pool owners nor those who\n        delegate to that pool receive rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * increase the needed pledge amount - update the pool parameters by resubmitting the pool\n          registration certificate - the funds are now lower than what is needed by the stake pool\n        * check that NO new rewards were received by those delegating to the pool\n        * check that pool owner is also NOT receiving rewards\n        * return the pool to the original state - restore pledge settings\n        * check that new rewards were received by those delegating to the pool\n        * check that pool owner is also receiving rewards\n        ",
+  "descriptionHtml" : "<p>Check that the stake pool is not receiving rewards when pledge is not met.</p>\n<pre><code>    When the pledge is higher than available funds, neither pool owners nor those who\n    delegate to that pool receive rewards.\n\n    * delegate stake address\n    * wait for first reward\n    * increase the needed pledge amount - update the pool parameters by resubmitting the pool\n      registration certificate - the funds are now lower than what is needed by the stake pool\n    * check that NO new rewards were received by those delegating to the pool\n    * check that pool owner is also NOT receiving rewards\n    * return the pool to the original state - restore pledge settings\n    * check that new rewards were received by those delegating to the pool\n    * check that pool owner is also receiving rewards\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646412546765,
+      "stop" : 1646412546765,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646412546766,
+      "stop" : 1646412546766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646412546766,
+      "stop" : 1646412546766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646412546766,
+      "stop" : 1646412546766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646412546765,
+      "stop" : 1646412546765,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646412546766,
+      "stop" : 1646412546766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646412546766,
+      "stop" : 1646412546766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646412546764,
+      "stop" : 1646412546764,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646412546764,
+      "stop" : 1646412546765,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646412546765,
+      "stop" : 1646412546766,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1646412546766,
+      "stop" : 1646413569818,
+      "duration" : 1023052
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the stake pool is not receiving rewards when pledge is not met.\n\n        When the pledge is higher than available funds, neither pool owners nor those who\n        delegate to that pool receive rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * increase the needed pledge amount - update the pool parameters by resubmitting the pool\n          registration certificate - the funds are now lower than what is needed by the stake pool\n        * check that NO new rewards were received by those delegating to the pool\n        * check that pool owner is also NOT receiving rewards\n        * return the pool to the original state - restore pledge settings\n        * check that new rewards were received by those delegating to the pool\n        * check that pool owner is also receiving rewards\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "8f7a4362a8688eab",
+      "name" : "log",
+      "source" : "8f7a4362a8688eab.txt",
+      "type" : "text/plain",
+      "size" : 1210
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646416784359,
+      "stop" : 1646416784359,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646416783288,
+      "stop" : 1646416784359,
+      "duration" : 1071
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646416803872,
+      "stop" : 1646416803872,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646416803871,
+      "stop" : 1646416803872,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2395896-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/edaeb38afe8445b93546d3d64261a0e26a613923/cardano_node_tests/tests/test_staking.py#L1208",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/edaeb38afe8445b93546d3d64261a0e26a613923/cardano_node_tests/tests/test_staking.py#L1208",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "3b4ae3cae45f3441",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646412543484,
+        "stop" : 1646412543484,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "order(6)", "long" ]
+  },
+  "source" : "3c381e03750332eb.json",
+  "parameterValues" : [ ]
+}

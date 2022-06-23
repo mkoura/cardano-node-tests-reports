@@ -1,0 +1,337 @@
+{
+  "uid" : "b3a090d7734b45bc",
+  "name" : "test_past_horizon[-1]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_mint_build.TestBuildMintingNegative#test_past_horizon",
+  "historyId" : "10a6acc7cf2aba1f5330a66f1b126b1a",
+  "time" : {
+    "start" : 1655299554185,
+    "stop" : 1655299554983,
+    "duration" : 798
+  },
+  "description" : "Test minting a token with ttl too far in the future.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        Expect failure.\n\n        * try to mint a token using a Plutus script when ttl is set too far in the future\n        * check that minting failed because of 'PastHorizon' failure\n        ",
+  "descriptionHtml" : "<p>Test minting a token with ttl too far in the future.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    Expect failure.\n\n    * try to mint a token using a Plutus script when ttl is set too far in the future\n    * check that minting failed because of 'PastHorizon' failure\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL reason: ttl > 3k/f was accepted\n\n_pytest.outcomes.XFailed: ttl > 3k/f was accepted",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_plutus_mint_build.TestBuildMintingNegative object at 0x7efd51ad8580>, cluster = <ClusterLib: protocol=cardano, tx_era=babbage>\npayment_addrs = [AddressRecord(address='addr_test1vpg05nuj92uyvsk5zpsasgxw8ztc2r6r6g8unwkwds9hk3qcjam5e', vkey_file=PosixPath('test_pa...test_past_horizon_ci0_gos_payment_addr_1.vkey'), skey_file=PosixPath('test_past_horizon_ci0_gos_payment_addr_1.skey'))]\npast_horizon_funds = ([UTXOData(utxo_hash='416b176b3a127522323b8fe27d03f4ac85f02b2771be182bedcdebcc9d5fff96', utxo_ix=1, amount=200000000, ...est1vq9tayv0tpzyn2r2kvn3mdp86une47pzcusk2fqh4vzfxpckmyt9s', return_collateral_txouts=(), total_collateral_amount=None)), ttl = 400\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.skipif(\n        VERSIONS.transaction_era < VERSIONS.BABBAGE,\n        reason=\"runs only with Babbage+ TX\",\n    )\n    @pytest.mark.parametrize(\n        \"ttl\",\n        (3_000, 10_000, 100_000, 1000_000, -1),\n    )\n    def test_past_horizon(\n        self,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n        past_horizon_funds: Tuple[\n            List[clusterlib.UTXOData], List[clusterlib.UTXOData], clusterlib.TxRawOutput\n        ],\n        ttl: int,\n    ):\n        \"\"\"Test minting a token with ttl too far in the future.\n    \n        Uses `cardano-cli transaction build` command for building the transactions.\n    \n        Expect failure.\n    \n        * try to mint a token using a Plutus script when ttl is set too far in the future\n        * check that minting failed because of 'PastHorizon' failure\n        \"\"\"\n        temp_template = f\"{common.get_test_id(cluster)}_{ttl}\"\n        payment_addr = payment_addrs[0]\n        issuer_addr = payment_addrs[1]\n    \n        lovelace_amount = 2_000_000\n        token_amount = 5\n    \n        mint_utxos, collateral_utxos, __ = past_horizon_funds\n    \n        policyid = cluster.get_policyid(plutus_common.MINTING_PLUTUS_V1)\n        asset_name = f\"qacoin{clusterlib.get_rand_str(4)}\".encode(\"utf-8\").hex()\n        token = f\"{policyid}.{asset_name}\"\n        mint_txouts = [\n            clusterlib.TxOut(address=issuer_addr.address, amount=token_amount, coin=token)\n        ]\n    \n        plutus_mint_data = [\n            clusterlib.Mint(\n                txouts=mint_txouts,\n                script_file=plutus_common.MINTING_PLUTUS_V1,\n                collaterals=collateral_utxos,\n                redeemer_file=plutus_common.REDEEMER_42,\n            )\n        ]\n    \n        tx_files = clusterlib.TxFiles(\n            signing_key_files=[issuer_addr.skey_file],\n        )\n        txouts = [\n            clusterlib.TxOut(address=issuer_addr.address, amount=lovelace_amount),\n            *mint_txouts,\n        ]\n    \n        # ttl == -1 means we'll use 3k/f + 100 slots for ttl\n        if ttl == -1:\n            ttl = (\n                round(3 * cluster.genesis[\"securityParam\"] / cluster.genesis[\"activeSlotsCoeff\"])\n                + 100\n            )\n    \n        cluster.wait_for_new_block()\n    \n        err = \"\"\n        try:\n            cluster.build_tx(\n                src_address=payment_addr.address,\n                tx_name=f\"{temp_template}_mint\",\n                tx_files=tx_files,\n                txins=mint_utxos,\n                txouts=txouts,\n                mint=plutus_mint_data,\n                invalid_hereafter=cluster.get_slot_no() + ttl,\n            )\n        except clusterlib.CLIError as exc:\n            err = str(exc)\n        else:\n>           pytest.xfail(\"ttl > 3k/f was accepted\")\nE           _pytest.outcomes.XFailed: ttl > 3k/f was accepted\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_plutus_mint_build.py:1118: XFailed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655299552080,
+      "stop" : 1655299552080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655297684233,
+      "stop" : 1655297684233,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655299552080,
+      "stop" : 1655299552080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "past_horizon_funds",
+    "time" : {
+      "start" : 1655299554185,
+      "stop" : 1655299554185,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655299552080,
+      "stop" : 1655299552080,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655297684233,
+      "stop" : 1655297684234,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655297684234,
+      "stop" : 1655297684234,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655297684232,
+      "stop" : 1655297684233,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1655299552080,
+      "stop" : 1655299552357,
+      "duration" : 277
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655297684233,
+      "stop" : 1655297684233,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655299533142,
+      "stop" : 1655299533142,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1655299552357,
+      "stop" : 1655299554185,
+      "duration" : 1828
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655297684233,
+      "stop" : 1655297684233,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655299555041,
+      "stop" : 1655299555044,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655299555044,
+      "stop" : 1655299555044,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655302953593,
+      "stop" : 1655302953595,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655302953612,
+      "stop" : 1655302953612,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Babbage+ TX')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_mint_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildMintingNegative"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2648814-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_mint_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "ttl",
+    "value" : "-1"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/8ffd5f584f209758dcaffc3aada8f8fe66093dc3/cardano_node_tests/tests/test_plutus_mint_build.py#L1035",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/8ffd5f584f209758dcaffc3aada8f8fe66093dc3/cardano_node_tests/tests/test_plutus_mint_build.py#L1035",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "c6b3de555047a2d1",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655297680785,
+        "stop" : 1655297680785,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "smoke", "@pytest.mark.skipif(False, reason='runs only with Babbage+ TX')" ]
+  },
+  "source" : "b3a090d7734b45bc.json",
+  "parameterValues" : [ "-1" ]
+}

@@ -1,0 +1,307 @@
+{
+  "uid" : "3d819b3626588000",
+  "name" : "test_protocol_state_outfile",
+  "fullName" : "cardano_node_tests.tests.test_protocol.TestProtocol#test_protocol_state_outfile",
+  "historyId" : "146652f44c580934ea1f07d4c8d60ba6",
+  "time" : {
+    "start" : 1646055455525,
+    "stop" : 1646055455542,
+    "duration" : 17
+  },
+  "description" : "Check output file produced by `query protocol-state`.",
+  "descriptionHtml" : "<p>Check output file produced by <code>query protocol-state</code>.</p>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nUnicodeDecodeError: 'utf-8' codec can't decode byte 0x83 in position 0: invalid start byte",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_protocol.TestProtocol object at 0x7fbb708df430>, cluster = <ClusterLib: protocol=cardano, tx_era=>\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.xfail\n    def test_protocol_state_outfile(self, cluster: clusterlib.ClusterLib):\n        \"\"\"Check output file produced by `query protocol-state`.\"\"\"\n        common.get_test_id(cluster)\n        protocol_state: dict = json.loads(\n>           cluster.query_cli([\"protocol-state\", \"--out-file\", \"/dev/stdout\"])\n        )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_protocol.py:67: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ClusterLib: protocol=cardano, tx_era=>, cli_args = ['protocol-state', '--out-file', '/dev/stdout']\n\n    def query_cli(self, cli_args: UnpackableSequence) -> str:\n        \"\"\"Run the `cardano-cli query` command.\"\"\"\n        stdout = self.cli(\n            [\n                \"query\",\n                *cli_args,\n                *self.magic_args,\n                f\"--{self.protocol}-mode\",\n            ]\n        ).stdout\n>       stdout_dec = stdout.decode(\"utf-8\") if stdout else \"\"\nE       UnicodeDecodeError: 'utf-8' codec can't decode byte 0x83 in position 0: invalid start byte\n\n/home/martink/Source/repos/cardano-clusterlib/cardano_clusterlib/clusterlib.py:563: UnicodeDecodeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1646055455361,
+      "stop" : 1646055455524,
+      "duration" : 163
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646055455163,
+      "stop" : 1646055455163,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646053580529,
+      "stop" : 1646053580530,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646055455360,
+      "stop" : 1646055455360,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646053580529,
+      "stop" : 1646053580529,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646055455360,
+      "stop" : 1646055455360,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646055455360,
+      "stop" : 1646055455360,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580531,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646058271081,
+      "stop" : 1646058271083,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646058271086,
+      "stop" : 1646058271086,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646055455689,
+      "stop" : 1646055455689,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646055455687,
+      "stop" : 1646055455689,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='different TX eras doesn't affect this test, pointless to run')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_protocol"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestProtocol"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1024848-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_protocol"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/feeeb6d42b1c61594b0eebe50360e382d1882198/cardano_node_tests/tests/test_protocol.py#L61",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/feeeb6d42b1c61594b0eebe50360e382d1882198/cardano_node_tests/tests/test_protocol.py#L61",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "6340fda7ab4deb54",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646053577526,
+        "stop" : 1646053577526,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.xfail", "@pytest.mark.skipif(False, reason='different TX eras doesn't affect this test, pointless to run')", "testnets" ]
+  },
+  "source" : "3d819b3626588000.json",
+  "parameterValues" : [ ]
+}

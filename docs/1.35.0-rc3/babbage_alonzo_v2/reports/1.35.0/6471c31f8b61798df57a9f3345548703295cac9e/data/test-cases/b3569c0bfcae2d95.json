@@ -1,0 +1,287 @@
+{
+  "uid" : "b3569c0bfcae2d95",
+  "name" : "test_reward_addr_delegation",
+  "fullName" : "cardano_node_tests.tests.test_staking_rewards.TestRewards#test_reward_addr_delegation",
+  "historyId" : "9b4f79a6a884b689c14b44cfabb20f0f",
+  "time" : {
+    "start" : 1655331274804,
+    "stop" : 1655331274804,
+    "duration" : 0
+  },
+  "description" : "Check that the rewards address can be delegated and receive rewards.\n\n        Tests https://github.com/input-output-hk/cardano-node/issues/1964\n\n        The pool has a reward address that is different from pool owner's stake address.\n\n        * delegate reward address to the pool\n        * collect reward address data for 8 epochs and\n\n           - each epoch check ledger state (expected data in `pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n           - check that reward address receives rewards for its staked amount +\n             the pool owner's pledge (and pool cost)\n           - send TXs with MIR certs that transfer funds from reserves and treasury\n             to pool reward address and check the reward was received as expected\n\n        * check records in db-sync\n\n           - transaction inputs, outputs, withdrawals, etc.\n           - reward amounts received each epoch\n           - expected pool id\n           - expected reward types\n        ",
+  "descriptionHtml" : "<p>Check that the rewards address can be delegated and receive rewards.</p>\n<pre><code>    Tests https://github.com/input-output-hk/cardano-node/issues/1964\n\n    The pool has a reward address that is different from pool owner's stake address.\n\n    * delegate reward address to the pool\n    * collect reward address data for 8 epochs and\n\n       - each epoch check ledger state (expected data in `pstake*`, delegation, stake amount)\n       - each epoch check received reward with reward in ledger state\n       - check that reward address receives rewards for its staked amount +\n         the pool owner's pledge (and pool cost)\n       - send TXs with MIR certs that transfer funds from reserves and treasury\n         to pool reward address and check the reward was received as expected\n\n    * check records in db-sync\n\n       - transaction inputs, outputs, withdrawals, etc.\n       - reward amounts received each epoch\n       - expected pool id\n       - expected reward types\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: db-sync not available",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_staking_rewards.py', 641, 'Skipped: db-sync not available')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655328645115,
+      "stop" : 1655328645115,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655328645114,
+      "stop" : 1655328645114,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655331274812,
+      "stop" : 1655331274812,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655331274811,
+      "stop" : 1655331274811,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655331274811,
+      "stop" : 1655331274811,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655328645114,
+      "stop" : 1655328645114,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655331274811,
+      "stop" : 1655331274811,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655328645216,
+      "stop" : 1655328645216,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655328645115,
+      "stop" : 1655328645216,
+      "duration" : 101
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655328645114,
+      "stop" : 1655328645114,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655331453454,
+      "stop" : 1655331454037,
+      "duration" : 583
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655331684856,
+      "stop" : 1655331684856,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655331454037,
+      "stop" : 1655331454037,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655331684855,
+      "stop" : 1655331684856,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='db-sync not available')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "needs_dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking_rewards"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3912284-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking_rewards"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/bc97ddc0fc4b8a539bf5f00b5bdd58c89b8a3c3f/cardano_node_tests/tests/test_staking_rewards.py#L641",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/bc97ddc0fc4b8a539bf5f00b5bdd58c89b8a3c3f/cardano_node_tests/tests/test_staking_rewards.py#L641",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "needs_dbsync", "@pytest.mark.skip(reason='db-sync not available')", "dbsync", "order(6)", "long" ]
+  },
+  "source" : "b3569c0bfcae2d95.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,71 @@
+{
+  "uid" : "294bf35df4949ead",
+  "name" : "test_no_reward_unmet_pledge2",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_no_reward_unmet_pledge2",
+  "historyId" : "2b8e8e241fd5228caa1e81d66f51ca61",
+  "time" : {
+    "start" : 1645624984261,
+    "stop" : 1645624984261,
+    "duration" : 0
+  },
+  "description" : "Check that the stake pool is not receiving rewards when pledge is not met.\n\n        When the pledge is higher than available funds, neither pool owners nor those who\n        delegate to that pool receive rewards.\n\n        * delegate stake address\n        * wait for first reward\n        * withdraw part of the pledge - the funds are lower than what is needed by the stake pool\n        * check that NO new rewards were received by those delegating to the pool\n        * check that pool owner is also NOT receiving rewards\n        * return the pool to the original state - restore pledge funds\n        * check that new rewards were received by those delegating to the pool\n        * check that pool owner is also receiving rewards\n        ",
+  "descriptionHtml" : "<p>Check that the stake pool is not receiving rewards when pledge is not met.</p>\n<pre><code>    When the pledge is higher than available funds, neither pool owners nor those who\n    delegate to that pool receive rewards.\n\n    * delegate stake address\n    * wait for first reward\n    * withdraw part of the pledge - the funds are lower than what is needed by the stake pool\n    * check that NO new rewards were received by those delegating to the pool\n    * check that pool owner is also NOT receiving rewards\n    * return the pool to the original state - restore pledge funds\n    * check that new rewards were received by those delegating to the pool\n    * check that pool owner is also receiving rewards\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_staking.py', 1307, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "175845-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_staking.py#L1307",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_staking.py#L1307",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip(reason='collected, not run')", "order(6)", "long" ]
+  },
+  "source" : "294bf35df4949ead.json",
+  "parameterValues" : [ ]
+}

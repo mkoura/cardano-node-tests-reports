@@ -1,0 +1,301 @@
+{
+  "uid" : "ea6e3c5bcd527b70",
+  "name" : "test_2_pools_same_reward_addr",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_2_pools_same_reward_addr",
+  "historyId" : "9f4aacf4d471167a1ed636b5cdcbdb39",
+  "time" : {
+    "start" : 1645625127715,
+    "stop" : 1645625127715,
+    "duration" : 0
+  },
+  "description" : "Check that one reward address used for two pools receives rewards for both of them.\n\n        * set pool2 reward address to the reward address of pool1 by resubmitting the pool\n          registration certificate\n        * collect data for both pool1 and pool2 for several epochs and with the help of db-sync\n\n           - check that the original reward address for pool2 is NOT receiving rewards\n           - check that the reward address for pool1 is now receiving rewards for both pools\n\n        * check records in db-sync\n\n           - transaction inputs, outputs, withdrawals, etc.\n           - reward amounts received each epoch\n           - expected pool ids\n        ",
+  "descriptionHtml" : "<p>Check that one reward address used for two pools receives rewards for both of them.</p>\n<pre><code>    * set pool2 reward address to the reward address of pool1 by resubmitting the pool\n      registration certificate\n    * collect data for both pool1 and pool2 for several epochs and with the help of db-sync\n\n       - check that the original reward address for pool2 is NOT receiving rewards\n       - check that the reward address for pool1 is now receiving rewards for both pools\n\n    * check records in db-sync\n\n       - transaction inputs, outputs, withdrawals, etc.\n       - reward amounts received each epoch\n       - expected pool ids\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: needs Allegra+ TX to run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_staking.py', 2022, 'Skipped: needs Allegra+ TX to run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1645625127718,
+      "stop" : 1645625127718,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1645625127729,
+      "stop" : 1645625127729,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1645625127718,
+      "stop" : 1645625127718,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1645625127729,
+      "stop" : 1645625127729,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1645625127718,
+      "stop" : 1645625127728,
+      "duration" : 10
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1645625127729,
+      "stop" : 1645625127729,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1645625127729,
+      "stop" : 1645625127729,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1645625127729,
+      "stop" : 1645625127729,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1645625127717,
+      "stop" : 1645625127717,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1645625127717,
+      "stop" : 1645625127718,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1645626829474,
+      "stop" : 1645626829474,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1645626551159,
+      "stop" : 1645626551478,
+      "duration" : 319
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1645626829471,
+      "stop" : 1645626829473,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1645626551479,
+      "stop" : 1645626551479,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='db-sync not available')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "needs_dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='needs Allegra+ TX to run')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "200509-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_staking.py#L2022",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_staking.py#L2022",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "e6ce5d06501bd763",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: needs Allegra+ TX to run",
+      "time" : {
+        "start" : 1645625124497,
+        "stop" : 1645625124497,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "needs_dbsync", "@pytest.mark.skip(reason='db-sync not available')", "dbsync", "order(6)", "long", "@pytest.mark.skipif(True, reason='needs Allegra+ TX to run')" ]
+  },
+  "source" : "ea6e3c5bcd527b70.json",
+  "parameterValues" : [ ]
+}

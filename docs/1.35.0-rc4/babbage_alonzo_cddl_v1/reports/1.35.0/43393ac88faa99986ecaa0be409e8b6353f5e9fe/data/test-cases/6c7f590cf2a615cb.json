@@ -1,0 +1,77 @@
+{
+  "uid" : "6c7f590cf2a615cb",
+  "name" : "test_minting_policy_executed_once2",
+  "fullName" : "cardano_node_tests.tests.test_plutus_mint_raw.TestMinting#test_minting_policy_executed_once2",
+  "historyId" : "7d52a9b6e1f15b5f8202a78457263870",
+  "time" : {
+    "start" : 1655884132152,
+    "stop" : 1655884132152,
+    "duration" : 0
+  },
+  "description" : "Test that minting policy is executed only once even when the same policy is used twice.\n\n        Test minting two tokens while using one Plutus script and one redeemer.\n\n        The Plutus script used in this test takes the expected token name as\n        redeemer. Even though the redeemer doesn't match name of the first\n        token, the token get's minted anyway. That's because it is only checked\n        that the last token name matches the redeemer, and redeemer for the\n        first token is not needed.\n\n        * fund the token issuer and create a UTxO for collateral\n        * check that the expected amount was transferred to token issuer's address\n        * mint the tokens using a redeemer value that doesn't match the name of the first token\n        * check that the tokens were minted and collateral UTxOs were not spent, i.e. redeemer for\n          the first token was not needed\n        * check transaction view output\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test that minting policy is executed only once even when the same policy is used twice.</p>\n<pre><code>    Test minting two tokens while using one Plutus script and one redeemer.\n\n    The Plutus script used in this test takes the expected token name as\n    redeemer. Even though the redeemer doesn't match name of the first\n    token, the token get's minted anyway. That's because it is only checked\n    that the last token name matches the redeemer, and redeemer for the\n    first token is not needed.\n\n    * fund the token issuer and create a UTxO for collateral\n    * check that the expected amount was transferred to token issuer's address\n    * mint the tokens using a redeemer value that doesn't match the name of the first token\n    * check that the tokens were minted and collateral UTxOs were not spent, i.e. redeemer for\n      the first token was not needed\n    * check transaction view output\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_plutus_mint_raw.py', 868, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_mint_raw"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMinting"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1498947-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_mint_raw"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d97089adfe84986d7ee0c627f7522658310aeabf/cardano_node_tests/tests/test_plutus_mint_raw.py#L868",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d97089adfe84986d7ee0c627f7522658310aeabf/cardano_node_tests/tests/test_plutus_mint_raw.py#L868",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')", "dbsync", "smoke", "testnets", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "6c7f590cf2a615cb.json",
+  "parameterValues" : [ ]
+}

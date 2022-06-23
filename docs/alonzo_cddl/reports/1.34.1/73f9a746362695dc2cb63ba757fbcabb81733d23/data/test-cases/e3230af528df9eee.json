@@ -1,0 +1,336 @@
+{
+  "uid" : "e3230af528df9eee",
+  "name" : "test_tx_view",
+  "fullName" : "cardano_node_tests.tests.test_cli.TestCLI#test_tx_view",
+  "historyId" : "b30997f46119fb9552fb7a90ef9b2437",
+  "time" : {
+    "start" : 1646574515762,
+    "stop" : 1646574515791,
+    "duration" : 29
+  },
+  "description" : "Check that the output of `transaction view` is as expected.",
+  "descriptionHtml" : "<p>Check that the output of <code>transaction view</code> is as expected.</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null') == ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'required signers (payment key hashes needed for scripts): null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null')\n    auxiliary scripts: null\n    certificates: null\n    collateral inputs: null\n    era: Mary\n    fee: 190182 Lovelace\n    inputs:\n    - 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\n    metadata:\n      '1': foo\n      '2': bar\n      '3': baz\n      '5': cardano\n      '6': rules\n    mint: null\n    outputs:\n    - address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\n      address era: Shelley\n      amount:\n        lovelace: 2809818\n      network: Testnet\n      payment credential:\n        key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\n      stake reference: null\n  - required signers (payment key hashes needed for scripts): null\n    update proposal: null\n    validity range:\n      lower bound: null\n      upper bound: null\n    withdrawals: null",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_cli.TestCLI object at 0x7fb5ae2db280>, cluster = <ClusterLib: protocol=cardano, tx_era=>\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.skipif(\n        VERSIONS.transaction_era != VERSIONS.DEFAULT_TX_ERA,\n        reason=\"different TX eras doesn't affect this test\",\n    )\n    @pytest.mark.testnets\n    def test_tx_view(self, cluster: clusterlib.ClusterLib):\n        \"\"\"Check that the output of `transaction view` is as expected.\"\"\"\n        common.get_test_id(cluster)\n    \n        tx_body = cluster.view_tx(tx_body_file=self.TX_BODY_FILE)\n        tx = cluster.view_tx(tx_file=self.TX_FILE)\n    \n        with open(self.TX_BODY_OUT, encoding=\"utf-8\") as infile:\n            tx_body_view_out = infile.read()\n>       assert tx_body == tx_body_view_out.strip()\nE       assert ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null') == ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'required signers (payment key hashes needed for scripts): null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null')\nE           auxiliary scripts: null\nE           certificates: null\nE           collateral inputs: null\nE           era: Mary\nE           fee: 190182 Lovelace\nE           inputs:\nE           - 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\nE           metadata:\nE             '1': foo\nE             '2': bar\nE             '3': baz\nE             '5': cardano\nE             '6': rules\nE           mint: null\nE           outputs:\nE           - address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\nE             address era: Shelley\nE             amount:\nE               lovelace: 2809818\nE             network: Testnet\nE             payment credential:\nE               key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\nE             stake reference: null\nE         - required signers (payment key hashes needed for scripts): null\nE           update proposal: null\nE           validity range:\nE             lower bound: null\nE             upper bound: null\nE           withdrawals: null\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_cli.py:186: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646574515761,
+      "duration" : 1023014
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646573492746,
+      "stop" : 1646573492746,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646573492746,
+      "stop" : 1646573492746,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646573492747,
+      "stop" : 1646573492747,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that the output of `transaction view` is as expected.",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null') == ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'required signers (payment key hashes needed for scripts): null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null')\n    auxiliary scripts: null\n    certificates: null\n    collateral inputs: null\n    era: Mary\n    fee: 190182 Lovelace\n    inputs:\n    - 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\n    metadata:\n      '1': foo\n      '2': bar\n      '3': baz\n      '5': cardano\n      '6': rules\n    mint: null\n    outputs:\n    - address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\n      address era: Shelley\n      amount:\n        lovelace: 2809818\n      network: Testnet\n      payment credential:\n        key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\n      stake reference: null\n  - required signers (payment key hashes needed for scripts): null\n    update proposal: null\n    validity range:\n      lower bound: null\n      upper bound: null\n    withdrawals: null",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_cli.TestCLI object at 0x7fb5ae2db280>, cluster = <ClusterLib: protocol=cardano, tx_era=>\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.skipif(\n        VERSIONS.transaction_era != VERSIONS.DEFAULT_TX_ERA,\n        reason=\"different TX eras doesn't affect this test\",\n    )\n    @pytest.mark.testnets\n    def test_tx_view(self, cluster: clusterlib.ClusterLib):\n        \"\"\"Check that the output of `transaction view` is as expected.\"\"\"\n        common.get_test_id(cluster)\n    \n        tx_body = cluster.view_tx(tx_body_file=self.TX_BODY_FILE)\n        tx = cluster.view_tx(tx_file=self.TX_FILE)\n    \n        with open(self.TX_BODY_OUT, encoding=\"utf-8\") as infile:\n            tx_body_view_out = infile.read()\n>       assert tx_body == tx_body_view_out.strip()\nE       assert ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null') == ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'required signers (payment key hashes needed for scripts): null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null')\nE           auxiliary scripts: null\nE           certificates: null\nE           collateral inputs: null\nE           era: Mary\nE           fee: 190182 Lovelace\nE           inputs:\nE           - 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\nE           metadata:\nE             '1': foo\nE             '2': bar\nE             '3': baz\nE             '5': cardano\nE             '6': rules\nE           mint: null\nE           outputs:\nE           - address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\nE             address era: Shelley\nE             amount:\nE               lovelace: 2809818\nE             network: Testnet\nE             payment credential:\nE               key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\nE             stake reference: null\nE         - required signers (payment key hashes needed for scripts): null\nE           update proposal: null\nE           validity range:\nE             lower bound: null\nE             upper bound: null\nE           withdrawals: null\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_cli.py:186: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "97ff0f8df1c7cfd9",
+      "name" : "log",
+      "source" : "97ff0f8df1c7cfd9.txt",
+      "type" : "text/plain",
+      "size" : 1274
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646574516054,
+      "stop" : 1646574517251,
+      "duration" : 1197
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646574517251,
+      "stop" : 1646574517251,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646574516053,
+      "stop" : 1646574516053,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646574515851,
+      "stop" : 1646574516053,
+      "duration" : 202
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='different TX eras doesn't affect this test')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_cli"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCLI"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3294950-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_cli"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_cli.py#L171",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_cli.py#L171",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "eb3f3858d7f6ac44",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: assert ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null') == ('auxiliary scripts: null\\n'\\n 'certificates: null\\n'\\n 'collateral inputs: null\\n'\\n 'era: Mary\\n'\\n 'fee: 190182 Lovelace\\n'\\n 'inputs:\\n'\\n '- 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\\n'\\n 'metadata:\\n'\\n \"  '1': foo\\n\"\\n \"  '2': bar\\n\"\\n \"  '3': baz\\n\"\\n \"  '5': cardano\\n\"\\n \"  '6': rules\\n\"\\n 'mint: null\\n'\\n 'outputs:\\n'\\n '- address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\\n'\\n '  address era: Shelley\\n'\\n '  amount:\\n'\\n '    lovelace: 2809818\\n'\\n '  network: Testnet\\n'\\n '  payment credential:\\n'\\n '    key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\\n'\\n '  stake reference: null\\n'\\n 'required signers (payment key hashes needed for scripts): null\\n'\\n 'update proposal: null\\n'\\n 'validity range:\\n'\\n '  lower bound: null\\n'\\n '  upper bound: null\\n'\\n 'withdrawals: null\\n'\\n 'witnesses:\\n'\\n '- key: VKey (VerKeyEd25519DSIGN '\\n '\"08d25b073137a6ea634a9aeb56aa5455955ba490a01eed8a735ac7e6dea51b85\")\\n'\\n '  signature: SignedDSIGN (SigEd25519DSIGN '\\n '\"512a0ded73ed8e6d06e578203086cdc967f7f5675abbde73e49864f26ee7e50512d5f4011da96eb69c2936deb1c55e1997bd5f782437a7eec7e99fa1fb49b10a\")')\n    auxiliary scripts: null\n    certificates: null\n    collateral inputs: null\n    era: Mary\n    fee: 190182 Lovelace\n    inputs:\n    - 9d43c61d25e780112200a023840b2fdfdf318c12acc9b230685f788167a9419f#0\n    metadata:\n      '1': foo\n      '2': bar\n      '3': baz\n      '5': cardano\n      '6': rules\n    mint: null\n    outputs:\n    - address: addr_test1vz2522g9f8lznckrujg9zxxkyk7qd9thnq292855sxz3gmszxqcfc\n      address era: Shelley\n      amount:\n        lovelace: 2809818\n      network: Testnet\n      payment credential:\n        key hash: 9545290549fe29e2c3e4905118d625bc0695779814551e948185146e\n      stake reference: null\n  - required signers (payment key hashes needed for scripts): null\n    update proposal: null\n    validity range:\n      lower bound: null\n      upper bound: null\n  - withdrawals: null\n  ?                  -\n  + withdrawals: null\n  - witnesses:\n  - - key: VKey (VerKeyEd25519DSIGN \"08d25b073137a6ea634a9aeb56aa5455955ba490a01eed8a735ac7e6dea51b85\")\n  -   signature: SignedDSIGN (SigEd25519DSIGN \"512a0ded73ed8e6d06e578203086cdc967f7f5675abbde73e49864f26ee7e50512d5f4011da96eb69c2936deb1c55e1997bd5f782437a7eec7e99fa1fb49b10a\")",
+      "time" : {
+        "start" : 1646417026616,
+        "stop" : 1646417026649,
+        "duration" : 33
+      }
+    }, {
+      "uid" : "29a89bc0bbefa20b",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646412760394,
+        "stop" : 1646412760394,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='different TX eras doesn't affect this test')", "testnets" ]
+  },
+  "source" : "e3230af528df9eee.json",
+  "parameterValues" : [ ]
+}

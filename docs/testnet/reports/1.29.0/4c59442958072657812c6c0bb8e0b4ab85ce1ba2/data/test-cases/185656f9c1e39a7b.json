@@ -1,0 +1,80 @@
+{
+  "uid" : "185656f9c1e39a7b",
+  "name" : "test_build_guessing_game[guessing_game_42]",
+  "fullName" : "cardano_node_tests.tests.test_smart_contracts.TestPlutus#test_build_guessing_game",
+  "historyId" : "cfefdca7cbe4d3ac7ea0d251a78d4579",
+  "time" : {
+    "start" : 1630586492691,
+    "stop" : 1630586492691,
+    "duration" : 0
+  },
+  "description" : "Test locking a Tx output with a plutus script and spending the locked UTxO.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        Test with with \"guessing game\" script that expects specific datum and redeemer value.\n        Test also negative scenarios where datum or redeemer value is different than expected.\n\n        * create a Tx ouput with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * spend the locked UTxO\n        * check that the expected amount was spent when success is expected\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test locking a Tx output with a plutus script and spending the locked UTxO.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    Test with with &quot;guessing game&quot; script that expects specific datum and redeemer value.\n    Test also negative scenarios where datum or redeemer value is different than expected.\n\n    * create a Tx ouput with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * spend the locked UTxO\n    * check that the expected amount was spent when success is expected\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/test_smart_contracts.py', 1446, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('temp_dir')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_smart_contracts"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestPlutus"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3852009-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_smart_contracts"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "script",
+    "value" : "'guessing_game_42'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d91863b653909c18c5e848e6c004f32f71b92dda/cardano_node_tests/tests/test_smart_contracts.py#L1446",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d91863b653909c18c5e848e6c004f32f71b92dda/cardano_node_tests/tests/test_smart_contracts.py#L1446",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.usefixtures('temp_dir')", "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')", "dbsync", "testnets", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "185656f9c1e39a7b.json",
+  "parameterValues" : [ "'guessing_game_42'" ]
+}

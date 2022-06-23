@@ -1,0 +1,71 @@
+{
+  "uid" : "83b26b32741b199a",
+  "name" : "test_deregister_reward_addr_retire_pool",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_deregister_reward_addr_retire_pool",
+  "historyId" : "08d9b7d45c2eed88de06aa3a7f7ec992",
+  "time" : {
+    "start" : 1646412632927,
+    "stop" : 1646412632927,
+    "duration" : 0
+  },
+  "description" : "Test deregistering reward address and retiring stake pool.\n\n        The pool deposit is lost when reward address is deregistered before the pool is retired.\n\n        * wait for first reward for the pool\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * deregister stake pool\n        * check that the pool deposit was NOT returned to reward or stake address\n        * return the pool to the original state - reregister the pool, register\n          the reward address, delegate the stake address to the pool\n        * check that pool deposit was needed\n        * check that pool owner is receiving rewards\n        ",
+  "descriptionHtml" : "<p>Test deregistering reward address and retiring stake pool.</p>\n<pre><code>    The pool deposit is lost when reward address is deregistered before the pool is retired.\n\n    * wait for first reward for the pool\n    * withdraw pool rewards to payment address\n    * deregister the pool reward address\n    * check that the key deposit was returned\n    * check that pool owner is NOT receiving rewards\n    * deregister stake pool\n    * check that the pool deposit was NOT returned to reward or stake address\n    * return the pool to the original state - reregister the pool, register\n      the reward address, delegate the stake address to the pool\n    * check that pool deposit was needed\n    * check that pool owner is receiving rewards\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_staking.py', 1861, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2401762-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/edaeb38afe8445b93546d3d64261a0e26a613923/cardano_node_tests/tests/test_staking.py#L1861",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/edaeb38afe8445b93546d3d64261a0e26a613923/cardano_node_tests/tests/test_staking.py#L1861",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip(reason='collected, not run')", "order(6)", "long" ]
+  },
+  "source" : "83b26b32741b199a.json",
+  "parameterValues" : [ ]
+}

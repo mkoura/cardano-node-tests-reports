@@ -1,0 +1,97 @@
+{
+  "uid" : "68cfc5160f1ba54f",
+  "name" : "test_incremental_signing[signed-build_raw]",
+  "fullName" : "cardano_node_tests.tests.test_scripts.TestIncrementalSigning#test_incremental_signing",
+  "historyId" : "815d082a3f4ac0d401e9340c54f05a33",
+  "time" : {
+    "start" : 1646573445452,
+    "stop" : 1646573445452,
+    "duration" : 0
+  },
+  "description" : "Send funds from script address using TX that is signed incrementally.\n\n        Test with Tx body created by both `transaction build` and `transaction build-raw`.\n        Test with Tx created by both `transaction sign` and `transaction assemble`.\n        ",
+  "descriptionHtml" : "<p>Send funds from script address using TX that is signed incrementally.</p>\n<pre><code>    Test with Tx body created by both `transaction build` and `transaction build-raw`.\n    Test with Tx created by both `transaction sign` and `transaction assemble`.\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs only with Mary+ TX",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_scripts.py', 1712, 'Skipped: runs only with Mary+ TX')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs only with Mary+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_scripts"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestIncrementalSigning"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3294795-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_scripts"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "tx_is",
+    "value" : "'signed'"
+  }, {
+    "name" : "use_build_cmd",
+    "value" : "False"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_scripts.py#L1712",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_scripts.py#L1712",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "a91a8fc1b4d219e1",
+      "status" : "broken",
+      "statusDetails" : "cardano_clusterlib.clusterlib.CLIError: An error occurred running a CLI command `cardano-cli transaction build-raw --fee 0 --out-file test_incremental_signing_ci1_exk_False_signed_from_estimate_tx.body --tx-in-script-file test_incremental_signing_ci1_exk_False_signed_multisig.script --tx-in 652b95a7e93947e32c04ec10802959adba4f249fee29087a88ce7c00c2d669cd#0 --tx-out addr_test1vpfuulpsp7sr22mxmtwnw8ylr5s3x9lnstp45ul0vk5a9fsyslm67+2000000 --tx-out addr_test1wppdrmwk2menzmegxvq76awuyzw5md5vafvqt6lya2vy07gwzrnpx+2500000 --metadata-json-file /home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/data/tx_metadata.json --metadata-cbor-file /home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/data/tx_metadata.cbor --invalid-hereafter 7343 --shelley-era` on path `/home/martink/Source/repos/cardano-node-tests4/tmp/pytest-of-martink/pytest-39/popen-gw10/test_scripts_py`: Command failed: transaction build-raw  Error: The script language SimpleScriptLanguage SimpleScriptV2 is not supported in the Shelley era.",
+      "time" : {
+        "start" : 1646414087933,
+        "stop" : 1646414090043,
+        "duration" : 2110
+      }
+    }, {
+      "uid" : "e68c4b7fab889e0e",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646412633113,
+        "stop" : 1646412633113,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync", "testnets", "@pytest.mark.skipif(True, reason='runs only with Mary+ TX')" ]
+  },
+  "source" : "68cfc5160f1ba54f.json",
+  "parameterValues" : [ "'signed'", "False" ]
+}

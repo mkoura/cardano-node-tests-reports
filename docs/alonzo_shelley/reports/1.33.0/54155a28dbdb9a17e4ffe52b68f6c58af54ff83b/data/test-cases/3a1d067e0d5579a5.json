@@ -1,0 +1,71 @@
+{
+  "uid" : "3a1d067e0d5579a5",
+  "name" : "test_decreasing_reward_transfered_funds",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_decreasing_reward_transfered_funds",
+  "historyId" : "8d6011c4449f0947ace821e3bf972c45",
+  "time" : {
+    "start" : 1645625124492,
+    "stop" : 1645625124492,
+    "duration" : 0
+  },
+  "description" : "Check that rewards are gradually decreasing when funds are being transfered.\n\n        Even though nothing is staked and rewards are being transfered from reward address, there\n        are still some funds staked on the reward address at the time ledger snapshot is taken. For\n        that reason the reward amount received every epoch is gradually decreasing over the period\n        of several epochs until it is finally 0.\n\n        * delegate stake address\n        * wait for first reward\n        * transfer all funds from payment address back to faucet, so no funds are staked\n        * keep withdrawing new rewards so reward balance is 0\n        * check that reward amount is decreasing epoch after epoch\n        ",
+  "descriptionHtml" : "<p>Check that rewards are gradually decreasing when funds are being transfered.</p>\n<pre><code>    Even though nothing is staked and rewards are being transfered from reward address, there\n    are still some funds staked on the reward address at the time ledger snapshot is taken. For\n    that reason the reward amount received every epoch is gradually decreasing over the period\n    of several epochs until it is finally 0.\n\n    * delegate stake address\n    * wait for first reward\n    * transfer all funds from payment address back to faucet, so no funds are staked\n    * keep withdrawing new rewards so reward balance is 0\n    * check that reward amount is decreasing epoch after epoch\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_staking.py', 1051, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "200261-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_staking.py#L1051",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_staking.py#L1051",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip(reason='collected, not run')", "order(6)", "long" ]
+  },
+  "source" : "3a1d067e0d5579a5.json",
+  "parameterValues" : [ ]
+}

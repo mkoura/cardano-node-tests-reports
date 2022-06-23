@@ -1,0 +1,316 @@
+{
+  "uid" : "62f311f474dc3dc3",
+  "name" : "test_unstable_stake_distribution",
+  "fullName" : "cardano_node_tests.tests.test_blocks.TestLeadershipSchedule#test_unstable_stake_distribution",
+  "historyId" : "9f9cbeeb3deb1ee5ad82f5d37cd8e2f1",
+  "time" : {
+    "start" : 1655378948279,
+    "stop" : 1655378950890,
+    "duration" : 2611
+  },
+  "description" : "Try to query leadership schedule for next epoch when stake distribution is unstable.\n\n        Expect failure.\n        ",
+  "descriptionHtml" : "<p>Try to query leadership schedule for next epoch when stake distribution is unstable.</p>\n<pre><code>    Expect failure.\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL reason: `query leadership-schedule` is affected by cardano-node issue 4002\n\n_pytest.outcomes.XFailed: `query leadership-schedule` is affected by cardano-node issue 4002",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_blocks.TestLeadershipSchedule object at 0x7f9d45305d80>, skip_leadership_schedule = None, cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7f9d45074520>\ncluster = <ClusterLib: protocol=cardano, tx_era=babbage>\n\n    @allure.link(helpers.get_vcs_link())\n    def test_unstable_stake_distribution(\n        self,\n        skip_leadership_schedule: None,\n        cluster_manager: cluster_management.ClusterManager,\n        cluster: clusterlib.ClusterLib,\n    ):\n        \"\"\"Try to query leadership schedule for next epoch when stake distribution is unstable.\n    \n        Expect failure.\n        \"\"\"\n        # pylint: disable=unused-argument\n        common.get_test_id(cluster)\n    \n        pool_name = cluster_management.Resources.POOL3\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n    \n        # wait for epoch interval where stake distribution for next epoch is unstable,\n        # that is anytime before last 300 slots of current epoch\n        clusterlib_utils.wait_for_epoch_interval(\n            cluster_obj=cluster,\n            start=5,\n            stop=-int(300 * cluster.slot_length + 5),\n        )\n    \n        # it should NOT be possible to query leadership schedule\n        with pytest.raises(clusterlib.CLIError) as excinfo:\n            cluster.get_leadership_schedule(\n                vrf_skey_file=pool_rec[\"vrf_key_pair\"].skey_file,\n                cold_vkey_file=pool_rec[\"cold_key_pair\"].vkey_file,\n                for_next=True,\n            )\n        err_str = str(excinfo.value)\n    \n        # TODO: the query is currently broken\n        if \"currently broken\" in err_str:\n            pytest.xfail(\"`query leadership-schedule` is currently broken\")\n        if \"PastHorizon\" in err_str:\n>           pytest.xfail(\"`query leadership-schedule` is affected by cardano-node issue 4002\")\nE           _pytest.outcomes.XFailed: `query leadership-schedule` is affected by cardano-node issue 4002\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_blocks.py:177: XFailed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "skip_leadership_schedule",
+    "time" : {
+      "start" : 1655378947996,
+      "stop" : 1655378948008,
+      "duration" : 12
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655378948008,
+      "stop" : 1655378948008,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655378948008,
+      "stop" : 1655378948008,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655378948009,
+      "stop" : 1655378948009,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655373710760,
+      "stop" : 1655373710760,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1655378948009,
+      "stop" : 1655378948278,
+      "duration" : 269
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655378947996,
+      "stop" : 1655378947996,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710759,
+      "duration" : 251
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655378950943,
+      "stop" : 1655378950943,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655378950938,
+      "stop" : 1655378950943,
+      "duration" : 5
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655379161138,
+      "stop" : 1655379161138,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655379161135,
+      "stop" : 1655379161137,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_blocks"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLeadershipSchedule"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "937884-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_blocks"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/5d08b899119223417f547201afa5b4191ba973c2/cardano_node_tests/tests/test_blocks.py#L139",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/5d08b899119223417f547201afa5b4191ba973c2/cardano_node_tests/tests/test_blocks.py#L139",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "f52b6a4e4cc79010",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655373707039,
+        "stop" : 1655373707039,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "smoke" ]
+  },
+  "source" : "62f311f474dc3dc3.json",
+  "parameterValues" : [ ]
+}

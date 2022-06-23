@@ -1,0 +1,326 @@
+{
+  "uid" : "69a152014fa32915",
+  "name" : "test_context_equivalance",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking#test_context_equivalance",
+  "historyId" : "3ca6059680f7ea5a060cf0ce1dc6e51f",
+  "time" : {
+    "start" : 1646055252773,
+    "stop" : 1646055254573,
+    "duration" : 1800
+  },
+  "description" : "Test context equivalence while spending a locked UTxO.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        * create a Tx ouput with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * generate a dummy redeemer and a dummy Tx\n        * derive the correct redeemer from the dummy Tx\n        * spend the locked UTxO using the derived redeemer\n        * check that the expected amount was spent\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test context equivalence while spending a locked UTxO.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    * create a Tx ouput with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * generate a dummy redeemer and a dummy Tx\n    * derive the correct redeemer from the dummy Tx\n    * spend the locked UTxO using the derived redeemer\n    * check that the expected amount was spent\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: An error occurred while running `['create-script-context', '--generate-tx', 'test_context_equivalance_ci0_lya_dummy_step2_tx.signed', '--out-file', 'test_context_equivalance_ci0_lya_script_context.redeemer', '--cardano-mode', '--testnet-magic', '42']`: create-script-context: Error creating redeemer from: test_context_equivalance_ci0_lya_dummy_step2_tx.signed Error: ReadTxBodyError (FileError \"test_context_equivalance_ci0_lya_dummy_step2_tx.signed\" (TextEnvelopeTypeError [TextEnvelopeType \"Tx AlonzoEra\"] (TextEnvelopeType \"Witnessed Tx AlonzoEra\")))\nCallStack (from HasCallStack):\n  error, called at app/create-script-context.hs:69:21 in main:Main",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking object at 0x7fb7b75aca00>, cluster_lock_context_eq = <ClusterLib: protocol=cardano, tx_era=>\npool_users_lock_context_eq = [PoolUser(payment=AddressRecord(address='addr_test1qzs29qdj2f76hy325e2mrwnch758jqvrdl42gcmzfu966f0cr42eukmvyg32xqhwws7...t_lock_context_eq_ci0_addr1_stake.vkey'), skey_file=PosixPath('plutus_payment_lock_context_eq_ci0_addr1_stake.skey')))]\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.skipif(\n        not distutils.spawn.find_executable(\"create-script-context\"),\n        reason=\"cannot find `create-script-context` on the PATH\",\n    )\n    @pytest.mark.dbsync\n    @pytest.mark.testnets\n    def test_context_equivalance(\n        self,\n        cluster_lock_context_eq: clusterlib.ClusterLib,\n        pool_users_lock_context_eq: List[clusterlib.PoolUser],\n    ):\n        \"\"\"Test context equivalence while spending a locked UTxO.\n    \n        Uses `cardano-cli transaction build` command for building the transactions.\n    \n        * create a Tx ouput with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * generate a dummy redeemer and a dummy Tx\n        * derive the correct redeemer from the dummy Tx\n        * spend the locked UTxO using the derived redeemer\n        * check that the expected amount was spent\n        * (optional) check transactions in db-sync\n        \"\"\"\n        cluster = cluster_lock_context_eq\n        temp_template = common.get_test_id(cluster)\n        amount = 10_000_000\n        deposit_amount = cluster.get_address_deposit()\n    \n        # create stake address registration cert\n        stake_addr_reg_cert_file = cluster.gen_stake_addr_registration_cert(\n            addr_name=f\"{temp_template}_addr2\",\n            stake_vkey_file=pool_users_lock_context_eq[0].stake.vkey_file,\n        )\n    \n        tx_files = clusterlib.TxFiles(certificate_files=[stake_addr_reg_cert_file])\n    \n        # generate a dummy redeemer in order to create a txbody from which\n        # we can generate a tx and then derive the correct redeemer\n        redeemer_file_dummy = Path(f\"{temp_template}_dummy_script_context.redeemer\")\n        clusterlib_utils.create_script_context(\n            cluster_obj=cluster, redeemer_file=redeemer_file_dummy\n        )\n    \n        plutus_op_dummy = plutus_spend.PlutusOp(\n            script_file=plutus_spend.CONTEXT_EQUIVALENCE_PLUTUS,\n            datum_file=plutus_spend.PLUTUS_DIR / \"typed-42.datum\",\n            redeemer_file=redeemer_file_dummy,\n        )\n    \n        # fund the script address\n        tx_output_fund = _build_fund_script(\n            temp_template=temp_template,\n            cluster_obj=cluster,\n            payment_addr=pool_users_lock_context_eq[0].payment,\n            dst_addr=pool_users_lock_context_eq[1].payment,\n            plutus_op=plutus_op_dummy,\n        )\n    \n        txid = cluster.get_txid(tx_body_file=tx_output_fund.out_file)\n        script_utxos = cluster.get_utxo(txin=f\"{txid}#1\")\n        collateral_utxos = cluster.get_utxo(txin=f\"{txid}#2\")\n        invalid_hereafter = cluster.get_slot_no() + 1000\n    \n        __, tx_output_dummy = _build_spend_locked_txin(\n            temp_template=f\"{temp_template}_dummy\",\n            cluster_obj=cluster,\n            payment_addr=pool_users_lock_context_eq[0].payment,\n            dst_addr=pool_users_lock_context_eq[1].payment,\n            script_utxos=script_utxos,\n            collateral_utxos=collateral_utxos,\n            plutus_op=plutus_op_dummy,\n            amount=amount,\n            deposit_amount=deposit_amount,\n            tx_files=tx_files,\n            invalid_before=1,\n            invalid_hereafter=invalid_hereafter,\n            script_valid=False,\n            submit_tx=False,\n        )\n        assert tx_output_dummy\n    \n        # generate the \"real\" redeemer\n        redeemer_file = Path(f\"{temp_template}_script_context.redeemer\")\n        tx_file_dummy = Path(f\"{tx_output_dummy.out_file.with_suffix('')}.signed\")\n>       clusterlib_utils.create_script_context(\n            cluster_obj=cluster, redeemer_file=redeemer_file, tx_file=tx_file_dummy\n        )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_plutus_spend_build.py:579: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/clusterlib_utils.py:884: in create_script_context\n    helpers.run_command(cmd_args)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncommand = ['create-script-context', '--generate-tx', 'test_context_equivalance_ci0_lya_dummy_step2_tx.signed', '--out-file', 'test_context_equivalance_ci0_lya_script_context.redeemer', '--cardano-mode', ...], workdir = '', ignore_fail = False, shell = False\n\n    def run_command(\n        command: Union[str, list],\n        workdir: FileType = \"\",\n        ignore_fail: bool = False,\n        shell: bool = False,\n    ) -> bytes:\n        \"\"\"Run command.\"\"\"\n        cmd: Union[str, list]\n        if isinstance(command, str):\n            cmd = command if shell else command.split()\n        else:\n            cmd = command\n    \n        # pylint: disable=consider-using-with\n        if workdir:\n            with change_cwd(workdir):\n                p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=shell)\n        else:\n            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=shell)\n        stdout, stderr = p.communicate()\n    \n        if not ignore_fail and p.returncode != 0:\n            err_dec = stderr.decode()\n            err_dec = err_dec or stdout.decode()\n>           raise AssertionError(f\"An error occurred while running `{command}`: {err_dec}\")\nE           AssertionError: An error occurred while running `['create-script-context', '--generate-tx', 'test_context_equivalance_ci0_lya_dummy_step2_tx.signed', '--out-file', 'test_context_equivalance_ci0_lya_script_context.redeemer', '--cardano-mode', '--testnet-magic', '42']`: create-script-context: Error creating redeemer from: test_context_equivalance_ci0_lya_dummy_step2_tx.signed Error: ReadTxBodyError (FileError \"test_context_equivalance_ci0_lya_dummy_step2_tx.signed\" (TextEnvelopeTypeError [TextEnvelopeType \"Tx AlonzoEra\"] (TextEnvelopeType \"Witnessed Tx AlonzoEra\")))\nE           CallStack (from HasCallStack):\nE             error, called at app/create-script-context.hs:69:21 in main:Main\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/utils/helpers.py:114: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646055249859,
+      "stop" : 1646055249859,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_context_eq",
+    "time" : {
+      "start" : 1646055249859,
+      "stop" : 1646055250019,
+      "duration" : 160
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646055235040,
+      "stop" : 1646055235040,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646055249859,
+      "stop" : 1646055249859,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users_lock_context_eq",
+    "time" : {
+      "start" : 1646055250019,
+      "stop" : 1646055252772,
+      "duration" : 2753
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580531,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646055249859,
+      "stop" : 1646055249859,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646053580531,
+      "stop" : 1646053580531,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646053580530,
+      "stop" : 1646053580530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646055254619,
+      "stop" : 1646055254623,
+      "duration" : 4
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646058239673,
+      "stop" : 1646058239677,
+      "duration" : 4
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646055254624,
+      "stop" : 1646055254624,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646058239682,
+      "stop" : 1646058239682,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='cannot find `create-script-context` on the PATH')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1024832-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/feeeb6d42b1c61594b0eebe50360e382d1882198/cardano_node_tests/tests/test_plutus_spend_build.py#L494",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/feeeb6d42b1c61594b0eebe50360e382d1882198/cardano_node_tests/tests/test_plutus_spend_build.py#L494",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "ed31becd93fd93d6",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646053577490,
+        "stop" : 1646053577490,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='cannot find `create-script-context` on the PATH')", "dbsync", "testnets" ]
+  },
+  "source" : "69a152014fa32915.json",
+  "parameterValues" : [ ]
+}

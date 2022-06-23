@@ -1,0 +1,352 @@
+{
+  "uid" : "d948713bcd071ddd",
+  "name" : "test_transfer_tokens[build-10]",
+  "fullName" : "cardano_node_tests.tests.test_native_tokens.TestTransfer#test_transfer_tokens",
+  "historyId" : "ad4163663302f60d538d9c8e4c522b3d",
+  "time" : {
+    "start" : 1655371487987,
+    "stop" : 1655371521689,
+    "duration" : 33702
+  },
+  "description" : "Test sending tokens to payment address.\n\n        * send tokens from 1 source address to 1 destination address\n        * check expected token balances for both source and destination addresses\n        * check fees in Lovelace\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test sending tokens to payment address.</p>\n<pre><code>    * send tokens from 1 source address to 1 destination address\n    * check expected token balances for both source and destination addresses\n    * check fees in Lovelace\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:17874]\u001B[0m [2022-06-16 09:25:20.26 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 107.23.61.45:3001) HandshakeClientFailure\n\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 09:25:20.26 UTC] TracePromoteColdFailed 50 21 107.23.61.45:3001 160.232053016327s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))",
+  "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7f5a5dd65a20>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/allure_commons/_allure.py:200: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/conftest.py:290: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/cluster_management.py:357: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout'), '\\x1b[31m[bender-3:cardano.node....ionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       raise AssertionError(f\"Errors found in cluster log files:\\n{err_joined}\") from None\nE       AssertionError: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:17874]\u001B[0m [2022-06-16 09:25:20.26 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 107.23.61.45:3001) HandshakeClientFailure\nE       \nE       /home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 09:25:20.26 UTC] TracePromoteColdFailed 50 21 107.23.61.45:3001 160.232053016327s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\n\n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/logfiles.py:253: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655371358688,
+      "stop" : 1655371358688,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655371358688,
+      "stop" : 1655371358688,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655369880145,
+      "stop" : 1655369880146,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655371111838,
+      "stop" : 1655371111838,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1655371358689,
+      "stop" : 1655371358944,
+      "duration" : 255
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "new_token",
+    "time" : {
+      "start" : 1655371479682,
+      "stop" : 1655371487986,
+      "duration" : 8304
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1655371358944,
+      "stop" : 1655371479681,
+      "duration" : 120737
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655369880145,
+      "stop" : 1655369880145,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655371358689,
+      "stop" : 1655371358689,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655369880448,
+      "stop" : 1655369880448,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880447,
+      "duration" : 301
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655371521695,
+      "stop" : 1655371521695,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655371521691,
+      "stop" : 1655371521694,
+      "duration" : 3
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:17874]\u001B[0m [2022-06-16 09:25:20.26 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 107.23.61.45:3001) HandshakeClientFailure\n\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 09:25:20.26 UTC] TracePromoteColdFailed 50 21 107.23.61.45:3001 160.232053016327s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/allure_commons/_allure.py\", line 200, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/_pytest/fixtures.py\", line 941, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/conftest.py\", line 290, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/cluster_management.py\", line 357, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/logfiles.py\", line 253, in report_artifacts_errors\n    raise AssertionError(f\"Errors found in cluster log files:\\n{err_joined}\") from None\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655381263643,
+      "stop" : 1655381263643,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655381263641,
+      "stop" : 1655381263642,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='cannot use `build` with cluster era 'babbage' and TX era 'babbage'')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_native_tokens"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "868928-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_native_tokens"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "10"
+  }, {
+    "name" : "use_build_cmd",
+    "value" : "True"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/226d3f30ecdb15f2868842956c7979f6179e24a9/cardano_node_tests/tests/test_native_tokens.py#L1582",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/226d3f30ecdb15f2868842956c7979f6179e24a9/cardano_node_tests/tests/test_native_tokens.py#L1582",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "d5da944477590171",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655369876175,
+        "stop" : 1655369876175,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "dbsync", "smoke", "testnets", "@pytest.mark.skipif(False, reason='cannot use `build` with cluster era 'babbage' and TX era 'babbage'')" ]
+  },
+  "source" : "d948713bcd071ddd.json",
+  "parameterValues" : [ "10", "True" ]
+}

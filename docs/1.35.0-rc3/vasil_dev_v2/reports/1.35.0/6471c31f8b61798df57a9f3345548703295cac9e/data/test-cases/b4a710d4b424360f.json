@@ -1,0 +1,331 @@
+{
+  "uid" : "b4a710d4b424360f",
+  "name" : "test_no_datum_txout[plutus_v1]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_raw.TestNegativeDatum#test_no_datum_txout",
+  "historyId" : "b5f7189a30eb23574f09e29257bfc0bb",
+  "time" : {
+    "start" : 1655377793620,
+    "stop" : 1655377902336,
+    "duration" : 108716
+  },
+  "description" : "Test using UTxO without datum hash in place of locked UTxO.\n\n        Expect failure.\n\n        * create a Tx output without a datum hash\n        * try to spend the UTxO like it was locked Plutus UTxO\n        * check that the expected error was raised\n        ",
+  "descriptionHtml" : "<p>Test using UTxO without datum hash in place of locked UTxO.</p>\n<pre><code>    Expect failure.\n\n    * create a Tx output without a datum hash\n    * try to spend the UTxO like it was locked Plutus UTxO\n    * check that the expected error was raised\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:75958]\u001B[0m [2022-06-16 11:10:24.72 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 13.58.186.18:8081) HandshakeClientFailure\n\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 11:10:24.72 UTC] TracePromoteColdFailed 50 21 13.58.186.18:8081 158.338040851222s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))",
+  "statusTrace" : "self = <allure_commons._allure.fixture object at 0x7f26e27c9990>, args = (), kwargs = {}\n\n    def __call__(self, *args, **kwargs):\n        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)\n    \n        with self:\n>           return self._fixture_function(*args, **kwargs)\n\n/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/allure_commons/_allure.py:200: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/conftest.py:290: in cluster_manager\n    cluster_manager_obj.on_test_stop()\n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/cluster_management.py:357: in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nerrors = [(PosixPath('/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout'), '\\x1b[31m[bender-3:cardano.node....ionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\\n')]\n\n    def report_artifacts_errors(errors: List[Tuple[Path, str]]) -> None:\n        \"\"\"Report errors found in artifacts.\"\"\"\n        err = [f\"{e[0]}: {e[1]}\" for e in errors]\n        err_joined = \"\\n\".join(err)\n>       raise AssertionError(f\"Errors found in cluster log files:\\n{err_joined}\") from None\nE       AssertionError: Errors found in cluster log files:\nE       /home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:75958]\u001B[0m [2022-06-16 11:10:24.72 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 13.58.186.18:8081) HandshakeClientFailure\nE       \nE       /home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 11:10:24.72 UTC] TracePromoteColdFailed 50 21 13.58.186.18:8081 158.338040851222s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\n\n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/logfiles.py:253: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1655377175335,
+      "stop" : 1655377793619,
+      "duration" : 618284
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655377175072,
+      "stop" : 1655377175072,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655375762414,
+      "stop" : 1655375762414,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880147,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655369880144,
+      "stop" : 1655369880145,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655377175071,
+      "stop" : 1655377175071,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655369880144,
+      "stop" : 1655369880144,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655377175072,
+      "stop" : 1655377175072,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1655377175072,
+      "stop" : 1655377175335,
+      "duration" : 263
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655369880147,
+      "stop" : 1655369880147,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655381463201,
+      "stop" : 1655381463201,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655381463198,
+      "stop" : 1655381463199,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655377902341,
+      "stop" : 1655377902341,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655377902338,
+      "stop" : 1655377902340,
+      "duration" : 2
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:75958]\u001B[0m [2022-06-16 11:10:24.72 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 13.58.186.18:8081) HandshakeClientFailure\n\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 11:10:24.72 UTC] TracePromoteColdFailed 50 21 13.58.186.18:8081 158.338040851222s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/allure_commons/_allure.py\", line 200, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/_pytest/fixtures.py\", line 941, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/conftest.py\", line 290, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/cluster_management.py\", line 357, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/logfiles.py\", line 253, in report_artifacts_errors\n    raise AssertionError(f\"Errors found in cluster log files:\\n{err_joined}\") from None\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_raw"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestNegativeDatum"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "868867-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_raw"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "plutus_version",
+    "value" : "'v1'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/226d3f30ecdb15f2868842956c7979f6179e24a9/cardano_node_tests/tests/test_plutus_spend_raw.py#L2451",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/226d3f30ecdb15f2868842956c7979f6179e24a9/cardano_node_tests/tests/test_plutus_spend_raw.py#L2451",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "d48b7f9e56129ddd",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655369876309,
+        "stop" : 1655369876309,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')", "smoke", "testnets" ]
+  },
+  "source" : "b4a710d4b424360f.json",
+  "parameterValues" : [ "'v1'" ]
+}

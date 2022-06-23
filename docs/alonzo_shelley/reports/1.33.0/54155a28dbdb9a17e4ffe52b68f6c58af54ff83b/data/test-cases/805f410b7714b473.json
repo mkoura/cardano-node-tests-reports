@@ -1,0 +1,74 @@
+{
+  "uid" : "805f410b7714b473",
+  "name" : "test_same_collateral_txin",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking#test_same_collateral_txin",
+  "historyId" : "c89136d6196ce869040cd2c3e0b6c7bc",
+  "time" : {
+    "start" : 1645625124616,
+    "stop" : 1645625124616,
+    "duration" : 0
+  },
+  "description" : "Test spending the locked UTxO while using the same UTxO as collateral.\n\n        Expect failure.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        * create a Tx ouput with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * try to spend the locked UTxO while using the same UTxO as collateral\n        * check that the expected error was raised\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test spending the locked UTxO while using the same UTxO as collateral.</p>\n<pre><code>    Expect failure.\n\n    Uses `cardano-cli transaction build` command for building the transactions.\n\n    * create a Tx ouput with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * try to spend the locked UTxO while using the same UTxO as collateral\n    * check that the expected error was raised\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: cannot use `build` with cluster era 'alonzo' and TX era 'shelley'",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_plutus_spend_build.py', 883, \"Skipped: cannot use `build` with cluster era 'alonzo' and TX era 'shelley'\")",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='cannot use `build` with cluster era 'alonzo' and TX era 'shelley'')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "200261-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_plutus_spend_build.py#L883",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/cc6ae387c340c9298e72c7a1e1c8e33a983863e3/cardano_node_tests/tests/test_plutus_spend_build.py#L883",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(True, reason='cannot use `build` with cluster era 'alonzo' and TX era 'shelley'')", "dbsync", "testnets", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "805f410b7714b473.json",
+  "parameterValues" : [ ]
+}

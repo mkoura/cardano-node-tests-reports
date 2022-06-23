@@ -1,0 +1,80 @@
+{
+  "uid" : "40d0a1a0f20911a6",
+  "name" : "test_collateral_is_txin[plutus_v1]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking#test_collateral_is_txin",
+  "historyId" : "908e6bd5391579143473c0032f89eca4",
+  "time" : {
+    "start" : 1655297029205,
+    "stop" : 1655297029205,
+    "duration" : 0
+  },
+  "description" : "Test spending the locked UTxO while using single UTxO for both collateral and Tx input.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        Tests bug https://github.com/input-output-hk/cardano-db-sync/issues/750\n\n        * create a Tx output with a datum hash at the script address and a collateral UTxO\n        * check that the expected amount was locked at the script address\n        * spend the locked UTxO while using the collateral UTxO both as collateral and as\n          normal Tx input\n        * check that the expected amount was spent\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test spending the locked UTxO while using single UTxO for both collateral and Tx input.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    Tests bug https://github.com/input-output-hk/cardano-db-sync/issues/750\n\n    * create a Tx output with a datum hash at the script address and a collateral UTxO\n    * check that the expected amount was locked at the script address\n    * spend the locked UTxO while using the collateral UTxO both as collateral and as\n      normal Tx input\n    * check that the expected amount was spent\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_plutus_spend_build.py', 1289, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2628521-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "plutus_version",
+    "value" : "'v1'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/8ffd5f584f209758dcaffc3aada8f8fe66093dc3/cardano_node_tests/tests/test_plutus_spend_build.py#L1289",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/8ffd5f584f209758dcaffc3aada8f8fe66093dc3/cardano_node_tests/tests/test_plutus_spend_build.py#L1289",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')", "dbsync", "smoke", "testnets", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "40d0a1a0f20911a6.json",
+  "parameterValues" : [ "'v1'" ]
+}

@@ -1,0 +1,307 @@
+{
+  "uid" : "727a2b3ae66bc7c0",
+  "name" : "test_pay_multi_stake_addrs",
+  "fullName" : "cardano_node_tests.tests.test_mir_certs.TestMIRCerts#test_pay_multi_stake_addrs",
+  "historyId" : "7870a00778569a584de6ac41191034c1",
+  "time" : {
+    "start" : 1646643947368,
+    "stop" : 1646643947368,
+    "duration" : 0
+  },
+  "description" : "Send funds from the reserves and treasury pots to multiple stake addresses in single TX.\n\n        * generate an MIR certificates for transferring from treasury for each stake address\n        * generate an MIR certificates for transferring from reserves for each stake address\n        * submit a TX with all the MIR certificates generated in previous steps\n        * check that the expected amount was added to all stake address reward accounts\n        * (optional) check transaction in db-sync\n        ",
+  "descriptionHtml" : "<p>Send funds from the reserves and treasury pots to multiple stake addresses in single TX.</p>\n<pre><code>    * generate an MIR certificates for transferring from treasury for each stake address\n    * generate an MIR certificates for transferring from reserves for each stake address\n    * submit a TX with all the MIR certificates generated in previous steps\n    * check that the expected amount was added to all stake address reward accounts\n    * (optional) check transaction in db-sync\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "RuntimeError: All clusters are dead, cannot run.",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_mir_certs.TestMIRCerts object at 0x7fd2cbeac040>, cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7fd2cbeebe50>\n\n    @pytest.fixture\n    def cluster_pots(\n        self,\n        cluster_manager: cluster_management.ClusterManager,\n    ) -> clusterlib.ClusterLib:\n>       return cluster_manager.get(\n            lock_resources=[\n                cluster_management.Resources.RESERVES,\n                cluster_management.Resources.TREASURY,\n            ]\n        )\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_mir_certs.py:48: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:345: in get\n    return _ClusterGetter(self).get(\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:960: in get\n    self._cleanup_dead_clusters(cget_status)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <cardano_node_tests.utils.cluster_management._ClusterGetter object at 0x7fd2cbeebc40>\ncget_status = ClusterGetStatus(mark='', lock_resources=['reserves', 'treasury'], use_resources=['cluster'], cleanup=False, start_cmd...ardano-node-tests5/tmp/pytest-of-martink/pytest-17/cluster0'), started_tests=(), marked_starting=(), marked_running=())\n\n    def _cleanup_dead_clusters(self, cget_status: ClusterGetStatus) -> None:\n        \"\"\"Cleanup if the selected cluster instance failed to start.\"\"\"\n        # move on to other cluster instance\n        cget_status.selected_instance = -1\n        cget_status.restart_here = False\n        cget_status.restart_ready = False\n    \n        # remove status files that are checked by other workers\n        for sf in (\n            *cget_status.instance_dir.glob(f\"{TEST_CURR_MARK_GLOB}_*\"),\n            *cget_status.instance_dir.glob(f\"{TEST_MARK_STARTING_GLOB}_*\"),\n        ):\n            sf.unlink()\n    \n        dead_clusters = list(\n            self.cm.pytest_tmp_dir.glob(f\"{CLUSTER_DIR_TEMPLATE}*/{CLUSTER_DEAD_FILE}\")\n        )\n        if len(dead_clusters) == self.cm.num_of_instances:\n>           raise RuntimeError(\"All clusters are dead, cannot run.\")\nE           RuntimeError: All clusters are dead, cannot run.\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:767: RuntimeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646643926613,
+      "stop" : 1646643926613,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646643947369,
+      "stop" : 1646643947369,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646643926613,
+      "stop" : 1646643926613,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_pots",
+    "time" : {
+      "start" : 1646643947369,
+      "stop" : 1646643947369,
+      "duration" : 0
+    },
+    "status" : "broken",
+    "statusMessage" : "RuntimeError: All clusters are dead, cannot run.\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 932, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_mir_certs.py\", line 48, in cluster_pots\n    return cluster_manager.get(\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 345, in get\n    return _ClusterGetter(self).get(\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 960, in get\n    self._cleanup_dead_clusters(cget_status)\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 767, in _cleanup_dead_clusters\n    raise RuntimeError(\"All clusters are dead, cannot run.\")\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646643947369,
+      "stop" : 1646643947369,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646643947369,
+      "stop" : 1646643947369,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646643926612,
+      "stop" : 1646643926612,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646643926612,
+      "stop" : 1646643926613,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646643926612,
+      "stop" : 1646643926612,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646643947369,
+      "stop" : 1646643947369,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646643926613,
+      "stop" : 1646643926613,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646643949444,
+      "stop" : 1646643949445,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646643947423,
+      "stop" : 1646643947423,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646643947423,
+      "stop" : 1646643947423,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646643949447,
+      "stop" : 1646643949447,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_mir_certs"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMIRCerts"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3308012-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_mir_certs"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_mir_certs.py#L710",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_mir_certs.py#L710",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "318709a165fab34c",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646643923476,
+        "stop" : 1646643923476,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "dbsync" ]
+  },
+  "source" : "727a2b3ae66bc7c0.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,74 @@
+{
+  "uid" : "aa9f400fd664369d",
+  "name" : "test_expired_kes",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_expired_kes",
+  "historyId" : "645778925c1a930670218bcffec54805",
+  "time" : {
+    "start" : 1655848546737,
+    "stop" : 1655848546737,
+    "duration" : 0
+  },
+  "description" : "Test expired KES.\n\n        * start local cluster instance configured with short KES period and low number of key\n          evolutions, so KES expires soon on all pools\n        * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n          the pools keep minting blocks\n        * wait for KES expiration on the selected pool\n        * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n          KES expiration\n        * check KES period info command with an operational certificate with an expired KES\n        * check KES period info command with operational certificates with a valid KES\n        ",
+  "descriptionHtml" : "<p>Test expired KES.</p>\n<pre><code>    * start local cluster instance configured with short KES period and low number of key\n      evolutions, so KES expires soon on all pools\n    * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n      the pools keep minting blocks\n    * wait for KES expiration on the selected pool\n    * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n      KES expiration\n    * check KES period info command with an operational certificate with an expired KES\n    * check KES period info command with operational certificates with a valid KES\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_kes.py', 143, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(5)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='meant to run only with the latest or default cluster era and transaction era')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "255197-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/d97089adfe84986d7ee0c627f7522658310aeabf/cardano_node_tests/tests/test_kes.py#L143",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/d97089adfe84986d7ee0c627f7522658310aeabf/cardano_node_tests/tests/test_kes.py#L143",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='meant to run only with the latest or default cluster era and transaction era')", "@pytest.mark.skip(reason='collected, not run')", "long", "order(5)" ]
+  },
+  "source" : "aa9f400fd664369d.json",
+  "parameterValues" : [ ]
+}

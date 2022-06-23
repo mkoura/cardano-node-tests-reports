@@ -1,0 +1,77 @@
+{
+  "uid" : "38ced074c962e832",
+  "name" : "test_2_pools_same_reward_addr",
+  "fullName" : "cardano_node_tests.tests.test_staking.TestRewards#test_2_pools_same_reward_addr",
+  "historyId" : "9f4aacf4d471167a1ed636b5cdcbdb39",
+  "time" : {
+    "start" : 1646412543487,
+    "stop" : 1646412543487,
+    "duration" : 0
+  },
+  "description" : "Check that one reward address used for two pools receives rewards for both of them.\n\n        * set pool2 reward address to the reward address of pool1 by resubmitting the pool\n          registration certificate\n        * collect data for both pool1 and pool2 for several epochs and with the help of db-sync\n\n           - check that the original reward address for pool2 is NOT receiving rewards\n           - check that the reward address for pool1 is now receiving rewards for both pools\n\n        * check records in db-sync\n\n           - transaction inputs, outputs, withdrawals, etc.\n           - reward amounts received each epoch\n           - expected pool ids\n        ",
+  "descriptionHtml" : "<p>Check that one reward address used for two pools receives rewards for both of them.</p>\n<pre><code>    * set pool2 reward address to the reward address of pool1 by resubmitting the pool\n      registration certificate\n    * collect data for both pool1 and pool2 for several epochs and with the help of db-sync\n\n       - check that the original reward address for pool2 is NOT receiving rewards\n       - check that the reward address for pool1 is now receiving rewards for both pools\n\n    * check records in db-sync\n\n       - transaction inputs, outputs, withdrawals, etc.\n       - reward amounts received each epoch\n       - expected pool ids\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_staking.py', 2087, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "needs_dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='needs Allegra+ TX to run')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2395830-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/edaeb38afe8445b93546d3d64261a0e26a613923/cardano_node_tests/tests/test_staking.py#L2087",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/edaeb38afe8445b93546d3d64261a0e26a613923/cardano_node_tests/tests/test_staking.py#L2087",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "needs_dbsync", "@pytest.mark.skip(reason='collected, not run')", "order(6)", "@pytest.mark.skipif(False, reason='needs Allegra+ TX to run')", "long" ]
+  },
+  "source" : "38ced074c962e832.json",
+  "parameterValues" : [ ]
+}

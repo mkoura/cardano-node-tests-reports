@@ -1,0 +1,319 @@
+{
+  "uid" : "390d81037beb973e",
+  "name" : "test_oversaturated",
+  "fullName" : "cardano_node_tests.tests.test_pool_saturation.TestPoolSaturation#test_oversaturated",
+  "historyId" : "490e42a87b92cae44ba9cd4541753ea8",
+  "time" : {
+    "start" : 1655988549431,
+    "stop" : 1655990675370,
+    "duration" : 2125939
+  },
+  "description" : "Check diminished rewards when stake pool is oversaturated.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards, but the rewards are proportionally lower than those received from stake pool\n        that is not oversaturated.\n\n        * register and delegate stake address in \"init epoch\", for all available pools\n        * in \"init epoch\" + 2, saturate all available pools (block distribution remains balanced\n          among pools)\n        * in \"init epoch\" + 3, oversaturate one pool\n        * in \"init epoch\" + 5, for all available pools, withdraw rewards and transfer funds\n          from delegated addresses so pools are no longer (over)saturated\n        * while doing the steps above, collect rewards data for 9 epochs\n        * compare proportionality of rewards in epochs where pools were non-saturated,\n          saturated and oversaturated\n        ",
+  "descriptionHtml" : "<p>Check diminished rewards when stake pool is oversaturated.</p>\n<pre><code>    The stake pool continues to operate normally and those who delegate to that pool receive\n    rewards, but the rewards are proportionally lower than those received from stake pool\n    that is not oversaturated.\n\n    * register and delegate stake address in &quot;init epoch&quot;, for all available pools\n    * in &quot;init epoch&quot; + 2, saturate all available pools (block distribution remains balanced\n      among pools)\n    * in &quot;init epoch&quot; + 3, oversaturate one pool\n    * in &quot;init epoch&quot; + 5, for all available pools, withdraw rewards and transfer funds\n      from delegated addresses so pools are no longer (over)saturated\n    * while doing the steps above, collect rewards data for 9 epochs\n    * compare proportionality of rewards in epochs where pools were non-saturated,\n      saturated and oversaturated\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655987110033,
+      "stop" : 1655987110034,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655987110033,
+      "stop" : 1655987110033,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_pools",
+    "time" : {
+      "start" : 1655987110034,
+      "stop" : 1655988549430,
+      "duration" : 1439396
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655987109681,
+      "stop" : 1655987109681,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655987110034,
+      "stop" : 1655987110034,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655987110033,
+      "stop" : 1655987110033,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655987109681,
+      "stop" : 1655987109681,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655987110034,
+      "stop" : 1655987110034,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655987109680,
+      "stop" : 1655987109681,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655987109681,
+      "stop" : 1655987109681,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655987109681,
+      "stop" : 1655987110033,
+      "duration" : 352
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check diminished rewards when stake pool is oversaturated.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards, but the rewards are proportionally lower than those received from stake pool\n        that is not oversaturated.\n\n        * register and delegate stake address in \"init epoch\", for all available pools\n        * in \"init epoch\" + 2, saturate all available pools (block distribution remains balanced\n          among pools)\n        * in \"init epoch\" + 3, oversaturate one pool\n        * in \"init epoch\" + 5, for all available pools, withdraw rewards and transfer funds\n          from delegated addresses so pools are no longer (over)saturated\n        * while doing the steps above, collect rewards data for 9 epochs\n        * compare proportionality of rewards in epochs where pools were non-saturated,\n          saturated and oversaturated\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "c5a97cc1d9db285",
+      "name" : "log",
+      "source" : "c5a97cc1d9db285.txt",
+      "type" : "text/plain",
+      "size" : 1388
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655990676130,
+      "stop" : 1655990676130,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655990675371,
+      "stop" : 1655990676130,
+      "duration" : 759
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655993587644,
+      "stop" : 1655993587644,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655993574614,
+      "stop" : 1655993587643,
+      "duration" : 13029
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(5)"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_pool_saturation"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestPoolSaturation"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3008791-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_pool_saturation"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/59e033d84456a6c50903e143fda1001f83f3a23a/cardano_node_tests/tests/test_pool_saturation.py#L128",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/59e033d84456a6c50903e143fda1001f83f3a23a/cardano_node_tests/tests/test_pool_saturation.py#L128",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "75cee2103427d442",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655987106085,
+        "stop" : 1655987106085,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "long", "order(5)" ]
+  },
+  "source" : "390d81037beb973e.json",
+  "parameterValues" : [ ]
+}

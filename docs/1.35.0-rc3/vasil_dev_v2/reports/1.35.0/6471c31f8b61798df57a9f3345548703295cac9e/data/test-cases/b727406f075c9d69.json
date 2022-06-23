@@ -1,0 +1,334 @@
+{
+  "uid" : "b727406f075c9d69",
+  "name" : "test_partial_spending[plutus_v1]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking#test_partial_spending",
+  "historyId" : "e0066e86b02646bf49e49f6d6052c248",
+  "time" : {
+    "start" : 1655374535768,
+    "stop" : 1655374648911,
+    "duration" : 113143
+  },
+  "description" : "Test spending part of funds (Lovelace and native tokens) on a locked UTxO.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        * create a Tx output that contains native tokens with a datum hash at the script address\n        * check that expected amounts of Lovelace and native tokens were locked at the script\n          address\n        * spend the locked UTxO and create new locked UTxO with change\n        * check that the expected amounts of Lovelace and native tokens were spent\n        * check expected fees\n        * check expected Plutus cost\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test spending part of funds (Lovelace and native tokens) on a locked UTxO.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    * create a Tx output that contains native tokens with a datum hash at the script address\n    * check that expected amounts of Lovelace and native tokens were locked at the script\n      address\n    * spend the locked UTxO and create new locked UTxO with change\n    * check that the expected amounts of Lovelace and native tokens were spent\n    * check expected fees\n    * check expected Plutus cost\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: time: 368100 vs 476468",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking object at 0x7f2c38b91ba0>, cluster = <ClusterLib: protocol=cardano, tx_era=babbage>\npayment_addrs = [AddressRecord(address='addr_test1vrjc86rl7fgpet39fcrvp8fhsudt9my2wdh0fa7y0fp6pxcsfqujs', vkey_file=PosixPath('test_pa...tial_spending_ci0_wvl_payment_addr_1.vkey'), skey_file=PosixPath('test_partial_spending_ci0_wvl_payment_addr_1.skey'))], plutus_version = 'v1'\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.dbsync\n    @pytest.mark.testnets\n    @param_plutus_version\n    def test_partial_spending(\n        self,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n        plutus_version: str,\n    ):\n        \"\"\"Test spending part of funds (Lovelace and native tokens) on a locked UTxO.\n    \n        Uses `cardano-cli transaction build` command for building the transactions.\n    \n        * create a Tx output that contains native tokens with a datum hash at the script address\n        * check that expected amounts of Lovelace and native tokens were locked at the script\n          address\n        * spend the locked UTxO and create new locked UTxO with change\n        * check that the expected amounts of Lovelace and native tokens were spent\n        * check expected fees\n        * check expected Plutus cost\n        * (optional) check transactions in db-sync\n        \"\"\"\n        temp_template = f\"{common.get_test_id(cluster)}_{plutus_version}\"\n    \n        token_rand = clusterlib.get_rand_str(5)\n    \n        amount_spend = 10_000_000\n        token_amount_fund = 100\n        token_amount_spend = 20\n    \n        plutus_op = plutus_common.PlutusOp(\n            script_file=plutus_common.ALWAYS_SUCCEEDS[plutus_version].script_file,\n            datum_file=plutus_common.DATUM_42_TYPED,\n            redeemer_file=plutus_common.REDEEMER_42_TYPED,\n            execution_cost=plutus_common.ALWAYS_SUCCEEDS[plutus_version].execution_cost,\n        )\n    \n        tokens = clusterlib_utils.new_tokens(\n            *[f\"qacoin{token_rand}{i}\".encode(\"utf-8\").hex() for i in range(5)],\n            cluster_obj=cluster,\n            temp_template=f\"{temp_template}_{token_rand}\",\n            token_mint_addr=payment_addrs[0],\n            issuer_addr=payment_addrs[0],\n            amount=token_amount_fund,\n        )\n        tokens_fund_rec = [plutus_common.Token(coin=t.token, amount=t.amount) for t in tokens]\n    \n        script_utxos, collateral_utxos, tx_output_fund = _build_fund_script(\n            temp_template=temp_template,\n            cluster_obj=cluster,\n            payment_addr=payment_addrs[0],\n            dst_addr=payment_addrs[1],\n            plutus_op=plutus_op,\n            tokens=tokens_fund_rec,\n        )\n    \n        tokens_spend_rec = [\n            plutus_common.Token(coin=t.token, amount=token_amount_spend) for t in tokens\n        ]\n    \n        __, tx_output_spend, plutus_cost = _build_spend_locked_txin(\n            temp_template=temp_template,\n            cluster_obj=cluster,\n            payment_addr=payment_addrs[0],\n            dst_addr=payment_addrs[1],\n            script_utxos=script_utxos,\n            collateral_utxos=collateral_utxos,\n            plutus_op=plutus_op,\n            amount=amount_spend,\n            tokens=tokens_spend_rec,\n        )\n    \n        # check that the expected amounts of Lovelace and native tokens were spent and change UTxOs\n        # with appropriate datum hash were created\n    \n        assert tx_output_spend\n        txid_spend = cluster.get_txid(tx_body_file=tx_output_spend.out_file)\n        # UTxO we created for tokens and minimum required Lovelace\n        change_utxos = cluster.get_utxo(txin=f\"{txid_spend}#2\")\n        # UTxO that was created by `build` command for rest of the Lovelace change (this will not\n        # have the script's datum\n        build_change_utxos = cluster.get_utxo(txin=f\"{txid_spend}#0\")\n    \n        # Lovelace balance on original script UTxOs\n        script_lovelace_utxos = [u for u in script_utxos if u.coin == clusterlib.DEFAULT_COIN]\n        script_lovelace_balance = functools.reduce(\n            lambda x, y: x + y.amount, script_lovelace_utxos, 0\n        )\n        # Lovelace balance on change UTxOs\n        change_lovelace_utxos = [\n            u for u in [*change_utxos, *build_change_utxos] if u.coin == clusterlib.DEFAULT_COIN\n        ]\n        change_lovelace_balance = functools.reduce(\n            lambda x, y: x + y.amount, change_lovelace_utxos, 0\n        )\n    \n        assert (\n            change_lovelace_balance == script_lovelace_balance - tx_output_spend.fee - amount_spend\n        )\n    \n        token_amount_exp = token_amount_fund - token_amount_spend\n        assert len(change_utxos) == len(tokens_spend_rec) + 1\n        for u in change_utxos:\n            if u.coin != clusterlib.DEFAULT_COIN:\n                assert u.amount == token_amount_exp\n            assert u.datum_hash == script_utxos[0].datum_hash\n    \n        # check expected fees\n        expected_fee_fund = 173_597\n        assert helpers.is_in_interval(tx_output_fund.fee, expected_fee_fund, frac=0.15)\n    \n        expected_fee = 183_366\n        assert tx_output_spend and helpers.is_in_interval(\n            tx_output_spend.fee, expected_fee, frac=0.15\n        )\n    \n>       plutus_common.check_plutus_cost(\n            plutus_cost=plutus_cost,\n            expected_cost=[plutus_common.ALWAYS_SUCCEEDS[plutus_version].execution_cost],\n        )\n\n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/test_plutus_spend_build.py:1284: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nplutus_cost = [{'executionUnits': {'memory': 1700, 'steps': 368100}, 'lovelaceCost': 125, 'scriptHash': '67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656'}], expected_cost = [ExecutionCost(per_time=476468, per_space=1700, fixed_cost=133)]\n\n    def check_plutus_cost(plutus_cost: List[dict], expected_cost: List[ExecutionCost]):\n        \"\"\"Check plutus transaction cost.\n    \n        units: the time is in picoseconds and the space is in bytes.\n        \"\"\"\n        # sort records by total cost\n        sorted_plutus = sorted(\n            plutus_cost,\n            key=lambda x: x[\"executionUnits\"][\"memory\"]  # type: ignore\n            + x[\"executionUnits\"][\"steps\"]\n            + x[\"lovelaceCost\"],\n        )\n        sorted_expected = sorted(expected_cost, key=lambda x: x.per_space + x.per_time + x.fixed_cost)\n    \n        errors = []\n        for costs, expected_values in zip(sorted_plutus, sorted_expected):\n            tx_time = costs[\"executionUnits\"][\"steps\"]\n            tx_space = costs[\"executionUnits\"][\"memory\"]\n            lovelace_cost = costs[\"lovelaceCost\"]\n    \n            if not helpers.is_in_interval(tx_time, expected_values.per_time, frac=0.15):\n                errors.append(f\"time: {tx_time} vs {expected_values.per_time}\")\n            if not helpers.is_in_interval(tx_space, expected_values.per_space, frac=0.15):\n                errors.append(f\"space: {tx_space} vs {expected_values.per_space}\")\n            if not helpers.is_in_interval(lovelace_cost, expected_values.fixed_cost, frac=0.15):\n                errors.append(f\"fixed cost: {lovelace_cost} vs {expected_values.fixed_cost}\")\n    \n        if errors:\n>           raise AssertionError(\"\\n\".join(errors))\nE           AssertionError: time: 368100 vs 476468\n\n/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/plutus_common.py:162: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655374461116,
+      "stop" : 1655374461116,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655374461116,
+      "stop" : 1655374461116,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655369880144,
+      "stop" : 1655369880144,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1655374461116,
+      "stop" : 1655374461406,
+      "duration" : 290
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1655374461406,
+      "stop" : 1655374535767,
+      "duration" : 74361
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655369880145,
+      "stop" : 1655369880146,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655369880145,
+      "stop" : 1655369880145,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655373004951,
+      "stop" : 1655373004951,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655369880146,
+      "stop" : 1655369880196,
+      "duration" : 50
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655369880144,
+      "stop" : 1655369880145,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655374461116,
+      "stop" : 1655374461116,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655369880196,
+      "stop" : 1655369880197,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655374648942,
+      "stop" : 1655374648944,
+      "duration" : 2
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[31m[bender-3:cardano.node.PeerSelectionActions:Error:47813]\u001B[0m [2022-06-16 10:17:04.16 UTC] PeerStatusChangeFailure (ColdToWarm Nothing 13.58.186.18:8081) HandshakeClientFailure\n\n/home/martink/Source/repos/cardano-node1/state-cluster0/relay1.stdout: \u001B[34m[bender-3:cardano.node.PeerSelection:Info:56]\u001B[0m [2022-06-16 10:17:04.16 UTC] TracePromoteColdFailed 50 21 13.58.186.18:8081 9.83917796978s ClientException (HandshakeProtocolError (HandshakeError (Refused NodeToNodeV_7 \"version data mismatch: NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 764824073}, diffusionMode = InitiatorAndResponderDiffusionMode} /= NodeToNodeVersionData {networkMagic = NetworkMagic {unNetworkMagic = 9}, diffusionMode = InitiatorAndResponderDiffusionMode}\")))\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/allure_commons/_allure.py\", line 200, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/_pytest/fixtures.py\", line 941, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/tests/conftest.py\", line 290, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/cluster_management.py\", line 357, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests1/cardano_node_tests/utils/logfiles.py\", line 253, in report_artifacts_errors\n    raise AssertionError(f\"Errors found in cluster log files:\\n{err_joined}\") from None\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655374648945,
+      "stop" : 1655374648945,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655382172993,
+      "stop" : 1655382172993,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655382172991,
+      "stop" : 1655382172992,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "868881-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "plutus_version",
+    "value" : "'v1'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/226d3f30ecdb15f2868842956c7979f6179e24a9/cardano_node_tests/tests/test_plutus_spend_build.py#L1167",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/226d3f30ecdb15f2868842956c7979f6179e24a9/cardano_node_tests/tests/test_plutus_spend_build.py#L1167",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "4aa0915c769765fa",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655369876223,
+        "stop" : 1655369876223,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')", "dbsync", "smoke", "testnets" ]
+  },
+  "source" : "b727406f075c9d69.json",
+  "parameterValues" : [ "'v1'" ]
+}

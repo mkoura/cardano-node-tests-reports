@@ -1,0 +1,345 @@
+{
+  "uid" : "dc03a4616b85a2fa",
+  "name" : "test_expired_kes",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_expired_kes",
+  "historyId" : "645778925c1a930670218bcffec54805",
+  "time" : {
+    "start" : 1655375147844,
+    "stop" : 1655375497801,
+    "duration" : 349957
+  },
+  "description" : "Test expired KES.\n\n        * start local cluster instance configured with short KES period and low number of key\n          evolutions, so KES expires soon on all pools\n        * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n          the pools keep minting blocks\n        * wait for KES expiration on the selected pool\n        * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n          KES expiration\n        * check KES period info command with an operational certificate with an expired KES\n        * check KES period info command with operational certificates with a valid KES\n        ",
+  "descriptionHtml" : "<p>Test expired KES.</p>\n<pre><code>    * start local cluster instance configured with short KES period and low number of key\n      evolutions, so KES expires soon on all pools\n    * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n      the pools keep minting blocks\n    * wait for KES expiration on the selected pool\n    * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n      KES expiration\n    * check KES period info command with an operational certificate with an expired KES\n    * check KES period info command with operational certificates with a valid KES\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: The pool 'node-pool1' has minted blocks in epoch 8\nassert '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975' not in {'4fbcd6c4df164e3aa2f0c2ee103ac3ed1b940d5eab4f48e451143c6b': 34, '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975': 9, 'd36fdb611780d7e00cb536ca64a642cc691c564b8eab0fe22e26ca00': 41}",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_kes.TestKES object at 0x7fb7c11f1c00>, cluster_kes = <ClusterLib: protocol=cardano, tx_era=babbage>, cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7fb7c11f0f40>, worker_id = 'gw2'\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.order(5)\n    @pytest.mark.long\n    def test_expired_kes(\n        self,\n        cluster_kes: clusterlib.ClusterLib,\n        cluster_manager: cluster_management.ClusterManager,\n        worker_id: str,\n    ):\n        \"\"\"Test expired KES.\n    \n        * start local cluster instance configured with short KES period and low number of key\n          evolutions, so KES expires soon on all pools\n        * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n          the pools keep minting blocks\n        * wait for KES expiration on the selected pool\n        * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n          KES expiration\n        * check KES period info command with an operational certificate with an expired KES\n        * check KES period info command with operational certificates with a valid KES\n        \"\"\"\n        cluster = cluster_kes\n        temp_template = common.get_test_id(cluster)\n    \n        expire_timeout = 200\n        expire_node_name = \"pool1\"\n        expire_pool_name = f\"node-{expire_node_name}\"\n        expire_pool_rec = cluster_manager.cache.addrs_data[expire_pool_name]\n        expire_pool_id = cluster.get_stake_pool_id(expire_pool_rec[\"cold_key_pair\"].vkey_file)\n        expire_pool_id_dec = helpers.decode_bech32(expire_pool_id)\n    \n        # refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n        # the pools keep minting blocks\n        refreshed_nodes = [\"pool2\", \"pool3\"]\n    \n        def _refresh_opcerts():\n            for n in refreshed_nodes:\n                refreshed_pool_rec = cluster_manager.cache.addrs_data[f\"node-{n}\"]\n                refreshed_opcert_file = cluster.gen_node_operational_cert(\n                    node_name=f\"{n}_refreshed_opcert\",\n                    kes_vkey_file=refreshed_pool_rec[\"kes_key_pair\"].vkey_file,\n                    cold_skey_file=refreshed_pool_rec[\"cold_key_pair\"].skey_file,\n                    cold_counter_file=refreshed_pool_rec[\"cold_key_pair\"].counter_file,\n                    kes_period=cluster.get_kes_period(),\n                )\n                shutil.copy(refreshed_opcert_file, refreshed_pool_rec[\"pool_operational_cert\"])\n            cluster_nodes.restart_nodes(refreshed_nodes)\n    \n        _refresh_opcerts()\n    \n        expected_err_regexes = [\"KESKeyAlreadyPoisoned\", \"KESCouldNotEvolve\"]\n        # ignore expected errors in bft1 node log file, as bft1 opcert will not get refreshed\n        logfiles.add_ignore_rule(\n            files_glob=\"bft1.stdout\",\n            regex=\"|\".join(expected_err_regexes),\n            ignore_file_id=worker_id,\n        )\n        # search for expected errors only in log file corresponding to pool with expired KES\n        expected_errors = [(f\"{expire_node_name}.stdout\", err) for err in expected_err_regexes]\n    \n        this_epoch = -1\n        with logfiles.expect_errors(expected_errors, ignore_file_id=worker_id):\n            LOGGER.info(\n                f\"{datetime.datetime.now()}: Waiting for {expire_timeout} sec for KES expiration.\"\n            )\n            time.sleep(expire_timeout)\n    \n            _wait_epoch_chores(\n                cluster_obj=cluster, temp_template=temp_template, this_epoch=this_epoch\n            )\n            this_epoch = cluster.get_epoch()\n    \n            # check that the pool is not producing any blocks\n            blocks_made = clusterlib_utils.get_ledger_state(cluster_obj=cluster)[\"blocksCurrent\"]\n            if blocks_made:\n>               assert (\n                    expire_pool_id_dec not in blocks_made\n                ), f\"The pool '{expire_pool_name}' has minted blocks in epoch {this_epoch}\"\nE               AssertionError: The pool 'node-pool1' has minted blocks in epoch 8\nE               assert '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975' not in {'4fbcd6c4df164e3aa2f0c2ee103ac3ed1b940d5eab4f48e451143c6b': 34, '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975': 9, 'd36fdb611780d7e00cb536ca64a642cc691c564b8eab0fe22e26ca00': 41}\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_kes.py:202: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1655373710709,
+      "stop" : 1655373710709,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1655373710713,
+      "stop" : 1655373710713,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1655373710507,
+      "stop" : 1655373710507,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1655373710712,
+      "stop" : 1655373710713,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "short_kes_start_cluster",
+    "time" : {
+      "start" : 1655373710709,
+      "stop" : 1655373710712,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_kes",
+    "time" : {
+      "start" : 1655373710713,
+      "stop" : 1655375147844,
+      "duration" : 1437131
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1655373710508,
+      "stop" : 1655373710709,
+      "duration" : 201
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1655373710507,
+      "stop" : 1655373710508,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1655373710713,
+      "stop" : 1655373710713,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1655373710713,
+      "stop" : 1655373710713,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Test expired KES.\n\n        * start local cluster instance configured with short KES period and low number of key\n          evolutions, so KES expires soon on all pools\n        * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n          the pools keep minting blocks\n        * wait for KES expiration on the selected pool\n        * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n          KES expiration\n        * check KES period info command with an operational certificate with an expired KES\n        * check KES period info command with operational certificates with a valid KES\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: The pool 'node-pool1' has minted blocks in epoch 8\nassert '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975' not in {'4fbcd6c4df164e3aa2f0c2ee103ac3ed1b940d5eab4f48e451143c6b': 34, '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975': 9, 'd36fdb611780d7e00cb536ca64a642cc691c564b8eab0fe22e26ca00': 41}",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_kes.TestKES object at 0x7fb7c11f1c00>, cluster_kes = <ClusterLib: protocol=cardano, tx_era=babbage>, cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7fb7c11f0f40>, worker_id = 'gw2'\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.order(5)\n    @pytest.mark.long\n    def test_expired_kes(\n        self,\n        cluster_kes: clusterlib.ClusterLib,\n        cluster_manager: cluster_management.ClusterManager,\n        worker_id: str,\n    ):\n        \"\"\"Test expired KES.\n    \n        * start local cluster instance configured with short KES period and low number of key\n          evolutions, so KES expires soon on all pools\n        * refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n          the pools keep minting blocks\n        * wait for KES expiration on the selected pool\n        * check that the pool with expired KES didn't mint blocks in an epoch that followed after\n          KES expiration\n        * check KES period info command with an operational certificate with an expired KES\n        * check KES period info command with operational certificates with a valid KES\n        \"\"\"\n        cluster = cluster_kes\n        temp_template = common.get_test_id(cluster)\n    \n        expire_timeout = 200\n        expire_node_name = \"pool1\"\n        expire_pool_name = f\"node-{expire_node_name}\"\n        expire_pool_rec = cluster_manager.cache.addrs_data[expire_pool_name]\n        expire_pool_id = cluster.get_stake_pool_id(expire_pool_rec[\"cold_key_pair\"].vkey_file)\n        expire_pool_id_dec = helpers.decode_bech32(expire_pool_id)\n    \n        # refresh opcert on 2 of the 3 pools, so KES doesn't expire on those 2 pools and\n        # the pools keep minting blocks\n        refreshed_nodes = [\"pool2\", \"pool3\"]\n    \n        def _refresh_opcerts():\n            for n in refreshed_nodes:\n                refreshed_pool_rec = cluster_manager.cache.addrs_data[f\"node-{n}\"]\n                refreshed_opcert_file = cluster.gen_node_operational_cert(\n                    node_name=f\"{n}_refreshed_opcert\",\n                    kes_vkey_file=refreshed_pool_rec[\"kes_key_pair\"].vkey_file,\n                    cold_skey_file=refreshed_pool_rec[\"cold_key_pair\"].skey_file,\n                    cold_counter_file=refreshed_pool_rec[\"cold_key_pair\"].counter_file,\n                    kes_period=cluster.get_kes_period(),\n                )\n                shutil.copy(refreshed_opcert_file, refreshed_pool_rec[\"pool_operational_cert\"])\n            cluster_nodes.restart_nodes(refreshed_nodes)\n    \n        _refresh_opcerts()\n    \n        expected_err_regexes = [\"KESKeyAlreadyPoisoned\", \"KESCouldNotEvolve\"]\n        # ignore expected errors in bft1 node log file, as bft1 opcert will not get refreshed\n        logfiles.add_ignore_rule(\n            files_glob=\"bft1.stdout\",\n            regex=\"|\".join(expected_err_regexes),\n            ignore_file_id=worker_id,\n        )\n        # search for expected errors only in log file corresponding to pool with expired KES\n        expected_errors = [(f\"{expire_node_name}.stdout\", err) for err in expected_err_regexes]\n    \n        this_epoch = -1\n        with logfiles.expect_errors(expected_errors, ignore_file_id=worker_id):\n            LOGGER.info(\n                f\"{datetime.datetime.now()}: Waiting for {expire_timeout} sec for KES expiration.\"\n            )\n            time.sleep(expire_timeout)\n    \n            _wait_epoch_chores(\n                cluster_obj=cluster, temp_template=temp_template, this_epoch=this_epoch\n            )\n            this_epoch = cluster.get_epoch()\n    \n            # check that the pool is not producing any blocks\n            blocks_made = clusterlib_utils.get_ledger_state(cluster_obj=cluster)[\"blocksCurrent\"]\n            if blocks_made:\n>               assert (\n                    expire_pool_id_dec not in blocks_made\n                ), f\"The pool '{expire_pool_name}' has minted blocks in epoch {this_epoch}\"\nE               AssertionError: The pool 'node-pool1' has minted blocks in epoch 8\nE               assert '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975' not in {'4fbcd6c4df164e3aa2f0c2ee103ac3ed1b940d5eab4f48e451143c6b': 34, '707cdd83d4ef4140b5ec19faa0c934b2cfbb2420461f0d4d579e6975': 9, 'd36fdb611780d7e00cb536ca64a642cc691c564b8eab0fe22e26ca00': 41}\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_kes.py:202: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "9d51c020eca4a26b",
+      "name" : "log",
+      "source" : "9d51c020eca4a26b.txt",
+      "type" : "text/plain",
+      "size" : 1099
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1655375497856,
+      "stop" : 1655375498242,
+      "duration" : 386
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1655379641890,
+      "stop" : 1655379641890,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1655379641885,
+      "stop" : 1655379641887,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1655375498242,
+      "stop" : 1655375498242,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(5)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='meant to run only with the latest or default cluster era and transaction era')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "937821-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/5d08b899119223417f547201afa5b4191ba973c2/cardano_node_tests/tests/test_kes.py#L127",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/5d08b899119223417f547201afa5b4191ba973c2/cardano_node_tests/tests/test_kes.py#L127",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "72771206cf3fce94",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1655373706996,
+        "stop" : 1655373706996,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='meant to run only with the latest or default cluster era and transaction era')", "long", "order(5)" ]
+  },
+  "source" : "dc03a4616b85a2fa.json",
+  "parameterValues" : [ ]
+}

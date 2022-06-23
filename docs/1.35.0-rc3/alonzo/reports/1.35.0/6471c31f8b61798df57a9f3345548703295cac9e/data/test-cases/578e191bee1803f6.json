@@ -1,0 +1,74 @@
+{
+  "uid" : "578e191bee1803f6",
+  "name" : "test_pay_unregistered_stake_addr_from[treasury-addr_unknown]",
+  "fullName" : "cardano_node_tests.tests.test_mir_certs.TestMIRCerts#test_pay_unregistered_stake_addr_from",
+  "historyId" : "05b0eb1b79ef99add84661aef304dd53",
+  "time" : {
+    "start" : 1655297462060,
+    "stop" : 1655297462060,
+    "duration" : 0
+  },
+  "description" : "Send funds from the reserves or treasury pot to unregistered stake address.\n\n        * generate an MIR certificate\n        * if a stake address should be known on blockchain:\n\n            - register the stake address\n            - if transferring funds from treasury, deregister the stake address\n              BEFORE submitting the TX\n\n        * submit a TX with the MIR certificate\n        * if a stake address should be known on blockchain and if transferring funds from reserves,\n          deregister the stake address AFTER submitting the TX\n        * check that the amount was NOT added to the stake address reward account\n        * (optional) check transaction in db-sync\n        ",
+  "descriptionHtml" : "<p>Send funds from the reserves or treasury pot to unregistered stake address.</p>\n<pre><code>    * generate an MIR certificate\n    * if a stake address should be known on blockchain:\n\n        - register the stake address\n        - if transferring funds from treasury, deregister the stake address\n          BEFORE submitting the TX\n\n    * submit a TX with the MIR certificate\n    * if a stake address should be known on blockchain and if transferring funds from reserves,\n      deregister the stake address AFTER submitting the TX\n    * check that the amount was NOT added to the stake address reward account\n    * (optional) check transaction in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_mir_certs.py', 910, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_mir_certs"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMIRCerts"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2640520-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_mir_certs"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "addr_history",
+    "value" : "'addr_unknown'"
+  }, {
+    "name" : "fund_src",
+    "value" : "'treasury'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/8ffd5f584f209758dcaffc3aada8f8fe66093dc3/cardano_node_tests/tests/test_mir_certs.py#L910",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/8ffd5f584f209758dcaffc3aada8f8fe66093dc3/cardano_node_tests/tests/test_mir_certs.py#L910",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "dbsync", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "578e191bee1803f6.json",
+  "parameterValues" : [ "'addr_unknown'", "'treasury'" ]
+}

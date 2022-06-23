@@ -1,0 +1,83 @@
+{
+  "uid" : "40d6caaf8424051f",
+  "name" : "test_collaterals[plutus_v2-max+1]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_raw.TestLocking#test_collaterals",
+  "historyId" : "d27ac16ca567dced9e35151483b5508a",
+  "time" : {
+    "start" : 1655328888195,
+    "stop" : 1655328888195,
+    "duration" : 0
+  },
+  "description" : "Test dividing required collateral amount into multiple collateral UTxOs.\n\n        Test 3 scenarios:\n        1. maximum allowed number of collateral inputs\n        2. more collateral inputs than what is allowed\n        3. no collateral input\n\n        * create a Tx output with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * create multiple UTxOs for collateral\n        * spend the locked UTxO\n        * check that the expected amount was spent when success is expected\n        * OR check that the amount was not transferred and collateral UTxO was not spent\n          when failure is expected\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test dividing required collateral amount into multiple collateral UTxOs.</p>\n<pre><code>    Test 3 scenarios:\n    1. maximum allowed number of collateral inputs\n    2. more collateral inputs than what is allowed\n    3. no collateral input\n\n    * create a Tx output with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * create multiple UTxOs for collateral\n    * spend the locked UTxO\n    * check that the expected amount was spent when success is expected\n    * OR check that the amount was not transferred and collateral UTxO was not spent\n      when failure is expected\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs only with Babbage+ TX; needs PlutusV2 cost model",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests6/cardano_node_tests/tests/test_plutus_spend_raw.py', 1210, 'Skipped: runs only with Babbage+ TX; needs PlutusV2 cost model')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs only with Babbage+ TX; needs PlutusV2 cost model')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_raw"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3919755-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_raw"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "plutus_version",
+    "value" : "'v2'"
+  }, {
+    "name" : "scenario",
+    "value" : "'max+1'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/bc97ddc0fc4b8a539bf5f00b5bdd58c89b8a3c3f/cardano_node_tests/tests/test_plutus_spend_raw.py#L1210",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/bc97ddc0fc4b8a539bf5f00b5bdd58c89b8a3c3f/cardano_node_tests/tests/test_plutus_spend_raw.py#L1210",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(True, reason='runs only with Babbage+ TX; needs PlutusV2 cost model')", "dbsync", "smoke", "testnets", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "40d6caaf8424051f.json",
+  "parameterValues" : [ "'v2'", "'max+1'" ]
+}

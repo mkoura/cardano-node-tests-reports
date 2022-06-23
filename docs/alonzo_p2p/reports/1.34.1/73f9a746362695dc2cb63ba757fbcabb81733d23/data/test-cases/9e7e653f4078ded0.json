@@ -1,0 +1,316 @@
+{
+  "uid" : "9e7e653f4078ded0",
+  "name" : "test_guessing_game[guessing_game_42]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_raw.TestLocking#test_guessing_game",
+  "historyId" : "69d694e25661411ba22bbbb33fdd16bf",
+  "time" : {
+    "start" : 1646643947669,
+    "stop" : 1646643947669,
+    "duration" : 0
+  },
+  "description" : "Test locking a Tx output with a plutus script and spending the locked UTxO.\n\n        Test with with \"guessing game\" script that expects specific datum and redeemer value.\n        Test also negative scenarios where datum or redeemer value is different than expected.\n\n        * create a Tx ouput with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * spend the locked UTxO\n        * check that the expected amount was spent when success is expected\n        * OR check that the amount was not transferred and collateral UTxO was not spent\n          when failure is expected\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test locking a Tx output with a plutus script and spending the locked UTxO.</p>\n<pre><code>    Test with with &quot;guessing game&quot; script that expects specific datum and redeemer value.\n    Test also negative scenarios where datum or redeemer value is different than expected.\n\n    * create a Tx ouput with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * spend the locked UTxO\n    * check that the expected amount was spent when success is expected\n    * OR check that the amount was not transferred and collateral UTxO was not spent\n      when failure is expected\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "RuntimeError: All clusters are dead, cannot run.",
+  "statusTrace" : "cluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7f99ccb70550>\n\n    @pytest.fixture\n    def cluster_lock_guessing_game(\n        cluster_manager: cluster_management.ClusterManager,\n    ) -> clusterlib.ClusterLib:\n        \"\"\"Make sure just one guessing game plutus test run at a time.\n    \n        Plutus script always has the same address. When one script is used in multiple\n        tests that are running in parallel, the blanaces etc. don't add up.\n        \"\"\"\n>       return cluster_manager.get(lock_resources=[plutus_spend.GUESSING_GAME_LOCK])\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_plutus_spend_raw.py:81: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:345: in get\n    return _ClusterGetter(self).get(\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:960: in get\n    self._cleanup_dead_clusters(cget_status)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <cardano_node_tests.utils.cluster_management._ClusterGetter object at 0x7f99ccb70f70>\ncget_status = ClusterGetStatus(mark='', lock_resources=['guessing_game_script'], use_resources=['cluster'], cleanup=False, start_cmd...ardano-node-tests5/tmp/pytest-of-martink/pytest-17/cluster0'), started_tests=(), marked_starting=(), marked_running=())\n\n    def _cleanup_dead_clusters(self, cget_status: ClusterGetStatus) -> None:\n        \"\"\"Cleanup if the selected cluster instance failed to start.\"\"\"\n        # move on to other cluster instance\n        cget_status.selected_instance = -1\n        cget_status.restart_here = False\n        cget_status.restart_ready = False\n    \n        # remove status files that are checked by other workers\n        for sf in (\n            *cget_status.instance_dir.glob(f\"{TEST_CURR_MARK_GLOB}_*\"),\n            *cget_status.instance_dir.glob(f\"{TEST_MARK_STARTING_GLOB}_*\"),\n        ):\n            sf.unlink()\n    \n        dead_clusters = list(\n            self.cm.pytest_tmp_dir.glob(f\"{CLUSTER_DIR_TEMPLATE}*/{CLUSTER_DEAD_FILE}\")\n        )\n        if len(dead_clusters) == self.cm.num_of_instances:\n>           raise RuntimeError(\"All clusters are dead, cannot run.\")\nE           RuntimeError: All clusters are dead, cannot run.\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py:767: RuntimeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1646643947669,
+      "stop" : 1646643947669,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1646643926615,
+      "stop" : 1646643926615,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1646643947669,
+      "stop" : 1646643947669,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1646643947669,
+      "stop" : 1646643947669,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_guessing_game",
+    "time" : {
+      "start" : 1646643947669,
+      "stop" : 1646643947670,
+      "duration" : 1
+    },
+    "status" : "broken",
+    "statusMessage" : "RuntimeError: All clusters are dead, cannot run.\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.9/site-packages/_pytest/fixtures.py\", line 932, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_plutus_spend_raw.py\", line 81, in cluster_lock_guessing_game\n    return cluster_manager.get(lock_resources=[plutus_spend.GUESSING_GAME_LOCK])\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 345, in get\n    return _ClusterGetter(self).get(\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 960, in get\n    self._cleanup_dead_clusters(cget_status)\n  File \"/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/utils/cluster_management.py\", line 767, in _cleanup_dead_clusters\n    raise RuntimeError(\"All clusters are dead, cannot run.\")\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1646643926628,
+      "stop" : 1646643926628,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1646643926615,
+      "stop" : 1646643926615,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1646643947637,
+      "stop" : 1646643947637,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1646643926614,
+      "stop" : 1646643926614,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1646643926615,
+      "stop" : 1646643926615,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1646643926615,
+      "stop" : 1646643926628,
+      "duration" : 13
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1646643947699,
+      "stop" : 1646643947699,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1646643949476,
+      "stop" : 1646643949476,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1646643947699,
+      "stop" : 1646643947699,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1646643949473,
+      "stop" : 1646643949473,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_raw"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3307989-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_raw"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "script",
+    "value" : "'guessing_game_42'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_plutus_spend_raw.py#L660",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_plutus_spend_raw.py#L660",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "d98adbc76076682f",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1646643923540,
+        "stop" : 1646643923540,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='runs only with Alonzo+ TX')", "dbsync", "testnets" ]
+  },
+  "source" : "9e7e653f4078ded0.json",
+  "parameterValues" : [ "'guessing_game_42'" ]
+}

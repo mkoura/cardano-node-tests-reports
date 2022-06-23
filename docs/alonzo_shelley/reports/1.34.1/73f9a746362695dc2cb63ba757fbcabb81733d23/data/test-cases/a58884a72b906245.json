@@ -1,0 +1,97 @@
+{
+  "uid" : "a58884a72b906245",
+  "name" : "test_incremental_signing[signed-build]",
+  "fullName" : "cardano_node_tests.tests.test_scripts.TestIncrementalSigning#test_incremental_signing",
+  "historyId" : "bc4aee2719c076e92a7550a646efa221",
+  "time" : {
+    "start" : 1646573445454,
+    "stop" : 1646573445454,
+    "duration" : 0
+  },
+  "description" : "Send funds from script address using TX that is signed incrementally.\n\n        Test with Tx body created by both `transaction build` and `transaction build-raw`.\n        Test with Tx created by both `transaction sign` and `transaction assemble`.\n        ",
+  "descriptionHtml" : "<p>Send funds from script address using TX that is signed incrementally.</p>\n<pre><code>    Test with Tx body created by both `transaction build` and `transaction build-raw`.\n    Test with Tx created by both `transaction sign` and `transaction assemble`.\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs only with Mary+ TX",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests4/cardano_node_tests/tests/test_scripts.py', 1712, 'Skipped: runs only with Mary+ TX')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs only with Mary+ TX')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_scripts"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestIncrementalSigning"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3294795-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_scripts"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "tx_is",
+    "value" : "'signed'"
+  }, {
+    "name" : "use_build_cmd",
+    "value" : "True"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_scripts.py#L1712",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/556d4d1cbfb5d4835421c69f6dae1495b4cda8ce/cardano_node_tests/tests/test_scripts.py#L1712",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "cf2bf1f2a1ddccb1",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: cannot use `build` with cluster era 'alonzo' and TX era 'shelley'",
+      "time" : {
+        "start" : 1646414090159,
+        "stop" : 1646414090159,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "62fa12058fec9f62",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: cannot use `build` with cluster era 'alonzo' and TX era 'shelley'",
+      "time" : {
+        "start" : 1646412633113,
+        "stop" : 1646412633113,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync", "testnets", "@pytest.mark.skipif(True, reason='runs only with Mary+ TX')" ]
+  },
+  "source" : "a58884a72b906245.json",
+  "parameterValues" : [ "'signed'", "True" ]
+}
