@@ -1,0 +1,322 @@
+{
+  "uid" : "c6457db941d51068",
+  "name" : "test_script_invalid",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking#test_script_invalid",
+  "historyId" : "97fbb9a7652d70141e700cd6991d9566",
+  "time" : {
+    "start" : 1658755011070,
+    "stop" : 1658755017877,
+    "duration" : 6807
+  },
+  "description" : "Test failing script together with the `--script-invalid` argument - collateral is taken.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        Test with \"always fails\" script that fails for all datum / redeemer values.\n\n        * create a Tx output with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * try to spend the locked UTxO\n        * check that the amount was not transferred and collateral UTxO was spent\n        ",
+  "descriptionHtml" : "<p>Test failing script together with the <code>--script-invalid</code> argument - collateral is taken.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    Test with &quot;always fails&quot; script that fails for all datum / redeemer values.\n\n    * create a Tx output with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * try to spend the locked UTxO\n    * check that the amount was not transferred and collateral UTxO was spent\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL reason: See cardano-node issue #4013\n\n_pytest.outcomes.XFailed: See cardano-node issue #4013",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking object at 0x7f0b7ec29030>, cluster = <ClusterLib: protocol=cardano, tx_era=>\npayment_addrs = [AddressRecord(address='addr_test1vqpfpttrnek9sq3hsn5r7e4xkwrw3khqz2c52d5lf6xj2csqerchs', vkey_file=PosixPath('test_sc..._script_invalid_ci0_lvo_payment_addr_1.vkey'), skey_file=PosixPath('test_script_invalid_ci0_lvo_payment_addr_1.skey'))]\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.testnets\n    def test_script_invalid(\n        self,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n    ):\n        \"\"\"Test failing script together with the `--script-invalid` argument - collateral is taken.\n    \n        Uses `cardano-cli transaction build` command for building the transactions.\n    \n        Test with \"always fails\" script that fails for all datum / redeemer values.\n    \n        * create a Tx output with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * try to spend the locked UTxO\n        * check that the amount was not transferred and collateral UTxO was spent\n        \"\"\"\n        __: Any  # mypy workaround\n        temp_template = common.get_test_id(cluster)\n    \n        plutus_op = plutus_common.PlutusOp(\n            script_file=plutus_common.ALWAYS_FAILS_PLUTUS_V1,\n            datum_file=plutus_common.DATUM_42_TYPED,\n            redeemer_file=plutus_common.REDEEMER_42_TYPED,\n            execution_cost=plutus_common.ALWAYS_FAILS_COST,\n        )\n    \n        script_utxos, collateral_utxos, tx_output_fund = _build_fund_script(\n            temp_template=temp_template,\n            cluster_obj=cluster,\n            payment_addr=payment_addrs[0],\n            dst_addr=payment_addrs[1],\n            plutus_op=plutus_op,\n        )\n    \n        err_str = \"\"\n        try:\n            __, tx_output, __ = _build_spend_locked_txin(\n                temp_template=temp_template,\n                cluster_obj=cluster,\n                payment_addr=payment_addrs[0],\n                dst_addr=payment_addrs[1],\n                script_utxos=script_utxos,\n                collateral_utxos=collateral_utxos,\n                plutus_op=plutus_op,\n                amount=2_000_000,\n                script_valid=False,\n            )\n        except clusterlib.CLIError as err:\n            err_str = str(err)\n    \n        # TODO: broken on node 1.35.0 and 1.35.1\n        if \"ScriptWitnessIndexTxIn 0 is missing from the execution units\" in err_str:\n>           pytest.xfail(\"See cardano-node issue #4013\")\nE           _pytest.outcomes.XFailed: See cardano-node issue #4013\n\n/home/martink/Source/repos/cardano-node-tests6/cardano_node_tests/tests/test_plutus_spend_build.py:1046: XFailed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658753444456,
+      "stop" : 1658753444456,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658753444456,
+      "stop" : 1658753444456,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658753444456,
+      "stop" : 1658753444456,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658755005499,
+      "stop" : 1658755005499,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1658755005784,
+      "stop" : 1658755011069,
+      "duration" : 5285
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1658755005500,
+      "stop" : 1658755005784,
+      "duration" : 284
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658753444708,
+      "stop" : 1658753444708,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658755005500,
+      "stop" : 1658755005500,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658753444456,
+      "stop" : 1658753444708,
+      "duration" : 252
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658753444456,
+      "stop" : 1658753444456,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658755005500,
+      "stop" : 1658755005500,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658754900927,
+      "stop" : 1658754900927,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658758423320,
+      "stop" : 1658758423320,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658755017956,
+      "stop" : 1658755017956,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658758423314,
+      "stop" : 1658758423316,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658755017949,
+      "stop" : 1658755017956,
+      "duration" : 7
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='Plutus is available only in Alonzo+ eras')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2013071-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_plutus_spend_build.py#L992",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_plutus_spend_build.py#L992",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "4fe7a2ef12324563",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1658753440327,
+        "stop" : 1658753440327,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='Plutus is available only in Alonzo+ eras')", "smoke", "testnets" ]
+  },
+  "source" : "c6457db941d51068.json",
+  "parameterValues" : [ ]
+}
