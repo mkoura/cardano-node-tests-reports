@@ -1,0 +1,345 @@
+{
+  "uid" : "dafafa6cc7232975",
+  "name" : "test_pool_blocks[next]",
+  "fullName" : "cardano_node_tests.tests.test_blocks.TestLeadershipSchedule#test_pool_blocks",
+  "historyId" : "531ec6abb32f00e98db8aeb962285fe7",
+  "time" : {
+    "start" : 1658757932599,
+    "stop" : 1658758331750,
+    "duration" : 399151
+  },
+  "description" : "Check that blocks were minted according to leadership schedule.\n\n        * query leadership schedule for selected pool for current epoch or next epoch\n        * wait for epoch that comes after the queried epoch\n        * get info about minted blocks in queried epoch for the selected pool\n        * compare leadership schedule with blocks that were actually minted\n        * compare db-sync records with ledger state dump\n        ",
+  "descriptionHtml" : "<p>Check that blocks were minted according to leadership schedule.</p>\n<pre><code>    * query leadership schedule for selected pool for current epoch or next epoch\n    * wait for epoch that comes after the queried epoch\n    * get info about minted blocks in queried epoch for the selected pool\n    * compare leadership schedule with blocks that were actually minted\n    * compare db-sync records with ledger state dump\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "Failed: Errors:\nSome blocks were minted in other slots than scheduled: {25088, 24449, 25089, 24346, 24861, 24486, 24615, 24237, 24494, 24113, 24245, 24246, 24503, 24629, 24381, 24768, 24388, 24906, 24270, 24659, 24920, 24416, 25060, 25062, 24425, 24558, 24560, 24693, 24951, 24187, 24828}\nLot of slots missed: {24321, 24323, 24325, 24326, 24712, 24588, 24216, 24347, 24740, 24110, 24115, 24501, 24630, 24632, 24763, 24894, 25027, 24772, 24517, 24902, 24777, 24139, 24779, 24782, 24531, 24532, 24796, 24420, 24423, 24551, 25064, 24684, 25069, 24304, 24562, 24823, 24443}",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_blocks.TestLeadershipSchedule object at 0x7fdf3a1bfd00>, skip_leadership_schedule = None\ncluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7fdf3a1ccb80>, cluster_use_pool3 = <ClusterLib: protocol=cardano, tx_era=babbage>, for_epoch = 'next'\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.needs_dbsync\n    @pytest.mark.parametrize(\"for_epoch\", (\"current\", \"next\"))\n    def test_pool_blocks(\n        self,\n        skip_leadership_schedule: None,\n        cluster_manager: cluster_management.ClusterManager,\n        cluster_use_pool3: clusterlib.ClusterLib,\n        for_epoch: str,\n    ):\n        \"\"\"Check that blocks were minted according to leadership schedule.\n    \n        * query leadership schedule for selected pool for current epoch or next epoch\n        * wait for epoch that comes after the queried epoch\n        * get info about minted blocks in queried epoch for the selected pool\n        * compare leadership schedule with blocks that were actually minted\n        * compare db-sync records with ledger state dump\n        \"\"\"\n        # pylint: disable=unused-argument\n        cluster = cluster_use_pool3\n        temp_template = f\"{common.get_test_id(cluster)}_{for_epoch}\"\n    \n        pool_name = cluster_management.Resources.POOL3\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n        pool_id = cluster.get_stake_pool_id(pool_rec[\"cold_key_pair\"].vkey_file)\n    \n        if for_epoch == \"current\":\n            # wait for beginning of an epoch\n            queried_epoch = cluster.wait_for_new_epoch(padding_seconds=5)\n        else:\n            # wait for stable stake distribution for next epoch, that is last 300 slots of\n            # current epoch\n            clusterlib_utils.wait_for_epoch_interval(\n                cluster_obj=cluster,\n                start=-int(300 * cluster.slot_length),\n                stop=-10,\n                check_slot=True,\n            )\n            queried_epoch = cluster.get_epoch() + 1\n    \n        # query leadership schedule for selected pool\n        leadership_schedule = cluster.get_leadership_schedule(\n            vrf_skey_file=pool_rec[\"vrf_key_pair\"].skey_file,\n            cold_vkey_file=pool_rec[\"cold_key_pair\"].vkey_file,\n            for_next=for_epoch != \"current\",\n        )\n    \n        # wait for epoch that comes after the queried epoch\n        cluster.wait_for_new_epoch(new_epochs=1 if for_epoch == \"current\" else 2)\n    \n        # get info about minted blocks in queried epoch for the selected pool\n        minted_blocks = list(\n            dbsync_queries.query_blocks(\n                pool_id_bech32=pool_id, epoch_from=queried_epoch, epoch_to=queried_epoch\n            )\n        )\n        slots_when_minted = {r.slot_no for r in minted_blocks}\n    \n        errors: List[str] = []\n    \n        # compare leadership schedule with blocks that were actually minted\n        slots_when_scheduled = {r.slot_no for r in leadership_schedule}\n    \n        difference_scheduled = slots_when_minted.difference(slots_when_scheduled)\n        if difference_scheduled:\n            errors.append(\n                f\"Some blocks were minted in other slots than scheduled: {difference_scheduled}\"\n            )\n    \n        difference_minted = slots_when_scheduled.difference(slots_when_minted)\n        if len(difference_minted) > len(leadership_schedule) // 2:\n            errors.append(f\"Lot of slots missed: {difference_minted}\")\n    \n        # compare db-sync records with ledger state dump\n        ledger_state = clusterlib_utils.get_ledger_state(cluster_obj=cluster)\n        clusterlib_utils.save_ledger_state(\n            cluster_obj=cluster,\n            state_name=temp_template,\n            ledger_state=ledger_state,\n        )\n        blocks_before: Dict[str, int] = ledger_state[\"blocksBefore\"]\n        pool_id_dec = helpers.decode_bech32(pool_id)\n        minted_blocks_ledger = blocks_before.get(pool_id_dec) or 0\n        minted_blocks_db = len(slots_when_minted)\n        if minted_blocks_ledger != minted_blocks_db:\n            errors.append(\n                \"Numbers of minted blocks reported by ledger state and db-sync don't match: \"\n                f\"{minted_blocks_ledger} vs {minted_blocks_db}\"\n            )\n    \n        if errors:\n            err_joined = \"\\n\".join(errors)\n>           pytest.fail(f\"Errors:\\n{err_joined}\")\nE           Failed: Errors:\nE           Some blocks were minted in other slots than scheduled: {25088, 24449, 25089, 24346, 24861, 24486, 24615, 24237, 24494, 24113, 24245, 24246, 24503, 24629, 24381, 24768, 24388, 24906, 24270, 24659, 24920, 24416, 25060, 25062, 24425, 24558, 24560, 24693, 24951, 24187, 24828}\nE           Lot of slots missed: {24321, 24323, 24325, 24326, 24712, 24588, 24216, 24347, 24740, 24110, 24115, 24501, 24630, 24632, 24763, 24894, 25027, 24772, 24517, 24902, 24777, 24139, 24779, 24782, 24531, 24532, 24796, 24420, 24423, 24551, 25064, 24684, 25069, 24304, 24562, 24823, 24443}\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_blocks.py:127: Failed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658757932310,
+      "stop" : 1658757932310,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658753120501,
+      "stop" : 1658753120502,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658753120501,
+      "stop" : 1658753120501,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658753120502,
+      "stop" : 1658753120502,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_use_pool3",
+    "time" : {
+      "start" : 1658757932310,
+      "stop" : 1658757932598,
+      "duration" : 288
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "skip_leadership_schedule",
+    "time" : {
+      "start" : 1658757932297,
+      "stop" : 1658757932309,
+      "duration" : 12
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658757932310,
+      "stop" : 1658757932310,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658753120503,
+      "stop" : 1658753120503,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658753120502,
+      "stop" : 1658753120503,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658753120502,
+      "stop" : 1658753120502,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658757932297,
+      "stop" : 1658757932297,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658757932309,
+      "stop" : 1658757932309,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Check that blocks were minted according to leadership schedule.\n\n        * query leadership schedule for selected pool for current epoch or next epoch\n        * wait for epoch that comes after the queried epoch\n        * get info about minted blocks in queried epoch for the selected pool\n        * compare leadership schedule with blocks that were actually minted\n        * compare db-sync records with ledger state dump\n        ",
+    "status" : "failed",
+    "statusMessage" : "Failed: Errors:\nSome blocks were minted in other slots than scheduled: {25088, 24449, 25089, 24346, 24861, 24486, 24615, 24237, 24494, 24113, 24245, 24246, 24503, 24629, 24381, 24768, 24388, 24906, 24270, 24659, 24920, 24416, 25060, 25062, 24425, 24558, 24560, 24693, 24951, 24187, 24828}\nLot of slots missed: {24321, 24323, 24325, 24326, 24712, 24588, 24216, 24347, 24740, 24110, 24115, 24501, 24630, 24632, 24763, 24894, 25027, 24772, 24517, 24902, 24777, 24139, 24779, 24782, 24531, 24532, 24796, 24420, 24423, 24551, 25064, 24684, 25069, 24304, 24562, 24823, 24443}",
+    "statusTrace" : "self = <cardano_node_tests.tests.test_blocks.TestLeadershipSchedule object at 0x7fdf3a1bfd00>, skip_leadership_schedule = None\ncluster_manager = <cardano_node_tests.utils.cluster_management.ClusterManager object at 0x7fdf3a1ccb80>, cluster_use_pool3 = <ClusterLib: protocol=cardano, tx_era=babbage>, for_epoch = 'next'\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.needs_dbsync\n    @pytest.mark.parametrize(\"for_epoch\", (\"current\", \"next\"))\n    def test_pool_blocks(\n        self,\n        skip_leadership_schedule: None,\n        cluster_manager: cluster_management.ClusterManager,\n        cluster_use_pool3: clusterlib.ClusterLib,\n        for_epoch: str,\n    ):\n        \"\"\"Check that blocks were minted according to leadership schedule.\n    \n        * query leadership schedule for selected pool for current epoch or next epoch\n        * wait for epoch that comes after the queried epoch\n        * get info about minted blocks in queried epoch for the selected pool\n        * compare leadership schedule with blocks that were actually minted\n        * compare db-sync records with ledger state dump\n        \"\"\"\n        # pylint: disable=unused-argument\n        cluster = cluster_use_pool3\n        temp_template = f\"{common.get_test_id(cluster)}_{for_epoch}\"\n    \n        pool_name = cluster_management.Resources.POOL3\n        pool_rec = cluster_manager.cache.addrs_data[pool_name]\n        pool_id = cluster.get_stake_pool_id(pool_rec[\"cold_key_pair\"].vkey_file)\n    \n        if for_epoch == \"current\":\n            # wait for beginning of an epoch\n            queried_epoch = cluster.wait_for_new_epoch(padding_seconds=5)\n        else:\n            # wait for stable stake distribution for next epoch, that is last 300 slots of\n            # current epoch\n            clusterlib_utils.wait_for_epoch_interval(\n                cluster_obj=cluster,\n                start=-int(300 * cluster.slot_length),\n                stop=-10,\n                check_slot=True,\n            )\n            queried_epoch = cluster.get_epoch() + 1\n    \n        # query leadership schedule for selected pool\n        leadership_schedule = cluster.get_leadership_schedule(\n            vrf_skey_file=pool_rec[\"vrf_key_pair\"].skey_file,\n            cold_vkey_file=pool_rec[\"cold_key_pair\"].vkey_file,\n            for_next=for_epoch != \"current\",\n        )\n    \n        # wait for epoch that comes after the queried epoch\n        cluster.wait_for_new_epoch(new_epochs=1 if for_epoch == \"current\" else 2)\n    \n        # get info about minted blocks in queried epoch for the selected pool\n        minted_blocks = list(\n            dbsync_queries.query_blocks(\n                pool_id_bech32=pool_id, epoch_from=queried_epoch, epoch_to=queried_epoch\n            )\n        )\n        slots_when_minted = {r.slot_no for r in minted_blocks}\n    \n        errors: List[str] = []\n    \n        # compare leadership schedule with blocks that were actually minted\n        slots_when_scheduled = {r.slot_no for r in leadership_schedule}\n    \n        difference_scheduled = slots_when_minted.difference(slots_when_scheduled)\n        if difference_scheduled:\n            errors.append(\n                f\"Some blocks were minted in other slots than scheduled: {difference_scheduled}\"\n            )\n    \n        difference_minted = slots_when_scheduled.difference(slots_when_minted)\n        if len(difference_minted) > len(leadership_schedule) // 2:\n            errors.append(f\"Lot of slots missed: {difference_minted}\")\n    \n        # compare db-sync records with ledger state dump\n        ledger_state = clusterlib_utils.get_ledger_state(cluster_obj=cluster)\n        clusterlib_utils.save_ledger_state(\n            cluster_obj=cluster,\n            state_name=temp_template,\n            ledger_state=ledger_state,\n        )\n        blocks_before: Dict[str, int] = ledger_state[\"blocksBefore\"]\n        pool_id_dec = helpers.decode_bech32(pool_id)\n        minted_blocks_ledger = blocks_before.get(pool_id_dec) or 0\n        minted_blocks_db = len(slots_when_minted)\n        if minted_blocks_ledger != minted_blocks_db:\n            errors.append(\n                \"Numbers of minted blocks reported by ledger state and db-sync don't match: \"\n                f\"{minted_blocks_ledger} vs {minted_blocks_db}\"\n            )\n    \n        if errors:\n            err_joined = \"\\n\".join(errors)\n>           pytest.fail(f\"Errors:\\n{err_joined}\")\nE           Failed: Errors:\nE           Some blocks were minted in other slots than scheduled: {25088, 24449, 25089, 24346, 24861, 24486, 24615, 24237, 24494, 24113, 24245, 24246, 24503, 24629, 24381, 24768, 24388, 24906, 24270, 24659, 24920, 24416, 25060, 25062, 24425, 24558, 24560, 24693, 24951, 24187, 24828}\nE           Lot of slots missed: {24321, 24323, 24325, 24326, 24712, 24588, 24216, 24347, 24740, 24110, 24115, 24501, 24630, 24632, 24763, 24894, 25027, 24772, 24517, 24902, 24777, 24139, 24779, 24782, 24531, 24532, 24796, 24420, 24423, 24551, 25064, 24684, 25069, 24304, 24562, 24823, 24443}\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_blocks.py:127: Failed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "7496621dbec66261",
+      "name" : "log",
+      "source" : "7496621dbec66261.txt",
+      "type" : "text/plain",
+      "size" : 111
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658758331781,
+      "stop" : 1658758331784,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658758562637,
+      "stop" : 1658758562638,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658758562639,
+      "stop" : 1658758562639,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658758331785,
+      "stop" : 1658758331785,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "needs_dbsync"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_blocks"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLeadershipSchedule"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1995858-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_blocks"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "for_epoch",
+    "value" : "'next'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_blocks.py#L35",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_blocks.py#L35",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "e7db0e97684fb6e8",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1658753116334,
+        "stop" : 1658753116334,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "needs_dbsync", "dbsync" ]
+  },
+  "source" : "dafafa6cc7232975.json",
+  "parameterValues" : [ "'next'" ]
+}

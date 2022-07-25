@@ -1,0 +1,328 @@
+{
+  "uid" : "d7dbaa82990c4e51",
+  "name" : "test_with_total_return_collateral[using_total_collateral-without_return_collateral]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_v2_spend_build.TestCollateralOutput#test_with_total_return_collateral",
+  "historyId" : "e98e39a18bb40d506137aec6a893b814",
+  "time" : {
+    "start" : 1658756844840,
+    "stop" : 1658756846961,
+    "duration" : 2121
+  },
+  "description" : "Test failing script with combination of total and return collateral set.\n\n        * fund the script address and create a UTxO for collateral\n        * spend the locked UTxO\n        * check that the expected amount of collateral was spent\n        ",
+  "descriptionHtml" : "<p>Test failing script with combination of total and return collateral set.</p>\n<pre><code>    * fund the script address and create a UTxO for collateral\n    * spend the locked UTxO\n    * check that the expected amount of collateral was spent\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL reason: See cardano-node issue #4013\n\n_pytest.outcomes.XFailed: See cardano-node issue #4013",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_plutus_v2_spend_build.TestCollateralOutput object at 0x7f0467023b20>, cluster = <ClusterLib: protocol=cardano, tx_era=babbage>\npayment_addrs = [AddressRecord(address='addr_test1vpy26zjzvdudvthfv9f54jdz9aqzsy43ae0g7755z947sdsem65p3', vkey_file=PosixPath('test_wi...l_ci0_yzn_payment_addr_1.vkey'), skey_file=PosixPath('test_with_total_return_collateral_ci0_yzn_payment_addr_1.skey'))]\nuse_return_collateral = False, use_total_collateral = True, request = <FixtureRequest for <Function test_with_total_return_collateral[using_total_collateral-without_return_collateral]>>\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.parametrize(\n        \"use_return_collateral\",\n        (True, False),\n        ids=(\"using_return_collateral\", \"without_return_collateral\"),\n    )\n    @pytest.mark.parametrize(\n        \"use_total_collateral\",\n        (True, False),\n        ids=(\"using_total_collateral\", \"without_total_collateral\"),\n    )\n    def test_with_total_return_collateral(\n        self,\n        cluster: clusterlib.ClusterLib,\n        payment_addrs: List[clusterlib.AddressRecord],\n        use_return_collateral: bool,\n        use_total_collateral: bool,\n        request: FixtureRequest,\n    ):\n        \"\"\"Test failing script with combination of total and return collateral set.\n    \n        * fund the script address and create a UTxO for collateral\n        * spend the locked UTxO\n        * check that the expected amount of collateral was spent\n        \"\"\"\n        temp_template = f\"{common.get_test_id(cluster)}_{request.node.callspec.id}\"\n        payment_addr = payment_addrs[0]\n        dst_addr = payment_addrs[1]\n    \n        plutus_op = PLUTUS_OP_ALWAYS_FAILS\n    \n        # for mypy\n        assert plutus_op.execution_cost\n        assert plutus_op.datum_file\n        assert plutus_op.redeemer_cbor_file\n    \n        redeem_cost = plutus_common.compute_cost(\n            execution_cost=plutus_op.execution_cost, protocol_params=cluster.get_protocol_params()\n        )\n    \n        # fund the script address and create a UTxO for collateral\n    \n        amount_for_collateral = (\n            redeem_cost.collateral * 4 if use_return_collateral else redeem_cost.collateral\n        )\n        return_collateral_amount = amount_for_collateral - redeem_cost.collateral\n    \n        script_utxos, collateral_utxos, *__ = _build_fund_script(\n            temp_template=temp_template,\n            cluster=cluster,\n            payment_addr=payment_addr,\n            dst_addr=dst_addr,\n            plutus_op=plutus_op,\n            collateral_amount=amount_for_collateral,\n        )\n    \n        dst_init_balance = cluster.get_address_balance(dst_addr.address)\n    \n        #  spend the \"locked\" UTxO\n    \n        return_collateral_txouts = [\n            clusterlib.TxOut(dst_addr.address, amount=return_collateral_amount)\n        ]\n    \n>       tx_output_redeem = self._build_spend_locked_txin(\n            temp_template=temp_template,\n            cluster=cluster,\n            payment_addr=payment_addr,\n            dst_addr=dst_addr,\n            script_utxos=script_utxos,\n            collateral_utxos=collateral_utxos,\n            plutus_op=plutus_op,\n            total_collateral_amount=redeem_cost.collateral if use_total_collateral else None,\n            return_collateral_txouts=return_collateral_txouts if use_return_collateral else (),\n        )\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_plutus_v2_spend_build.py:2208: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <cardano_node_tests.tests.test_plutus_v2_spend_build.TestCollateralOutput object at 0x7f0467023b20>\ntemp_template = 'test_with_total_return_collateral_ci0_svz_using_total_collateral-without_return_collateral', cluster = <ClusterLib: protocol=cardano, tx_era=babbage>\npayment_addr = AddressRecord(address='addr_test1vpy26zjzvdudvthfv9f54jdz9aqzsy43ae0g7755z947sdsem65p3', vkey_file=PosixPath('test_wit...al_ci0_yzn_payment_addr_0.vkey'), skey_file=PosixPath('test_with_total_return_collateral_ci0_yzn_payment_addr_0.skey'))\ndst_addr = AddressRecord(address='addr_test1vrmfenq903c5uuvctxettt67n2454qxv3car5e024jwhvxqv4nf45', vkey_file=PosixPath('test_wit...al_ci0_yzn_payment_addr_1.vkey'), skey_file=PosixPath('test_with_total_return_collateral_ci0_yzn_payment_addr_1.skey'))\nscript_utxos = [UTXOData(utxo_hash='cab779d23c9b618359a004f1a8a7dce59de6368e01e1b4fe7c7ea236fb14ef67', utxo_ix=1, amount=200000000, a...h='9e1199a988ba72ffd6e9c269cadb3b53b5f360ff99f112d9b2ee30c4d74ad88b', inline_datum={'int': 42}, reference_script=None)]\ncollateral_utxos = [UTXOData(utxo_hash='cab779d23c9b618359a004f1a8a7dce59de6368e01e1b4fe7c7ea236fb14ef67', utxo_ix=2, amount=2000000, add...f45', coin='lovelace', decoded_coin='', datum_hash='', inline_datum_hash='', inline_datum=None, reference_script=None)]\nplutus_op = PlutusOp(script_file=PosixPath('/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/data/plutus/v2.../42.redeemer.cbor'), redeemer_value=None, execution_cost=ExecutionCost(per_time=230100, per_space=1100, fixed_cost=81))\ntotal_collateral_amount = 2000000, return_collateral_txouts = ()\n\n    def _build_spend_locked_txin(\n        self,\n        temp_template: str,\n        cluster: clusterlib.ClusterLib,\n        payment_addr: clusterlib.AddressRecord,\n        dst_addr: clusterlib.AddressRecord,\n        script_utxos: List[clusterlib.UTXOData],\n        collateral_utxos: List[clusterlib.UTXOData],\n        plutus_op: plutus_common.PlutusOp,\n        total_collateral_amount: Optional[int] = None,\n        return_collateral_txouts: clusterlib.OptionalTxOuts = (),\n    ) -> clusterlib.TxRawOutput:\n        # for mypy\n        assert plutus_op.execution_cost\n        assert plutus_op.redeemer_cbor_file\n    \n        plutus_txins = [\n            clusterlib.ScriptTxIn(\n                txins=script_utxos,\n                script_file=plutus_op.script_file,\n                collaterals=collateral_utxos,\n                execution_units=(\n                    plutus_op.execution_cost.per_time,\n                    plutus_op.execution_cost.per_space,\n                ),\n                redeemer_cbor_file=plutus_op.redeemer_cbor_file,\n                inline_datum_present=True,\n            )\n        ]\n    \n        tx_files_redeem = clusterlib.TxFiles(\n            signing_key_files=[dst_addr.skey_file],\n        )\n        txouts_redeem = [\n            clusterlib.TxOut(address=dst_addr.address, amount=2_000_000),\n        ]\n    \n        err_str = \"\"\n        try:\n            tx_output_redeem = cluster.build_tx(\n                src_address=payment_addr.address,\n                tx_name=f\"{temp_template}_step2\",\n                tx_files=tx_files_redeem,\n                txouts=txouts_redeem,\n                script_txins=plutus_txins,\n                return_collateral_txouts=return_collateral_txouts,\n                total_collateral_amount=total_collateral_amount,\n                change_address=payment_addr.address,\n                script_valid=False,\n            )\n        except clusterlib.CLIError as err:\n            err_str = str(err)\n    \n        # TODO: broken on node 1.35.0 and 1.35.1\n        if \"ScriptWitnessIndexTxIn 0 is missing from the execution units\" in err_str:\n>           pytest.xfail(\"See cardano-node issue #4013\")\nE           _pytest.outcomes.XFailed: See cardano-node issue #4013\n\n/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_plutus_v2_spend_build.py:2133: XFailed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658753120500,
+      "stop" : 1658753120500,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658753120500,
+      "stop" : 1658753120501,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1658756822771,
+      "stop" : 1658756823072,
+      "duration" : 301
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658756822771,
+      "stop" : 1658756822771,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658756822771,
+      "stop" : 1658756822771,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658756639570,
+      "stop" : 1658756639570,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658753120602,
+      "stop" : 1658753120603,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658756822771,
+      "stop" : 1658756822771,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1658756823073,
+      "stop" : 1658756844839,
+      "duration" : 21766
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658753120501,
+      "stop" : 1658753120501,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658753120501,
+      "stop" : 1658753120602,
+      "duration" : 101
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658753120501,
+      "stop" : 1658753120501,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658756847026,
+      "stop" : 1658756847028,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658756847029,
+      "stop" : 1658756847029,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658757397066,
+      "stop" : 1658757397067,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658757397071,
+      "stop" : 1658757397071,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='runs only with Babbage+ TX; needs PlutusV2 cost model')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_v2_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCollateralOutput"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1995942-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_v2_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "use_return_collateral",
+    "value" : "False"
+  }, {
+    "name" : "use_total_collateral",
+    "value" : "True"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_plutus_v2_spend_build.py#L2144",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_plutus_v2_spend_build.py#L2144",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "cbaaf515736dd72b",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1658753116588,
+        "stop" : 1658753116588,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(False, reason='runs only with Babbage+ TX; needs PlutusV2 cost model')", "smoke", "testnets" ]
+  },
+  "source" : "d7dbaa82990c4e51.json",
+  "parameterValues" : [ "False", "True" ]
+}
