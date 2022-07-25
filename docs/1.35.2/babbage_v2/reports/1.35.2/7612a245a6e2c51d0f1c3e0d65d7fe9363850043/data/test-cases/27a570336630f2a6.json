@@ -1,0 +1,341 @@
+{
+  "uid" : "27a570336630f2a6",
+  "name" : "test_addr_registration_deregistration[build_raw]",
+  "fullName" : "cardano_node_tests.tests.test_delegation.TestDelegateAddr#test_addr_registration_deregistration",
+  "historyId" : "325ebbcdacbe67440f9096e3968a168f",
+  "time" : {
+    "start" : 1658625024699,
+    "stop" : 1658625031175,
+    "duration" : 6476
+  },
+  "description" : "Submit registration and deregistration certificates in single TX.\n\n        * create stake address registration cert\n        * create stake address deregistration cert\n        * register and deregister stake address in single TX\n        * check that the balance for source address was correctly updated and that key deposit\n          was not needed\n        * (optional) check records in db-sync\n        ",
+  "descriptionHtml" : "<p>Submit registration and deregistration certificates in single TX.</p>\n<pre><code>    * create stake address registration cert\n    * create stake address deregistration cert\n    * register and deregister stake address in single TX\n    * check that the balance for source address was correctly updated and that key deposit\n      was not needed\n    * (optional) check records in db-sync\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658624995479,
+      "stop" : 1658624995479,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658624995479,
+      "stop" : 1658624995479,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658624995479,
+      "stop" : 1658624995479,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658621560532,
+      "stop" : 1658621560632,
+      "duration" : 100
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users_disposable",
+    "time" : {
+      "start" : 1658625024596,
+      "stop" : 1658625024698,
+      "duration" : 102
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658621560632,
+      "stop" : 1658621560633,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658621560532,
+      "stop" : 1658621560532,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users",
+    "time" : {
+      "start" : 1658624995773,
+      "stop" : 1658625024596,
+      "duration" : 28823
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658621560531,
+      "stop" : 1658621560531,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1658624995479,
+      "stop" : 1658624995773,
+      "duration" : 294
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658621560532,
+      "stop" : 1658621560532,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658624995479,
+      "stop" : 1658624995479,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658621560531,
+      "stop" : 1658621560531,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658625031181,
+      "stop" : 1658625031181,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658628184135,
+      "stop" : 1658628184137,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658628184138,
+      "stop" : 1658628184138,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658625031176,
+      "stop" : 1658625031181,
+      "duration" : 5
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "order(8)"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_delegation"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestDelegateAddr"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "17490-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_delegation"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "use_build_cmd",
+    "value" : "False"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_delegation.py#L469",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_delegation.py#L469",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "9d4e5f4e93b048e9",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1658621556409,
+        "stop" : 1658621556409,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync", "smoke", "testnets", "order(8)" ]
+  },
+  "source" : "27a570336630f2a6.json",
+  "parameterValues" : [ "False" ]
+}

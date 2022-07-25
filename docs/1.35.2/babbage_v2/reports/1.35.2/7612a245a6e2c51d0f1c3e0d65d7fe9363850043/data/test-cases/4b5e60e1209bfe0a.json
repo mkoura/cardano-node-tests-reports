@@ -1,0 +1,352 @@
+{
+  "uid" : "4b5e60e1209bfe0a",
+  "name" : "test_build_pay_stake_addr_from[reserves]",
+  "fullName" : "cardano_node_tests.tests.test_mir_certs.TestMIRCerts#test_build_pay_stake_addr_from",
+  "historyId" : "a3f5c6c71c3f9d6d3e767577b53cd7c8",
+  "time" : {
+    "start" : 1658626412966,
+    "stop" : 1658626768529,
+    "duration" : 355563
+  },
+  "description" : "Send funds from the reserves or treasury pot to stake address.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        * generate an MIR certificate\n        * submit a TX with the MIR certificate\n        * check that the expected amount was added to the stake address reward account\n        * (optional) check transaction in db-sync\n        ",
+  "descriptionHtml" : "<p>Send funds from the reserves or treasury pot to stake address.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    * generate an MIR certificate\n    * submit a TX with the MIR certificate\n    * check that the expected amount was added to the stake address reward account\n    * (optional) check transaction in db-sync\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658621560531,
+      "stop" : 1658621560531,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658626390336,
+      "stop" : 1658626390336,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658626390336,
+      "stop" : 1658626390336,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_pots",
+    "time" : {
+      "start" : 1658626390336,
+      "stop" : 1658626390636,
+      "duration" : 300
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658626390335,
+      "stop" : 1658626390335,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658621560532,
+      "stop" : 1658621560582,
+      "duration" : 50
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658621560530,
+      "stop" : 1658621560531,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658621560530,
+      "stop" : 1658621560530,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658621560582,
+      "stop" : 1658621560583,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658626390336,
+      "stop" : 1658626390336,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users",
+    "time" : {
+      "start" : 1658626390636,
+      "stop" : 1658626403658,
+      "duration" : 13022
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658621560531,
+      "stop" : 1658621560532,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "registered_users",
+    "time" : {
+      "start" : 1658626403658,
+      "stop" : 1658626412965,
+      "duration" : 9307
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send funds from the reserves or treasury pot to stake address.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        * generate an MIR certificate\n        * submit a TX with the MIR certificate\n        * check that the expected amount was added to the stake address reward account\n        * (optional) check transaction in db-sync\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "c345f364f5fd1a86",
+      "name" : "log",
+      "source" : "c345f364f5fd1a86.txt",
+      "type" : "text/plain",
+      "size" : 455
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658626835782,
+      "stop" : 1658626835782,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658626768573,
+      "stop" : 1658626768574,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658626835780,
+      "stop" : 1658626835781,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658626768531,
+      "stop" : 1658626768573,
+      "duration" : 42
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='cannot use `build` with cluster era 'babbage' and TX era 'babbage'')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_mir_certs"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMIRCerts"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "17276-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_mir_certs"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "fund_src",
+    "value" : "'reserves'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_mir_certs.py#L498",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_mir_certs.py#L498",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "a07e8f58c86be039",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1658621556447,
+        "stop" : 1658621556447,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync", "@pytest.mark.skipif(False, reason='cannot use `build` with cluster era 'babbage' and TX era 'babbage'')" ]
+  },
+  "source" : "4b5e60e1209bfe0a.json",
+  "parameterValues" : [ "'reserves'" ]
+}
