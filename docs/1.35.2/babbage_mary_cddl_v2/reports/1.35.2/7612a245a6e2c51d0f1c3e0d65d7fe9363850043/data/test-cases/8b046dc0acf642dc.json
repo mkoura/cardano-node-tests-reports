@@ -1,0 +1,71 @@
+{
+  "uid" : "8b046dc0acf642dc",
+  "name" : "test_oversaturated",
+  "fullName" : "cardano_node_tests.tests.test_pool_saturation.TestPoolSaturation#test_oversaturated",
+  "historyId" : "490e42a87b92cae44ba9cd4541753ea8",
+  "time" : {
+    "start" : 1658753713393,
+    "stop" : 1658753713393,
+    "duration" : 0
+  },
+  "description" : "Check diminished rewards when stake pool is oversaturated.\n\n        The stake pool continues to operate normally and those who delegate to that pool receive\n        rewards, but the rewards are proportionally lower than those received from stake pool\n        that is not oversaturated.\n\n        * register and delegate stake address in \"init epoch\", for all available pools\n        * in \"init epoch\" + 2, saturate all available pools (block distribution remains balanced\n          among pools)\n        * in \"init epoch\" + 3, oversaturate one pool\n        * in \"init epoch\" + 5, for all available pools, withdraw rewards and transfer funds\n          from delegated addresses so pools are no longer (over)saturated\n        * while doing the steps above, collect rewards data for 9 epochs\n        * compare proportionality of rewards in epochs where pools were non-saturated,\n          saturated and oversaturated\n        ",
+  "descriptionHtml" : "<p>Check diminished rewards when stake pool is oversaturated.</p>\n<pre><code>    The stake pool continues to operate normally and those who delegate to that pool receive\n    rewards, but the rewards are proportionally lower than those received from stake pool\n    that is not oversaturated.\n\n    * register and delegate stake address in &quot;init epoch&quot;, for all available pools\n    * in &quot;init epoch&quot; + 2, saturate all available pools (block distribution remains balanced\n      among pools)\n    * in &quot;init epoch&quot; + 3, oversaturate one pool\n    * in &quot;init epoch&quot; + 5, for all available pools, withdraw rewards and transfer funds\n      from delegated addresses so pools are no longer (over)saturated\n    * while doing the steps above, collect rewards data for 9 epochs\n    * compare proportionality of rewards in epochs where pools were non-saturated,\n      saturated and oversaturated\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_pool_saturation.py', 128, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(5)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_pool_saturation"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestPoolSaturation"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2026545-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_pool_saturation"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_pool_saturation.py#L128",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_pool_saturation.py#L128",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip(reason='collected, not run')", "long", "order(5)" ]
+  },
+  "source" : "8b046dc0acf642dc.json",
+  "parameterValues" : [ ]
+}
