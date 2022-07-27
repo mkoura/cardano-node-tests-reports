@@ -1,0 +1,332 @@
+{
+  "uid" : "d020e94463b44768",
+  "name" : "test_guessing_game[plutus_v1-untyped_json-datum]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_raw.TestLocking#test_guessing_game",
+  "historyId" : "c462720c41ac818f23ea6c8ece729d92",
+  "time" : {
+    "start" : 1658755127148,
+    "stop" : 1658755138506,
+    "duration" : 11358
+  },
+  "description" : "Test locking a Tx output with a Plutus script and spending the locked UTxO.\n\n        Test with \"guessing game\" scripts that expect specific datum and redeemer value.\n        Test both typed and untyped redeemer and datum.\n        Test passing datum and redeemer to `cardano-cli` as value, json file and cbor file.\n\n        * create a Tx output with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * spend the locked UTxO\n        * check that the expected amount was spent\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test locking a Tx output with a Plutus script and spending the locked UTxO.</p>\n<pre><code>    Test with &quot;guessing game&quot; scripts that expect specific datum and redeemer value.\n    Test both typed and untyped redeemer and datum.\n    Test passing datum and redeemer to `cardano-cli` as value, json file and cbor file.\n\n    * create a Tx output with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * spend the locked UTxO\n    * check that the expected amount was spent\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658753545994,
+      "stop" : 1658753545994,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "payment_addrs",
+    "time" : {
+      "start" : 1658755119048,
+      "stop" : 1658755127147,
+      "duration" : 8099
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658755118745,
+      "stop" : 1658755118745,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658755118745,
+      "stop" : 1658755118745,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658755118745,
+      "stop" : 1658755118745,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658753545994,
+      "stop" : 1658753545994,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658753545994,
+      "stop" : 1658753545995,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658753545994,
+      "stop" : 1658753545994,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1658755118746,
+      "stop" : 1658755119047,
+      "duration" : 301
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658753545994,
+      "stop" : 1658753545994,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658755021083,
+      "stop" : 1658755021083,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658753545995,
+      "stop" : 1658753545995,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658755138518,
+      "stop" : 1658755138518,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658755138507,
+      "stop" : 1658755138517,
+      "duration" : 10
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658755532061,
+      "stop" : 1658755532062,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658755532064,
+      "stop" : 1658755532064,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='Plutus is available only in Alonzo+ eras')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_raw"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2019053-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_raw"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "embed_datum",
+    "value" : "False"
+  }, {
+    "name" : "plutus_version",
+    "value" : "'v1'"
+  }, {
+    "name" : "variant",
+    "value" : "'untyped_json'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_plutus_spend_raw.py#L581",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_plutus_spend_raw.py#L581",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "37fd066a9f14dcf5",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1658753541723,
+        "stop" : 1658753541723,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync", "@pytest.mark.skipif(False, reason='Plutus is available only in Alonzo+ eras')", "smoke", "testnets" ]
+  },
+  "source" : "d020e94463b44768.json",
+  "parameterValues" : [ "False", "'v1'", "'untyped_json'" ]
+}

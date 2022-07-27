@@ -1,0 +1,292 @@
+{
+  "uid" : "a5a5c71bcace929e",
+  "name" : "test_update_valid_opcert",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_update_valid_opcert",
+  "historyId" : "763c73d3b0678568285bf0f21cdefe58",
+  "time" : {
+    "start" : 1658754817343,
+    "stop" : 1658754817343,
+    "duration" : 0
+  },
+  "description" : "Update a valid operational certificate with another valid operational certificate.\n\n        * generate new operational certificate with valid `--kes-period`\n        * copy new operational certificate to the node\n        * stop the node so the corresponding pool is not minting new blocks\n        * check `kes-period-info` while the pool is not minting blocks\n        * start the node with the new operational certificate\n        * check that the pool is minting blocks again\n        * check that metrics reported by `kes-period-info` got updated once the pool started\n          minting blocks again\n        * check `kes-period-info` with the old (replaced) operational certificate\n        ",
+  "descriptionHtml" : "<p>Update a valid operational certificate with another valid operational certificate.</p>\n<pre><code>    * generate new operational certificate with valid `--kes-period`\n    * copy new operational certificate to the node\n    * stop the node so the corresponding pool is not minting new blocks\n    * check `kes-period-info` while the pool is not minting blocks\n    * start the node with the new operational certificate\n    * check that the pool is minting blocks again\n    * check that metrics reported by `kes-period-info` got updated once the pool started\n      minting blocks again\n    * check `kes-period-info` with the old (replaced) operational certificate\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: meant to run with default era or higher, where cluster era == Tx era",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests7/cardano_node_tests/tests/test_kes.py', 514, 'Skipped: meant to run with default era or higher, where cluster era == Tx era')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1658754817345,
+      "stop" : 1658754817345,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1658754817345,
+      "stop" : 1658754817345,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1658753545992,
+      "stop" : 1658753546294,
+      "duration" : 302
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1658754817345,
+      "stop" : 1658754817345,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1658753545992,
+      "stop" : 1658753545992,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1658753546294,
+      "stop" : 1658753546294,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1658753545992,
+      "stop" : 1658753545992,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1658754817345,
+      "stop" : 1658754817345,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1658753545991,
+      "stop" : 1658753545991,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1658753545992,
+      "stop" : 1658753545992,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1658755543149,
+      "stop" : 1658755543153,
+      "duration" : 4
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1658754960631,
+      "stop" : 1658754960692,
+      "duration" : 61
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1658755543155,
+      "stop" : 1658755543155,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1658754960692,
+      "stop" : 1658754960692,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(7)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='meant to run with default era or higher, where cluster era == Tx era')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2018950-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_kes.py#L514",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/ed48848e8881877ef3425b7a9c3fa5bb9fb2ced8/cardano_node_tests/tests/test_kes.py#L514",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "c02db7f2f7c56d19",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: meant to run with default era or higher, where cluster era == Tx era",
+      "time" : {
+        "start" : 1658753541515,
+        "stop" : 1658753541515,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(True, reason='meant to run with default era or higher, where cluster era == Tx era')", "order(7)", "long" ]
+  },
+  "source" : "a5a5c71bcace929e.json",
+  "parameterValues" : [ ]
+}
