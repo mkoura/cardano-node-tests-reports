@@ -1,0 +1,74 @@
+{
+  "uid" : "253e9e11cf7e6a34",
+  "name" : "test_opcert_future_kes_period",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_opcert_future_kes_period",
+  "historyId" : "b8c1571d0266203121c79c0d2d0b161f",
+  "time" : {
+    "start" : 1659829667549,
+    "stop" : 1659829667549,
+    "duration" : 0
+  },
+  "description" : "Start a stake pool with an operational certificate created with invalid `--kes-period`.\n\n        * generate new operational certificate with `--kes-period` in the future\n        * restart the node with the new operational certificate\n        * check that the pool is not minting any blocks\n        * if network era > Alonzo\n\n            - generate new operational certificate with valid `--kes-period`, but counter value +2\n              from last used operational certificate\n            - restart the node\n            - check that the pool is not minting any blocks\n\n        * generate new operational certificate with valid `--kes-period` and restart the node\n        * check that the pool is minting blocks again\n        ",
+  "descriptionHtml" : "<p>Start a stake pool with an operational certificate created with invalid <code>--kes-period</code>.</p>\n<pre><code>    * generate new operational certificate with `--kes-period` in the future\n    * restart the node with the new operational certificate\n    * check that the pool is not minting any blocks\n    * if network era &gt; Alonzo\n\n        - generate new operational certificate with valid `--kes-period`, but counter value +2\n          from last used operational certificate\n        - restart the node\n        - check that the pool is not minting any blocks\n\n    * generate new operational certificate with valid `--kes-period` and restart the node\n    * check that the pool is minting blocks again\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests6/cardano_node_tests/tests/test_kes.py', 303, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(False, reason='meant to run with default era or higher, where cluster era == Tx era')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1770242-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_kes.py#L303",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_kes.py#L303",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip(reason='collected, not run')", "order(6)", "@pytest.mark.skipif(False, reason='meant to run with default era or higher, where cluster era == Tx era')", "long" ]
+  },
+  "source" : "253e9e11cf7e6a34.json",
+  "parameterValues" : [ ]
+}
