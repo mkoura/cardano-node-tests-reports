@@ -1,0 +1,74 @@
+{
+  "uid" : "c71080f7847a80f4",
+  "name" : "test_redelegation",
+  "fullName" : "cardano_node_tests.tests.test_staking_rewards.TestRewards#test_redelegation",
+  "historyId" : "d0d5f30f8a736833c76dc8cfb11225ac",
+  "time" : {
+    "start" : 1659836759371,
+    "stop" : 1659836759371,
+    "duration" : 0
+  },
+  "description" : "Check rewards received by stake address over multiple epochs.\n\n        The address is re-delegated and deregistred / re-registered multiple times.\n\n        * delegate stake address to pool\n        * in next epoch, re-delegate to another pool\n        * in next epoch, deregister stake address, immediatelly re-register and delegate to pool\n        * in next epoch, deregister stake address, wait for second half of an epoch, re-register\n          and delegate to pool\n        * while doing the steps above, collect data for pool user for 8 epochs\n\n           - each epoch check ledger state (expected data in `pstake*`, delegation, stake amount)\n           - each epoch check received reward with reward in ledger state\n\n        * (optional) check records in db-sync\n        ",
+  "descriptionHtml" : "<p>Check rewards received by stake address over multiple epochs.</p>\n<pre><code>    The address is re-delegated and deregistred / re-registered multiple times.\n\n    * delegate stake address to pool\n    * in next epoch, re-delegate to another pool\n    * in next epoch, deregister stake address, immediatelly re-register and delegate to pool\n    * in next epoch, deregister stake address, wait for second half of an epoch, re-register\n      and delegate to pool\n    * while doing the steps above, collect data for pool user for 8 epochs\n\n       - each epoch check ledger state (expected data in `pstake*`, delegation, stake amount)\n       - each epoch check received reward with reward in ledger state\n\n    * (optional) check records in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: collected, not run",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests6/cardano_node_tests/tests/test_staking_rewards.py', 1407, 'Skipped: collected, not run')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking_rewards"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "3845366-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking_rewards"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_staking_rewards.py#L1407",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_staking_rewards.py#L1407",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "dbsync", "@pytest.mark.skip(reason='collected, not run')", "order(6)", "long" ]
+  },
+  "source" : "c71080f7847a80f4.json",
+  "parameterValues" : [ ]
+}
