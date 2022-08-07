@@ -1,0 +1,80 @@
+{
+  "uid" : "67d5ef333b5abaef",
+  "name" : "test_two_scripts_spending[plutus_v2]",
+  "fullName" : "cardano_node_tests.tests.test_plutus_spend_build.TestBuildLocking#test_two_scripts_spending",
+  "historyId" : "9aad1cf0ef97def7c9a1acec2c074eb4",
+  "time" : {
+    "start" : 1659829499112,
+    "stop" : 1659829499112,
+    "duration" : 0
+  },
+  "description" : "Test locking two Tx outputs with two different Plutus scripts in single Tx.\n\n        Uses `cardano-cli transaction build` command for building the transactions.\n\n        * create a Tx output with a datum hash at the script address\n        * check that the expected amount was locked at the script address\n        * spend the locked UTxO\n        * check that the expected amount was spent\n        * check expected fees\n        * check expected Plutus cost\n        * (optional) check transactions in db-sync\n        ",
+  "descriptionHtml" : "<p>Test locking two Tx outputs with two different Plutus scripts in single Tx.</p>\n<pre><code>    Uses `cardano-cli transaction build` command for building the transactions.\n\n    * create a Tx output with a datum hash at the script address\n    * check that the expected amount was locked at the script address\n    * spend the locked UTxO\n    * check that the expected amount was spent\n    * check expected fees\n    * check expected Plutus cost\n    * (optional) check transactions in db-sync\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: runs only with Babbage+ TX; needs PlutusV2 cost model",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests2/cardano_node_tests/tests/test_plutus_spend_build.py', 674, 'Skipped: runs only with Babbage+ TX; needs PlutusV2 cost model')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip(reason='collected, not run')"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='runs only with Babbage+ TX; needs PlutusV2 cost model')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_plutus_spend_build"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestBuildLocking"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1737086-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_plutus_spend_build"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "plutus_version",
+    "value" : "'plutus_v2'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_plutus_spend_build.py#L674",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_plutus_spend_build.py#L674",
+    "type" : "link"
+  } ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(True, reason='runs only with Babbage+ TX; needs PlutusV2 cost model')", "dbsync", "smoke", "testnets", "@pytest.mark.skip(reason='collected, not run')" ]
+  },
+  "source" : "67d5ef333b5abaef.json",
+  "parameterValues" : [ "'plutus_v2'" ]
+}
