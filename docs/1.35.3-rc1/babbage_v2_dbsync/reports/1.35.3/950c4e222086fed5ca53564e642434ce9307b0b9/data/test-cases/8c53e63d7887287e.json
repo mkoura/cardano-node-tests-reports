@@ -1,0 +1,337 @@
+{
+  "uid" : "8c53e63d7887287e",
+  "name" : "test_pay_unregistered_stake_addr_from[reserves-addr_unknown]",
+  "fullName" : "cardano_node_tests.tests.test_mir_certs.TestMIRCerts#test_pay_unregistered_stake_addr_from",
+  "historyId" : "7d47195f3106fb92d0ffaf4122f06d27",
+  "time" : {
+    "start" : 1659836803681,
+    "stop" : 1659837172743,
+    "duration" : 369062
+  },
+  "description" : "Send funds from the reserves or treasury pot to unregistered stake address.\n\n        * generate an MIR certificate\n        * if a stake address should be known on blockchain:\n\n            - register the stake address\n            - if transferring funds from treasury, deregister the stake address\n              BEFORE submitting the TX\n\n        * submit a TX with the MIR certificate\n        * if a stake address should be known on blockchain and if transferring funds from reserves,\n          deregister the stake address AFTER submitting the TX\n        * check that the amount was NOT added to the stake address reward account\n        * (optional) check transaction in db-sync\n        ",
+  "descriptionHtml" : "<p>Send funds from the reserves or treasury pot to unregistered stake address.</p>\n<pre><code>    * generate an MIR certificate\n    * if a stake address should be known on blockchain:\n\n        - register the stake address\n        - if transferring funds from treasury, deregister the stake address\n          BEFORE submitting the TX\n\n    * submit a TX with the MIR certificate\n    * if a stake address should be known on blockchain and if transferring funds from reserves,\n      deregister the stake address AFTER submitting the TX\n    * check that the amount was NOT added to the stake address reward account\n    * (optional) check transaction in db-sync\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1659835362083,
+      "stop" : 1659835362083,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1659830113977,
+      "stop" : 1659830113977,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pool_users",
+    "time" : {
+      "start" : 1659836799360,
+      "stop" : 1659836803680,
+      "duration" : 4320
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1659835362083,
+      "stop" : 1659835362083,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_pots",
+    "time" : {
+      "start" : 1659835362083,
+      "stop" : 1659836799360,
+      "duration" : 1437277
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1659835362083,
+      "stop" : 1659835362083,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1659830113978,
+      "stop" : 1659830113978,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1659830114129,
+      "stop" : 1659830114129,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1659830113978,
+      "stop" : 1659830113978,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1659830113978,
+      "stop" : 1659830114129,
+      "duration" : 151
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1659830113977,
+      "stop" : 1659830113978,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1659835362083,
+      "stop" : 1659835362083,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send funds from the reserves or treasury pot to unregistered stake address.\n\n        * generate an MIR certificate\n        * if a stake address should be known on blockchain:\n\n            - register the stake address\n            - if transferring funds from treasury, deregister the stake address\n              BEFORE submitting the TX\n\n        * submit a TX with the MIR certificate\n        * if a stake address should be known on blockchain and if transferring funds from reserves,\n          deregister the stake address AFTER submitting the TX\n        * check that the amount was NOT added to the stake address reward account\n        * (optional) check transaction in db-sync\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "3b69ea78a846f334",
+      "name" : "log",
+      "source" : "3b69ea78a846f334.txt",
+      "type" : "text/plain",
+      "size" : 1417
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1659837173142,
+      "stop" : 1659837173142,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1659837243411,
+      "stop" : 1659837243411,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1659837230237,
+      "stop" : 1659837243410,
+      "duration" : 13173
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1659837172745,
+      "stop" : 1659837173141,
+      "duration" : 396
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_mir_certs"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMIRCerts"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1923940-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_mir_certs"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "addr_history",
+    "value" : "'addr_unknown'"
+  }, {
+    "name" : "fund_src",
+    "value" : "'reserves'"
+  } ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_mir_certs.py#L909",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_mir_certs.py#L909",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "7f70443cfe47f0eb",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1659830108952,
+        "stop" : 1659830108952,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync" ]
+  },
+  "source" : "8c53e63d7887287e.json",
+  "parameterValues" : [ "'addr_unknown'", "'reserves'" ]
+}

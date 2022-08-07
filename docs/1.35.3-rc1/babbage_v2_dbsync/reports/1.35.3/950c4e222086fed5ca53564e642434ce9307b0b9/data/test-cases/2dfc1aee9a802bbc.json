@@ -1,0 +1,319 @@
+{
+  "uid" : "2dfc1aee9a802bbc",
+  "name" : "test_deregister_reward_addr_retire_pool",
+  "fullName" : "cardano_node_tests.tests.test_staking_no_rewards.TestNoRewards#test_deregister_reward_addr_retire_pool",
+  "historyId" : "26f325c7cfbae851dca4801fd5e592b8",
+  "time" : {
+    "start" : 1659834183453,
+    "stop" : 1659835783709,
+    "duration" : 1600256
+  },
+  "description" : "Test deregistering reward address and retiring stake pool.\n\n        The pool deposit is lost when reward address is deregistered before the pool is retired.\n\n        * wait for first reward for the pool\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * deregister stake pool\n        * check that the pool deposit was NOT returned to reward or stake address\n        * return the pool to the original state - reregister the pool, register\n          the reward address, delegate the stake address to the pool\n        * check that pool deposit was needed\n        * check that pool owner is receiving rewards\n        ",
+  "descriptionHtml" : "<p>Test deregistering reward address and retiring stake pool.</p>\n<pre><code>    The pool deposit is lost when reward address is deregistered before the pool is retired.\n\n    * wait for first reward for the pool\n    * withdraw pool rewards to payment address\n    * deregister the pool reward address\n    * check that the key deposit was returned\n    * check that pool owner is NOT receiving rewards\n    * deregister stake pool\n    * check that the pool deposit was NOT returned to reward or stake address\n    * return the pool to the original state - reregister the pool, register\n      the reward address, delegate the stake address to the pool\n    * check that pool deposit was needed\n    * check that pool owner is receiving rewards\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1659830114430,
+      "stop" : 1659830114431,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1659830113977,
+      "stop" : 1659830113977,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1659830114431,
+      "stop" : 1659830114431,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1659830113978,
+      "stop" : 1659830113978,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1659830114431,
+      "stop" : 1659830114431,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1659830114431,
+      "stop" : 1659830114431,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_lock_pool2",
+    "time" : {
+      "start" : 1659830114431,
+      "stop" : 1659834183452,
+      "duration" : 4069021
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1659830114430,
+      "stop" : 1659830114430,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1659830113977,
+      "stop" : 1659830113978,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1659830113978,
+      "stop" : 1659830113978,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1659830113978,
+      "stop" : 1659830114430,
+      "duration" : 452
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Test deregistering reward address and retiring stake pool.\n\n        The pool deposit is lost when reward address is deregistered before the pool is retired.\n\n        * wait for first reward for the pool\n        * withdraw pool rewards to payment address\n        * deregister the pool reward address\n        * check that the key deposit was returned\n        * check that pool owner is NOT receiving rewards\n        * deregister stake pool\n        * check that the pool deposit was NOT returned to reward or stake address\n        * return the pool to the original state - reregister the pool, register\n          the reward address, delegate the stake address to the pool\n        * check that pool deposit was needed\n        * check that pool owner is receiving rewards\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "7458ab991ac0c1c0",
+      "name" : "log",
+      "source" : "7458ab991ac0c1c0.txt",
+      "type" : "text/plain",
+      "size" : 1861
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1659835784665,
+      "stop" : 1659835784665,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1659835783711,
+      "stop" : 1659835784664,
+      "duration" : 953
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1659836195157,
+      "stop" : 1659836195157,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1659836195153,
+      "stop" : 1659836195156,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_staking_no_rewards"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestNoRewards"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1924047-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_staking_no_rewards"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_staking_no_rewards.py#L713",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_staking_no_rewards.py#L713",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "2894e16c718dfcee",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1659830108878,
+        "stop" : 1659830108878,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "order(6)", "long" ]
+  },
+  "source" : "2dfc1aee9a802bbc.json",
+  "parameterValues" : [ ]
+}
