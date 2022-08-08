@@ -1,0 +1,325 @@
+{
+  "uid" : "6f8a9d21630d9af2",
+  "name" : "test_deregister",
+  "fullName" : "cardano_node_tests.tests.test_delegation.TestDelegateAddr#test_deregister",
+  "historyId" : "2a9001602bdd7bc972fe5ef8fb1c9fdc",
+  "time" : {
+    "start" : 1659918969539,
+    "stop" : 1659919735353,
+    "duration" : 765814
+  },
+  "description" : "Deregister stake address.\n\n        * create two payment addresses that share single stake address\n        * register and delegate the stake address to pool\n        * attempt to deregister the stake address - deregistration is expected to fail\n          because there are rewards in the stake address\n        * withdraw rewards to payment address and deregister stake address\n        * check that the key deposit was returned and rewards withdrawn\n        * check that the stake address is no longer delegated\n        * (optional) check records in db-sync\n        ",
+  "descriptionHtml" : "<p>Deregister stake address.</p>\n<pre><code>    * create two payment addresses that share single stake address\n    * register and delegate the stake address to pool\n    * attempt to deregister the stake address - deregistration is expected to fail\n      because there are rewards in the stake address\n    * withdraw rewards to payment address and deregister stake address\n    * check that the key deposit was returned and rewards withdrawn\n    * check that the stake address is no longer delegated\n    * (optional) check records in db-sync\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1659917713016,
+      "stop" : 1659917713016,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1659917713015,
+      "stop" : 1659917713015,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1659918969234,
+      "stop" : 1659918969234,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1659918969234,
+      "stop" : 1659918969234,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1659917713217,
+      "stop" : 1659917713217,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1659917713016,
+      "stop" : 1659917713016,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1659918969234,
+      "stop" : 1659918969234,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_and_pool",
+    "time" : {
+      "start" : 1659918969234,
+      "stop" : 1659918969538,
+      "duration" : 304
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1659917713016,
+      "stop" : 1659917713217,
+      "duration" : 201
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1659918969234,
+      "stop" : 1659918969234,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1659917713015,
+      "stop" : 1659917713016,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Deregister stake address.\n\n        * create two payment addresses that share single stake address\n        * register and delegate the stake address to pool\n        * attempt to deregister the stake address - deregistration is expected to fail\n          because there are rewards in the stake address\n        * withdraw rewards to payment address and deregister stake address\n        * check that the key deposit was returned and rewards withdrawn\n        * check that the stake address is no longer delegated\n        * (optional) check records in db-sync\n        ",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "d7a2a0bdf512ea97",
+      "name" : "log",
+      "source" : "d7a2a0bdf512ea97.txt",
+      "type" : "text/plain",
+      "size" : 218
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1659919735354,
+      "stop" : 1659919735696,
+      "duration" : 342
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1659920152781,
+      "stop" : 1659920152781,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1659919735697,
+      "stop" : 1659919735697,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1659920152776,
+      "stop" : 1659920152779,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "order(7)"
+  }, {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_delegation"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestDelegateAddr"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "2756663-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_delegation"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/76ea460cdfb030e9f80185a76d5ad2a2222bda4f/cardano_node_tests/tests/test_delegation.py#L172",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/76ea460cdfb030e9f80185a76d5ad2a2222bda4f/cardano_node_tests/tests/test_delegation.py#L172",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "a686035d2824115f",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1659917708602,
+        "stop" : 1659917708602,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "dbsync", "testnets", "order(7)", "long" ]
+  },
+  "source" : "6f8a9d21630d9af2.json",
+  "parameterValues" : [ ]
+}
