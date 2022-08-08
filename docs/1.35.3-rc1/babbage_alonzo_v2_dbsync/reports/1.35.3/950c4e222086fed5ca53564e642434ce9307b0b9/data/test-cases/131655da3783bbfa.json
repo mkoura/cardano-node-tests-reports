@@ -1,0 +1,294 @@
+{
+  "uid" : "131655da3783bbfa",
+  "name" : "test_opcert_future_kes_period",
+  "fullName" : "cardano_node_tests.tests.test_kes.TestKES#test_opcert_future_kes_period",
+  "historyId" : "b8c1571d0266203121c79c0d2d0b161f",
+  "time" : {
+    "start" : 1659838465929,
+    "stop" : 1659838465929,
+    "duration" : 0
+  },
+  "description" : "Start a stake pool with an operational certificate created with invalid `--kes-period`.\n\n        * generate new operational certificate with `--kes-period` in the future\n        * restart the node with the new operational certificate\n        * check that the pool is not minting any blocks\n        * if network era > Alonzo\n\n            - generate new operational certificate with valid `--kes-period`, but counter value +2\n              from last used operational certificate\n            - restart the node\n            - check that the pool is not minting any blocks\n\n        * generate new operational certificate with valid `--kes-period` and restart the node\n        * check that the pool is minting blocks again\n        ",
+  "descriptionHtml" : "<p>Start a stake pool with an operational certificate created with invalid <code>--kes-period</code>.</p>\n<pre><code>    * generate new operational certificate with `--kes-period` in the future\n    * restart the node with the new operational certificate\n    * check that the pool is not minting any blocks\n    * if network era &gt; Alonzo\n\n        - generate new operational certificate with valid `--kes-period`, but counter value +2\n          from last used operational certificate\n        - restart the node\n        - check that the pool is not minting any blocks\n\n    * generate new operational certificate with valid `--kes-period` and restart the node\n    * check that the pool is minting blocks again\n</code></pre>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: meant to run with default era or higher, where cluster era == Tx era",
+  "statusTrace" : "('/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/test_kes.py', 303, 'Skipped: meant to run with default era or higher, where cluster era == Tx era')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1659838466335,
+      "stop" : 1659838466335,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1659838465933,
+      "stop" : 1659838465933,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1659838465933,
+      "stop" : 1659838465933,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1659838465933,
+      "stop" : 1659838465933,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1659838466336,
+      "stop" : 1659838466336,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1659838466335,
+      "stop" : 1659838466335,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1659838466336,
+      "stop" : 1659838466336,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1659838465933,
+      "stop" : 1659838466335,
+      "duration" : 402
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1659838466336,
+      "stop" : 1659838466336,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1659838465933,
+      "stop" : 1659838465933,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1659839927698,
+      "stop" : 1659839927698,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1659840827485,
+      "stop" : 1659840827487,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1659839927376,
+      "stop" : 1659839927698,
+      "duration" : 322
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Errors found in cluster log files:\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node:Error:588]\u001B[0m [2022-08-07 02:38:41.45 UTC] runDBThread: DbInsertException \"PoolOwner\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"pool_owner\\\" violates foreign key constraint \\\"pool_owner_addr_id_fkey\\\"\", sqlErrorDetail = \"Key (addr_id)=(12) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"})\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node:Error:580]\u001B[0m [2022-08-07 02:38:41.45 UTC] ChainSyncWithBlocksPtcl: DbInsertException \"PoolOwner\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"pool_owner\\\" violates foreign key constraint \\\"pool_owner_addr_id_fkey\\\"\", sqlErrorDetail = \"Key (addr_id)=(12) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"})\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node.Subscription:Error:576]\u001B[0m [2022-08-07 02:38:41.45 UTC] Identity Application Exception: LocalAddress \"/home/martink/Source/repos/cardano-node3/state-cluster8/bft1.socket\" DbInsertException \"PoolOwner\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"pool_owner\\\" violates foreign key constraint \\\"pool_owner_addr_id_fkey\\\"\", sqlErrorDetail = \"Key (addr_id)=(12) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"})\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node.ErrorPolicy:Error:6]\u001B[0m [2022-08-07 02:38:41.45 UTC] IP LocalAddress \"/home/martink/Source/repos/cardano-node3/state-cluster8/bft1.socket\" ErrorPolicyUnhandledApplicationException (DbInsertException \"PoolOwner\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"pool_owner\\\" violates foreign key constraint \\\"pool_owner_addr_id_fkey\\\"\", sqlErrorDetail = \"Key (addr_id)=(12) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"}))\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node:Error:688]\u001B[0m [2022-08-07 02:38:42.65 UTC] runDBThread: DbInsertException \"TxOut\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"tx_out\\\" violates foreign key constraint \\\"tx_out_stake_address_id_fkey\\\"\", sqlErrorDetail = \"Key (stake_address_id)=(10) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"})\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node:Error:680]\u001B[0m [2022-08-07 02:38:42.65 UTC] ChainSyncWithBlocksPtcl: DbInsertException \"TxOut\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"tx_out\\\" violates foreign key constraint \\\"tx_out_stake_address_id_fkey\\\"\", sqlErrorDetail = \"Key (stake_address_id)=(10) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"})\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node.Subscription:Error:676]\u001B[0m [2022-08-07 02:38:42.65 UTC] Identity Application Exception: LocalAddress \"/home/martink/Source/repos/cardano-node3/state-cluster8/bft1.socket\" DbInsertException \"TxOut\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"tx_out\\\" violates foreign key constraint \\\"tx_out_stake_address_id_fkey\\\"\", sqlErrorDetail = \"Key (stake_address_id)=(10) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"})\n\n/home/martink/Source/repos/cardano-node3/state-cluster8/dbsync.stdout: \u001B[31m[db-sync-node.ErrorPolicy:Error:6]\u001B[0m [2022-08-07 02:38:42.65 UTC] IP LocalAddress \"/home/martink/Source/repos/cardano-node3/state-cluster8/bft1.socket\" ErrorPolicyUnhandledApplicationException (DbInsertException \"TxOut\" (SqlError {sqlState = \"23503\", sqlExecStatus = FatalError, sqlErrorMsg = \"insert or update on table \\\"tx_out\\\" violates foreign key constraint \\\"tx_out_stake_address_id_fkey\\\"\", sqlErrorDetail = \"Key (stake_address_id)=(10) is not present in table \\\"stake_address\\\".\", sqlErrorHint = \"\"}))\n\n",
+    "statusTrace" : "  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/allure_commons/_allure.py\", line 200, in __call__\n    return self._fixture_function(*args, **kwargs)\n  File \"/home/martink/.local/python_venvs/cardano_node/lib/python3.10/site-packages/_pytest/fixtures.py\", line 941, in _teardown_yield_fixture\n    next(it)\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/tests/conftest.py\", line 291, in cluster_manager\n    cluster_manager_obj.on_test_stop()\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/cluster_management.py\", line 363, in on_test_stop\n    logfiles.report_artifacts_errors(errors)\n  File \"/home/martink/Source/repos/cardano-node-tests3/cardano_node_tests/utils/logfiles.py\", line 253, in report_artifacts_errors\n    raise AssertionError(f\"Errors found in cluster log files:\\n{err_joined}\") from None\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1659840827489,
+      "stop" : 1659840827489,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "long"
+  }, {
+    "name" : "tag",
+    "value" : "order(6)"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skipif(True, reason='meant to run with default era or higher, where cluster era == Tx era')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_kes"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestKES"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "4162056-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_kes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_kes.py#L303",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/a682e5149259fc341ff367b07bd23fcc5431b687/cardano_node_tests/tests/test_kes.py#L303",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "982bbc0cfa0a82f9",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: meant to run with default era or higher, where cluster era == Tx era",
+      "time" : {
+        "start" : 1659838461094,
+        "stop" : 1659838461094,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skipif(True, reason='meant to run with default era or higher, where cluster era == Tx era')", "order(6)", "long" ]
+  },
+  "source" : "131655da3783bbfa.json",
+  "parameterValues" : [ ]
+}
