@@ -1,0 +1,313 @@
+{
+  "uid" : "2735fbaff2710e73",
+  "name" : "test_blocks",
+  "fullName" : "cardano_node_tests.tests.test_dbsync.TestDBSync#test_blocks",
+  "historyId" : "428a87904f33448ffc03e9743a515090",
+  "time" : {
+    "start" : 1659911540260,
+    "stop" : 1659911540299,
+    "duration" : 39
+  },
+  "description" : "Check expected values in the `block` table in db-sync.",
+  "descriptionHtml" : "<p>Check expected values in the <code>block</code> table in db-sync.</p>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL reason: protocol major version: 7; protocol minor version: 0\n\n_pytest.outcomes.XFailed: protocol major version: 7; protocol minor version: 0",
+  "statusTrace" : "self = <cardano_node_tests.tests.test_dbsync.TestDBSync object at 0x7ff7700c3f40>, cluster = <ClusterLib: protocol=cardano, tx_era=shelley>\n\n    @allure.link(helpers.get_vcs_link())\n    @pytest.mark.order(-10)\n    @pytest.mark.testnets\n    def test_blocks(self, cluster: clusterlib.ClusterLib):  # noqa: C901\n        \"\"\"Check expected values in the `block` table in db-sync.\"\"\"\n        # pylint: disable=too-many-branches\n        common.get_test_id(cluster)\n    \n        tip = cluster.get_tip()\n        block_no = int(tip[\"block\"])\n        epoch = int(tip[\"epoch\"])\n    \n        # check records for last 50 epochs\n        epoch_from = epoch - 50\n        epoch_from = epoch_from if epoch_from >= 0 else 0\n    \n        rec = None\n        prev_rec = None\n        errors: List[str] = []\n        for rec in dbsync_queries.query_blocks(epoch_from=epoch_from):\n            if not prev_rec:\n                prev_rec = rec\n                continue\n    \n            if rec.id <= prev_rec.id:\n                errors.append(\n                    \"'id' value is different than expected; \"\n                    f\"Expected: {rec.id} > {prev_rec.id} vs Returned: {rec.id}\"\n                )\n    \n            if rec.id < 4:\n                prev_rec = rec\n                continue\n    \n            if rec.epoch_no is None or rec.epoch_no < 0:\n                errors.append(\n                    \"'epoch_no' value is different than expected; \"\n                    f\"Expected: positive int vs Returned: {rec.epoch_no}\"\n                )\n    \n            if rec.epoch_no and prev_rec.epoch_no and rec.epoch_no < prev_rec.epoch_no:\n                errors.append(\n                    \"'epoch_no' value is different than expected; \"\n                    f\"Expected: value >= {prev_rec.epoch_no} vs Returned: {rec.epoch_no}\"\n                )\n    \n            if rec.epoch_no and prev_rec.epoch_no and rec.epoch_no > prev_rec.epoch_no + 1:\n                errors.append(\n                    \"'epoch_no' value is different than expected; \"\n                    f\"Expected: {prev_rec.epoch_no} or {prev_rec.epoch_no + 1}\"\n                    f\" vs Returned: {rec.epoch_no}\"\n                )\n    \n            if rec.slot_no is None or rec.slot_no < 0:\n                errors.append(\n                    \"'slot_no' value is different than expected; \"\n                    f\"Expected: positive int vs Returned: {rec.slot_no}\"\n                )\n    \n            if rec.slot_no and prev_rec.slot_no and rec.slot_no < prev_rec.slot_no:\n                errors.append(\n                    \"'slot_no' value is different than expected; \"\n                    f\"Expected: value >= {prev_rec.slot_no} vs Returned: {rec.slot_no}\"\n                )\n    \n            if rec.epoch_slot_no is None or rec.epoch_slot_no < 0:\n                errors.append(\n                    \"'epoch_slot_no' value is different than expected; \"\n                    f\"Expected: positive int vs Returned: {rec.epoch_slot_no}\"\n                )\n    \n            if (\n                rec.epoch_slot_no\n                and prev_rec.epoch_slot_no\n                and rec.epoch_slot_no <= prev_rec.epoch_slot_no\n                and rec.epoch_no == prev_rec.epoch_no\n            ):\n                errors.append(\n                    \"'epoch_slot_no' value is different than expected; \"\n                    f\"Expected: value > {prev_rec.epoch_slot_no} vs Returned: {rec.epoch_slot_no}\"\n                )\n    \n            if rec.block_no is None or (\n                prev_rec.block_no and rec.block_no != prev_rec.block_no + 1\n            ):\n                errors.append(\n                    \"'block_no' value is different than expected; \"\n                    f\"Expected: {prev_rec.block_no + 1} vs Returned: {rec.block_no}\"\n                )\n    \n            if rec.previous_id is None or (prev_rec.id and rec.previous_id != prev_rec.id):\n                errors.append(\n                    \"'previous_id' value is different than expected; \"\n                    f\"Expected: {prev_rec.id} vs Returned: {rec.previous_id}\"\n                )\n    \n            prev_rec = rec\n    \n        if errors:\n            errors_str = \"\\n\".join(errors)\n            raise AssertionError(errors_str)\n    \n        # db-sync can be max 1 block behind or ahead\n        if (\n            rec\n            and rec.block_no\n            and block_no not in (rec.block_no, rec.block_no - 1, rec.block_no + 1)\n        ):\n            raise AssertionError(\n                \"last `block_no` value is different than expected; \"\n                f\"{block_no} not in ({rec.block_no}, {rec.block_no - 1}, {rec.block_no + 1})\"\n            )\n    \n        # if cardano-node knows about Babbage and network is in Alonzo or higher era, check that\n        # the highest known protocol major version matches the expected value\n        if (\n            rec\n            and VERSIONS.cluster_era >= VERSIONS.ALONZO\n            and clusterlib_utils.cli_has(\"transaction build --babbage-era\")\n            and not (rec.proto_major == 7 and rec.proto_minor == 2)\n        ):\n>           pytest.xfail(\n                f\"protocol major version: {rec.proto_major}; \"\n                f\"protocol minor version: {rec.proto_minor}\"\n            )\nE           _pytest.outcomes.XFailed: protocol major version: 7; protocol minor version: 0\n\n/home/martink/Source/repos/cardano-node-tests5/cardano_node_tests/tests/test_dbsync.py:207: XFailed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "testfile_temp_dir",
+    "time" : {
+      "start" : 1659911539960,
+      "stop" : 1659911539960,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster_manager",
+    "time" : {
+      "start" : 1659911539960,
+      "stop" : 1659911539960,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir",
+    "time" : {
+      "start" : 1659911539960,
+      "stop" : 1659911539960,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "tmp_path_factory",
+    "time" : {
+      "start" : 1659909512071,
+      "stop" : 1659909512071,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn",
+    "time" : {
+      "start" : 1659909512071,
+      "stop" : 1659909512072,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "function_autouse",
+    "time" : {
+      "start" : 1659911539960,
+      "stop" : 1659911539960,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "change_dir",
+    "time" : {
+      "start" : 1659909512071,
+      "stop" : 1659909512071,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "worker_id",
+    "time" : {
+      "start" : 1659909512072,
+      "stop" : 1659909512072,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cluster",
+    "time" : {
+      "start" : 1659911539960,
+      "stop" : 1659911540259,
+      "duration" : 299
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "session_autouse",
+    "time" : {
+      "start" : 1659909512323,
+      "stop" : 1659909512323,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown",
+    "time" : {
+      "start" : 1659909512072,
+      "stop" : 1659909512323,
+      "duration" : 251
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "cluster_manager::0",
+    "time" : {
+      "start" : 1659911540308,
+      "stop" : 1659911540563,
+      "duration" : 255
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "cd_testfile_temp_dir::0",
+    "time" : {
+      "start" : 1659911540563,
+      "stop" : 1659911540563,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "close_dbconn::0",
+    "time" : {
+      "start" : 1659911540570,
+      "stop" : 1659911540570,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "testenv_setup_teardown::0",
+    "time" : {
+      "start" : 1659911540566,
+      "stop" : 1659911540568,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "testnets"
+  }, {
+    "name" : "tag",
+    "value" : "dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "needs_dbsync"
+  }, {
+    "name" : "tag",
+    "value" : "order(-10)"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "cardano_node_tests.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_dbsync"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestDBSync"
+  }, {
+    "name" : "host",
+    "value" : "bender-3900x"
+  }, {
+    "name" : "thread",
+    "value" : "1869341-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "cardano_node_tests.tests.test_dbsync"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ {
+    "name" : "https://github.com/input-output-hk/cardano-node-tests/blob/76ea460cdfb030e9f80185a76d5ad2a2222bda4f/cardano_node_tests/tests/test_dbsync.py#L86",
+    "url" : "https://github.com/input-output-hk/cardano-node-tests/blob/76ea460cdfb030e9f80185a76d5ad2a2222bda4f/cardano_node_tests/tests/test_dbsync.py#L86",
+    "type" : "link"
+  } ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "db253bc3c75c27eb",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: collected, not run",
+      "time" : {
+        "start" : 1659909508198,
+        "stop" : 1659909508198,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "needs_dbsync", "dbsync", "smoke", "testnets", "order(-10)" ]
+  },
+  "source" : "2735fbaff2710e73.json",
+  "parameterValues" : [ ]
+}
